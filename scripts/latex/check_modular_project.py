@@ -11,8 +11,8 @@ import json
 import re
 from pathlib import Path
 
-INCLUDES = re.compile(r"\\\\(?:input|include|subfile)\\s*(?:\\[[^]]*\\]\\s*)?\\{([^{}]+)\\}")
-BIB = re.compile(r"\\\\(?:addbibresource|bibliography)\\s*\\{([^{}]+)\\}")
+INCLUDES = re.compile(r"\\(?:input|include|subfile)\s*(?:\[[^]]*\]\s*)?\{([^{}]+)\}")
+BIB = re.compile(r"\\(?:addbibresource|bibliography)\s*\{([^{}]+)\}")
 SOURCE_ARCHIVES = {".zip", ".7z", ".rar"}
 GENERATED_NAMES = {".aux", ".log", ".out", ".toc", ".blg", ".bbl", ".fls", ".fdb_latexmk"}
 GENERATED_SUFFIXES = (".synctex.gz",)
