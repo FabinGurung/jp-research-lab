@@ -55,3 +55,15 @@ source snapshots, current binary output IDs, the 14 v3 enterprise templates,
 and the one academic shared style remain untouched until independently approved
 migration. Private scans, contact details and identity documents never go in
 public GitHub. Structural lint, PDF compilation and final approval are distinct.
+
+## Professional document publication and review separation (2026-11-12)
+
+For every new/updated enterprise or academic LaTeX delivery follow
+[the modular LaTeX policy](docs/LATEX_MODULAR_SOURCE_DELIVERY_POLICY_20261112.md)
+and its human-output subsection: remove internal AI/machine/database vocabulary,
+QA/status banners and unexplained entity IDs from reader-facing PDFs/TeX.
+Do not invent signing or formal approval. Put review, factual gaps, sourced
+cautions, suggested changes and all QA/provenance in a separate native Google Doc
+for the owning person/project. Preserve original Google Drive LIVE IDs, with
+PRE/POST archival copies for authorized revisions, rather than issuing
+a different live file ID each time. Retain old ZIPs and Git source history.
