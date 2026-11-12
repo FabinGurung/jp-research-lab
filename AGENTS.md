@@ -42,3 +42,16 @@ submission Google Doc. Audit/discussion, Colab and intake Sheets remain separate
 Follow A7 stable live-ID / subject-numbered PRE/POST / restore-in-place principles.
 Enrollment is not conversion or release approval; exact Doc/PDF parity requires
 actual exported-PDF and native-content checks. Never copy a base template.
+
+## New LaTeX working-source delivery — readable folders (2026-11-12)
+
+For any **new** Academic Writing or Enterprise Documents LaTeX working-source delivery,
+read [modular, uncompressed LaTeX source policy](docs/LATEX_MODULAR_SOURCE_DELIVERY_POLICY_20261112.md).
+Deliver browsable folders by default, a short `main.tex` that calls separate
+chapter/section `.tex` modules, and relevant source/data/figure/bibliography
+folders. Run `scripts/latex/check_modular_project.py` on new working projects.
+A ZIP is not the sole working delivery, but historical pinned ZIPs, immutable
+source snapshots, current binary output IDs, the 14 v3 enterprise templates,
+and the one academic shared style remain untouched until independently approved
+migration. Private scans, contact details and identity documents never go in
+public GitHub. Structural lint, PDF compilation and final approval are distinct.
