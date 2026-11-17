@@ -3,6 +3,10 @@
 Applies to every identity enrolled in `registry/researchers.json`; shared authority
 remains `controls/latex/tower.json`. No second control tower is created here.
 
+## Working CURRENT (owner override, 17 November 2026)
+
+Use the newest **successful, technically validated and source-preserved** thesis PDF and matching editable LaTeX as the current WORKING deliverable, not as an awaiting-review candidate. Once checks pass, preserve PRE copies, replace the stable owner Drive IDs, verify Drive readback, store POST snapshots and update the existing researcher corrections Google Doc and public-site pointers. Do not wait for researcher/supervisor review as a working-artifact promotion gate. Scientific admission and final institutional certification are separate and cannot be inferred from a successful build. Do not admit unsupported methods or data to satisfy this rule. Student-facing PDF and thesis source must contain academic content only; put internal audit, correction worklogs, AI-generated implementation narration and release status in the existing owner Google Doc, not in thesis chapters/appendices/captions. Keep the exact shared template unchanged unless separately approved. An unverified Git sequence cannot be fabricated; use exact Git PR SHA and Drive PRE/POST controls for this working-current transition.
+
 ## Resume procedure
 
 1. Fetch live main; record its SHA. Read root and researcher AGENTS, Memory Wall,
