@@ -219,7 +219,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "CKPT14 is the frozen scientific/document baseline. CKPT15 cumulative corrections 1–12 remain included but under human scientific and visual review. New modular, browsable LaTeX source consumes the central pumlsc-shared.sty v2.6.4 template; source migration and a new-format PDF rebuild are not certified. The linked 58-page CKPT15 PDF is the prior-template cumulative review build, not a newly compiled v2.6.4 release. HEC-RAS is literature/background only.",
+      "public_note": "CKPT15 (cumulative after-midterm Corrections 1–12) is the owner-approved CURRENT working scientific manuscript. New exact-template v2.6.4 modular XeLaTeX/Biber rebuild: 59-page client PDF and separate 62-page audit; embedded Times New Roman and technical source checks passed. The editable unpacked LaTeX Drive folder and the client PDF use permanent live IDs with A9 PRE/POST archives. Institutional final submission/visual parity and administrative M05/M11 remain separate. HEC-RAS is reviewed literature only and is not a method, finding, future task or remaining gate. Presentation PPT-CP06 still reflects the earlier CKPT14 checkpoint until separately refreshed.",
       "governance": {
         "read_first": "researchers/shisheer-kc/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
