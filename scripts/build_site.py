@@ -198,7 +198,13 @@ def main():
             rows.insert(0, ("NEWEST thesis PDF — LATEX_SEQ056 (Table 4.6 correction)", drive["seq056_full_compiled_pdf_drive_id"]))
         if drive.get("seq056_complete_latex_zip_drive_id"):
             rows.insert(1, ("LATEX_SEQ056 complete LaTeX source ZIP", drive["seq056_complete_latex_zip_drive_id"]))
-        links="".join(f'<div>{esc(label)}</div><div>{f"""<a href="{drive_url(fid)}">Open Drive file</a>""" if fid else """<span class="badge">ON HOLD</span>"""}</div>' for label,fid in rows)
+        def _researcher_drive_link(label, file_id):
+            if not file_id:
+                return '<span class="badge">ON HOLD</span>'
+            if label == "Editable modular LaTeX folder":
+                return '<a href="https://drive.google.com/drive/folders/' + esc(file_id) + '">Browse source folder</a>'
+            return '<a href="' + esc(drive_url(file_id)) + '">Open Drive file</a>'
+        links="".join(f'<div>{esc(label)}</div><div>{_researcher_drive_link(label, fid)}</div>' for label, fid in rows)
         body=f'''<main class="wrap hero"><div class="eyebrow">{esc(r["researcher_id"])}</div><h1>{esc(r["display_name"])}</h1><p><span class="badge">{esc(status_label)}</span></p><div class="notice">{esc(notice_text)}</div><section class="section"><h2>Topic</h2><div class="kvs"><div>Title</div><div>{esc(title_value)}</div><div>Short name</div><div>{esc(r.get("topic_short_name") or "ON HOLD")}</div></div></section><section class="section"><h2>Version control and source</h2><p>Git branches are full-repository commits; these researcher-named refs are compatibility/work lanes. Public-safe website and tool code is versioned in the common <a href="https://github.com/FabinGurung/JP_Research-and-Development/tree/main">GitHub main repository</a>. Original thesis source packages and compiled outputs remain in Google Drive until an explicit source-code admission/migration is approved.</p></section><section class="section"><h2>Research lanes</h2><div class="lanes">{lane_html}</div></section>{website_section}{debt_section}<section class="section"><h2>Google Drive outputs</h2><div class="kvs">{links}</div></section></main>'''
         # Scoped Git source link appears only when explicitly registered for a researcher.
         if r.get("git_source_manifest_path"):
