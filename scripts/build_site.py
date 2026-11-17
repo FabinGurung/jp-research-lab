@@ -144,7 +144,7 @@ def main():
         rows=[
           ("Discussion Google Doc",drive.get("discussion_google_doc_id")),
           ("Research project Drive folder",drive.get("project_root_drive_id")),
-          ("Working thesis PDF",drive.get("working_pdf_drive_id")),
+          ("CKPT15 current working PDF" if r["slug"]=="shisheer-kc" else "Working thesis PDF",drive.get("working_pdf_drive_id")),
           ("Editable modular LaTeX folder",drive.get("latex_working_folder_drive_id")),
           ("LaTeX main.tex",drive.get("latex_working_entrypoint_drive_id")),
           ("LaTeX source",drive.get("latex_source_drive_id")),
@@ -169,6 +169,8 @@ def main():
         if drive.get("latex_working_folder_drive_id"):
             rows = [(label, fid) for (label, fid) in rows if label not in (
                 "LaTeX source package", "Formatting preview source ZIP")]
+        if r["slug"] == "shisheer-kc":
+            rows = [(label, fid) for label, fid in rows if label not in ("LaTeX source package", "Formatting preview source ZIP")]
         # Optional verified CURRENT links are additive; historical Drive rows remain intact.
         if drive.get("current_compiled_pdf_drive_id"):
             rows.insert(2, ("Latest CURRENT thesis PDF", drive["current_compiled_pdf_drive_id"]))
