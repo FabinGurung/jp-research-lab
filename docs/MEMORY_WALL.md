@@ -18,6 +18,10 @@
 9. Implementation status and next gates
 10. [Three-format submission bundles and working records](#three-format-submission-bundles-and-working-records)
 
+## Working-CURRENT clean-manuscript rule (owner instruction, 2026-11-17)
+
+The newest **successfully compiled and technically verified** researcher PDF and matching editable LaTeX files are promoted under the same stable Google Drive CURRENT identities **without waiting for researcher, supervisor or peer review**. First preserve exact PRE originals, update the source and student-facing PDF, verify readable PDF/source and provider bytes, archive POST snapshots, and update GitHub public-safe pointers and the existing researcher's Google Doc. Never invent a researcher sequence to block this working-CURRENT designation. Scientific source admission and university submission certification remain separate: do not assert unsupported results, change protected scientific calculations without evidence, or call an uncertified manuscript institutionally approved. No AI/ChatGPT, audit status, editorial implementation notes, internal change identifiers or research-control language may appear in student-facing prose or thesis captions. Source filenames may retain provenance identifiers; all status matrices, technical QA, version records and unresolved issues belong only in the existing researcher Google Doc (not an appendix or dedicated audit chapter in the student manuscript). This policy does not change the global PU LaTeX template or the protected-main PR procedure.
+
 ## 1. What is authoritative?
 
 Use **GitHub as the source/history authority** and **Google Drive as the scientific/private-binary custody authority**. University/researcher/supervisor evidence is the approval authority. A7 is a **read-only catalogue** for this module and does not own or mutate R&D source.

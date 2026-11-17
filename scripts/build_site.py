@@ -208,26 +208,25 @@ def main():
             return '<a href="' + esc(drive_url(file_id)) + '">Open Drive file</a>'
         links="".join(f'<div>{esc(label)}</div><div>{_researcher_drive_link(label, fid)}</div>' for label, fid in rows)
         body=f'''<main class="wrap hero"><div class="eyebrow">{esc(r["researcher_id"])}</div><h1>{esc(r["display_name"])}</h1><p><span class="badge">{esc(status_label)}</span></p><div class="notice">{esc(notice_text)}</div><section class="section"><h2>Topic</h2><div class="kvs"><div>Title</div><div>{esc(title_value)}</div><div>Short name</div><div>{esc(r.get("topic_short_name") or "ON HOLD")}</div></div></section><section class="section"><h2>Version control and source</h2><p>Git branches are full-repository commits; these researcher-named refs are compatibility/work lanes. Public-safe website and tool code is versioned in the common <a href="https://github.com/FabinGurung/JP_Research-and-Development/tree/main">GitHub main repository</a>. Original thesis source packages and compiled outputs remain in Google Drive until an explicit source-code admission/migration is approved.</p></section><section class="section"><h2>Research lanes</h2><div class="lanes">{lane_html}</div></section>{website_section}{debt_section}<section class="section"><h2>Google Drive outputs</h2><div class="kvs">{links}</div></section></main>'''
-        # Shisheer's Oct-19 editorial candidate is review-only and must never
-        # replace the permanent CKPT15 CURRENT links in the generic Drive list.
-        if r["slug"] == "shisheer-kc" and drive.get("oct19_editorial_candidate_pdf_drive_id"):
-            candidate_pdf = drive_url(drive["oct19_editorial_candidate_pdf_drive_id"])
-            source_zip = drive_url(drive["oct19_editorial_candidate_source_zip_drive_id"])
-            candidate_folder = "https://drive.google.com/drive/folders/" + drive["oct19_editorial_candidate_folder_drive_id"]
+        # The latest validated Shisheer student-facing PDF and source are CURRENT.
+        if r["slug"] == "shisheer-kc" and drive.get("current_clean_latex_zip_drive_id"):
+            current_pdf = drive_url(drive["working_pdf_drive_id"])
+            source_zip = drive_url(drive["current_clean_latex_zip_drive_id"])
+            live_source = "https://drive.google.com/drive/folders/" + drive["latex_working_folder_drive_id"]
             corrections_doc = "https://docs.google.com/document/d/" + drive["corrections_live_google_doc_id"] + "/edit"
-            candidate_section = (
-                '<section class="section"><h2>17 November editorial correction candidate — NOT CURRENT</h2>'
-                '<div class="notice"><strong>RESEARCHER REVIEW ONLY.</strong> October 19 text/figure/caption and Shisheer-only logo candidate: '
-                '57-page client PDF and editable LaTeX ZIP. The approved CKPT15 PDF and editable LIVE source remain unchanged. '
-                'Monthly-flow Figure B-08 and hydraulic-rating scientific scope are held; no academic submission approval is implied.</div>'
-                '<p><a href="' + esc(candidate_pdf) + '">Open corrected candidate client PDF (57 pages)</a> · '
-                '<a href="' + esc(source_zip) + '">Open complete modular LaTeX candidate ZIP</a></p>'
-                '<p><a href="' + esc(candidate_folder) + '">Candidate review folder</a> · '
-                '<a href="' + esc(corrections_doc) + '">Live researcher master corrections and evidence</a></p>'
-                '<p class="muted">Shared LaTeX style v2.6.4 is unchanged. Internal audit PDF is deliberately excluded from researcher-facing links. '
-                'An unreserved researcher sequence cannot be described as a Git manuscript release.</p></section>'
+            current_section = (
+                '<section class="section"><h2>Current thesis and editable LaTeX — 17 November 2026</h2>'
+                '<div class="notice"><strong>CURRENT WORKING VERSION: CKPT15.</strong> '
+                'The current 57-page student-facing PDF and complete modular LaTeX source replace the earlier 59-page build '
+                'under the same permanent LIVE file identities. The prior files are preserved in version history.</div>'
+                '<p><a href="' + esc(current_pdf) + '">Open CURRENT thesis PDF (57 pages)</a> · '
+                '<a href="' + esc(source_zip) + '">Download CURRENT clean LaTeX source ZIP</a></p>'
+                '<p><a href="' + esc(live_source) + '">Browse CURRENT uncompressed LaTeX folder</a> · '
+                '<a href="' + esc(corrections_doc) + '">Open separate corrections and version-control record</a></p>'
+                '<p class="muted">The student PDF and source contain no internal-audit appendices or production status notes. '
+                'The canonical shared LaTeX style v2.6.4 is unchanged.</p></section>'
             )
-            body = body.replace("</main>", candidate_section + "</main>")
+            body = body.replace("</main>", current_section + "</main>")
         # Scoped Git source link appears only when explicitly registered for a researcher.
         if r.get("git_source_manifest_path"):
             source_path = r["git_source_manifest_path"]

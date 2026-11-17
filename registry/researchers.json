@@ -189,7 +189,7 @@
       "slug": "shisheer-kc",
       "display_name": "Shisheer KC",
       "qa_status": "TITLE_VERIFIED_OTHER_POINTERS_HOLD",
-      "topic_title": "Assessment of Environmental Flow Adequacy in the Downstream Reach of the Seti Hydropower Station, Pokhara",
+      "topic_title": "Assessment of Environmental Flow Adequacy :A case study in Seti Hydropower Station, Pokhara",
       "topic_short_name": null,
       "drive": {
         "discussion_google_doc_id": null,
@@ -207,7 +207,11 @@
         "oct19_editorial_candidate_pdf_drive_id": "1_3A6KH_toEGhu-ii-qrQViPTY66qGK9Q",
         "oct19_editorial_candidate_source_zip_drive_id": "122qEs68jx5MMpm-qbTJPGRauU1N8kYnV",
         "oct19_editorial_candidate_folder_drive_id": "1XRZKUBeif0Onmc4cKcceTXmNaVQMEWwo",
-        "corrections_live_google_doc_id": "14IpKVGpFVUbvZDGTauAEVIdqZvEQpSiNDsliNkvq-qU"
+        "corrections_live_google_doc_id": "14IpKVGpFVUbvZDGTauAEVIdqZvEQpSiNDsliNkvq-qU",
+        "current_clean_latex_zip_drive_id": "1-msE7_x4_AZ0ZlNXlYZXydKehrH0DMO3",
+        "project_state_drive_id": "1kq5b4HWehRwVqN2qHfV_wFLX1fNfQuBB",
+        "pre_post_history_folder_drive_id": "13wCpqPaUIQHWd-a085NC0jWGeVXhBf6o",
+        "current_clean_figure_1_2_drive_id": "1q25Pu9lEveVGXPQwBy8jPIMc20tbIS44"
       },
       "lanes": {
         "discussion": {
@@ -223,7 +227,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "CKPT15 remains the approved CURRENT working scientific manuscript (59-page client PDF, 62-page internal audit; single shared LaTeX v2.6.4). A later researcher-authorized October 19 EDITORIAL CANDIDATE was compiled on 17 November 2026 (57-page client PDF, 60-page internal audit) and archived separately for researcher review; it is NOT CURRENT, NOT submission-approved and does NOT supersede the stable LIVE identities. Author-requested title, figure/panel/caption edits and project-only logo scale have candidate QA evidence. New actual monthly-flow figure B-08 awaits independent data verification. HEC-RAS/hydraulic-rating outputs remain evidence/discussion only, not executed thesis methodology or minimum-flow approval. Shisheer LaTeX sequence baseline remains unverified, with no reservation; publication of the reviewer pointer is not a manuscript release. The live master corrections Google Doc remains the single researcher correction authority.",
+      "public_note": "CKPT15 CURRENT working thesis updated 17 November 2026: 57-page student-facing PDF, complete clean modular LaTeX source (uncompressed LIVE folder and current ZIP), exact Times New Roman embedded, IEEE citations, and project-specific cover/logo and caption corrections. Original file IDs retained with PRE/POST ordinal 000002. Shared Pokhara University LaTeX style v2.6.4 unchanged. Hydraulic-rating/HEC-RAS remains literature context rather than an executed result. The source-unverified additional monthly downstream-flow graphic is not included; evidence and version history are recorded separately in the existing researcher corrections Google Doc. This is the latest working source/output, not a claim of institutional final submission certification.",
       "governance": {
         "read_first": "researchers/shisheer-kc/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
