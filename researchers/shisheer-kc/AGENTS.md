@@ -28,3 +28,10 @@ Keep unknown facts unknown and hold only the affected operation while continuing
 independent verified work. Do not copy findings from any other researcher.
 Report executed checks separately from plans and scientific acceptance. Preserve
 CURRENT and tested template pins until the required release evidence exists.
+
+## Canonical corrections register (Drive-owned; 17 November 2026)
+
+Shisheer has **one** stable, living `After Midterm Corrections — LIVE` Google Doc:
+[Canonical corrections and research handoff](https://docs.google.com/document/d/14IpKVGpFVUbvZDGTauAEVIdqZvEQpSiNDsliNkvq-qU/edit).
+Its stable Drive file ID is `14IpKVGpFVUbvZDGTauAEVIdqZvEQpSiNDsliNkvq-qU`.
+This record holds the author correction history, implementation checklist, and the 17 November four-source technical review appendix. The full Google Doc and original evidence remain under Drive authority; the Git repository only indexes its stable identity. An instruction marked **recorded** or **pending verification** is not an implemented or scientifically approved LaTeX revision. See [`corrections/README.md`](corrections/README.md) for the version and custody contract.
