@@ -208,23 +208,31 @@ def main():
             return '<a href="' + esc(drive_url(file_id)) + '">Open Drive file</a>'
         links="".join(f'<div>{esc(label)}</div><div>{_researcher_drive_link(label, fid)}</div>' for label, fid in rows)
         body=f'''<main class="wrap hero"><div class="eyebrow">{esc(r["researcher_id"])}</div><h1>{esc(r["display_name"])}</h1><p><span class="badge">{esc(status_label)}</span></p><div class="notice">{esc(notice_text)}</div><section class="section"><h2>Topic</h2><div class="kvs"><div>Title</div><div>{esc(title_value)}</div><div>Short name</div><div>{esc(r.get("topic_short_name") or "ON HOLD")}</div></div></section><section class="section"><h2>Version control and source</h2><p>Git branches are full-repository commits; these researcher-named refs are compatibility/work lanes. Public-safe website and tool code is versioned in the common <a href="https://github.com/FabinGurung/JP_Research-and-Development/tree/main">GitHub main repository</a>. Original thesis source packages and compiled outputs remain in Google Drive until an explicit source-code admission/migration is approved.</p></section><section class="section"><h2>Research lanes</h2><div class="lanes">{lane_html}</div></section>{website_section}{debt_section}<section class="section"><h2>Google Drive outputs</h2><div class="kvs">{links}</div></section></main>'''
-        # The latest validated Shisheer student-facing PDF and source are CURRENT.
-        if r["slug"] == "shisheer-kc" and drive.get("current_clean_latex_zip_drive_id"):
+        # Shisheer CURRENT is an OPEN modular source tree, with no active ZIP.
+        if r["slug"] == "shisheer-kc" and drive.get("latex_working_folder_drive_id"):
             current_pdf = drive_url(drive["working_pdf_drive_id"])
-            source_zip = drive_url(drive["current_clean_latex_zip_drive_id"])
             live_source = "https://drive.google.com/drive/folders/" + drive["latex_working_folder_drive_id"]
+            main_tex = drive_url(drive["latex_working_entrypoint_drive_id"])
+            front_tex = drive_url(drive["current_frontmatter_entrypoint_drive_id"])
+            chapter3_tex = drive_url(drive["current_chapter3_entrypoint_drive_id"])
+            end_tex = drive_url(drive["current_endmatter_entrypoint_drive_id"])
             corrections_doc = "https://docs.google.com/document/d/" + drive["corrections_live_google_doc_id"] + "/edit"
             current_section = (
-                '<section class="section"><h2>Current thesis and editable LaTeX — 17 November 2026</h2>'
-                '<div class="notice"><strong>CURRENT WORKING VERSION: CKPT15.</strong> '
-                'The current 57-page student-facing PDF and complete modular LaTeX source replace the earlier 59-page build '
-                'under the same permanent LIVE file identities. The prior files are preserved in version history.</div>'
-                '<p><a href="' + esc(current_pdf) + '">Open CURRENT thesis PDF (57 pages)</a> · '
-                '<a href="' + esc(source_zip) + '">Download CURRENT clean LaTeX source ZIP</a></p>'
-                '<p><a href="' + esc(live_source) + '">Browse CURRENT uncompressed LaTeX folder</a> · '
-                '<a href="' + esc(corrections_doc) + '">Open separate corrections and version-control record</a></p>'
-                '<p class="muted">The student PDF and source contain no internal-audit appendices or production status notes. '
-                'The canonical shared LaTeX style v2.6.4 is unchanged.</p></section>'
+                '<section class="section"><h2>CURRENT thesis and open LaTeX — November 2026</h2>'
+                '<div class="notice"><strong>CURRENT CKPT15 WORKING SOURCE/PDF.</strong> '
+                '58 A4 pages; November 2026 on both title pages; project-specific first-cover logo matching Saugat scale; '
+                'Lists of Equations and Appendices on separate pages. PRE/POST version ordinal 000003. '
+                'Previous revisions are archived, not deleted.</div>'
+                '<p><a href="' + esc(current_pdf) + '">Open CURRENT thesis PDF (58 pages)</a> · '
+                '<a href="' + esc(live_source) + '">Browse CURRENT editable open LaTeX files</a></p>'
+                '<p><a href="' + esc(main_tex) + '">main.tex</a> · '
+                '<a href="' + esc(front_tex) + '">frontmatter.tex</a> · '
+                '<a href="' + esc(chapter3_tex) + '">chapter3.tex</a> · '
+                '<a href="' + esc(end_tex) + '">endmatter.tex</a></p>'
+                '<p><a href="' + esc(corrections_doc) + '">Researcher live correction checklist and separate audit evidence</a></p>'
+                '<p class="muted">No new LaTeX ZIP produced. Obsolete ZIP, source duplicates and tracking materials '
+                'were moved to preserved archives. The student manuscript has no internal audit text.</p>'
+                '</section>'
             )
             body = body.replace("</main>", current_section + "</main>")
         # Scoped Git source link appears only when explicitly registered for a researcher.
