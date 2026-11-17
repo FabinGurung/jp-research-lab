@@ -145,9 +145,11 @@ def main():
           ("Discussion Google Doc",drive.get("discussion_google_doc_id")),
           ("Research project Drive folder",drive.get("project_root_drive_id")),
           ("Working thesis PDF",drive.get("working_pdf_drive_id")),
+          ("Editable modular LaTeX folder",drive.get("latex_working_folder_drive_id")),
+          ("LaTeX main.tex",drive.get("latex_working_entrypoint_drive_id")),
           ("LaTeX source",drive.get("latex_source_drive_id")),
           ("LaTeX source package",drive.get("latex_source_package_drive_id")),
-          ("Formatting-only preview PDF (NON-PRODUCTION)",drive.get("preview_pdf_drive_id")),
+          ("CKPT15 cumulative review PDF (pre-template rebuild)" if drive.get("latex_working_folder_drive_id") else "Formatting-only preview PDF (NON-PRODUCTION)",drive.get("preview_pdf_drive_id")),
           ("Formatting preview source ZIP",drive.get("preview_latex_source_package_drive_id")),
           ("Researcher review matrix",drive.get("discussion_review_matrix_drive_id")),
           ("Presentation PDF",drive.get("presentation_pdf_drive_id")),
@@ -161,6 +163,12 @@ def main():
           ("Live thesis Google Doc",drive.get("thesis_google_doc_id")),
           ("Live presentation Google Slides",drive.get("presentation_google_slides_drive_id")),
         ]
+        # A migrated, browsable working folder is the public-facing source path.
+        # Keep historical ZIP IDs in the registry for provenance, but not as a
+        # competing primary website link once that folder is populated.
+        if drive.get("latex_working_folder_drive_id"):
+            rows = [(label, fid) for (label, fid) in rows if label not in (
+                "LaTeX source package", "Formatting preview source ZIP")]
         # Optional verified CURRENT links are additive; historical Drive rows remain intact.
         if drive.get("current_compiled_pdf_drive_id"):
             rows.insert(2, ("Latest CURRENT thesis PDF", drive["current_compiled_pdf_drive_id"]))
