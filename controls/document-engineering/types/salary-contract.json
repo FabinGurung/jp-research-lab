@@ -30,5 +30,9 @@
   "status": "DRAFT_NOT_APPROVED",
   "source_precedent_state": "UNREVIEWED_ORIGINAL",
   "privacy": "PRIVATE_DATA_DRIVE_ONLY",
-  "no_autosign": true
+  "no_autosign": true,
+  "role_profiles": {
+    "site_engineer": "controls/document-engineering/role-profiles/site-engineer-employment.v1.json"
+  },
+  "role_profile_optional": true
 }
