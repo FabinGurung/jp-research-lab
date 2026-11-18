@@ -1,0 +1,38 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{longtable,array,booktabs}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\definecolor{weddingwine}{HTML}{711E39}
+\definecolor{weddinggold}{HTML}{A67A34}
+\hypersetup{colorlinks=true,linkcolor=weddingwine,urlcolor=weddingwine}
+\setlength{\parskip}{6pt}
+\renewcommand{\baselinestretch}{1.15}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\textcolor{weddingwine}{JP ENTERPRISE \quad|\quad WEDDING CEREMONY \quad|\quad DAMAULI, TANAHUN}}
+\fancyfoot[C]{\small JP Enterprise \quad$\bullet$\quad Person A \& Person B}
+\fancyfoot[R]{\small Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\begin{document}
+\begin{center}
+{\Large\bfseries\color{weddingwine} WEDDING CEREMONY \& RECEPTION}\par
+\vspace{7pt}
+{\large\color{weddinggold} Venue and Catering Proposal --- Damauli, Tanahun, Nepal}\par
+\vspace{8pt}
+Prepared by JP Enterprise \quad$\bullet$\quad Person A \& Person B
+\end{center}
+\vspace{8pt}
+\noindent Event date:\ \underline{\hspace{35mm}}\qquad Guests:\ \underline{\hspace{24mm}}\qquad Budget (NPR):\ \underline{\hspace{25mm}}
+\tableofcontents
+\clearpage
+\input{sections/01_venues.tex}
+\input{sections/02_catering.tex}
+\input{sections/03_management.tex}
+\input{sections/04_budget_provenance.tex}
+\end{document}
