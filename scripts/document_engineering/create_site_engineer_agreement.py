@@ -108,7 +108,7 @@ def materialize(data: dict, out: Path, compile_pdf: bool = False) -> Path:
         raise ValueError("Private employee output cannot be inside public Git source")
     if out.exists():
         raise FileExistsError("Refusing to overwrite an existing employee LIVE project")
-    shutil.copytree(TEMPLATE, out, ignore=shutil.ignore_patterns("*.aux", "*.log", "*.pdf", "*.fls", "*.fdb_latexmk", "*.synctex.gz"))
+    shutil.copytree(TEMPLATE, out, ignore=shutil.ignore_patterns("sample_employee.json", "*.aux", "*.log", "*.pdf", "*.fls", "*.fdb_latexmk", "*.synctex.gz"))
     (out / "project_config.tex").write_text(config_from(data, rows, vehicle), encoding="utf-8")
     if "letterhead_pdf" in data:
         (out / "assets").mkdir(exist_ok=True)
