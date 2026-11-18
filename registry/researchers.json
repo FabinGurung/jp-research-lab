@@ -259,6 +259,7 @@
         "presentation_pdf_drive_id": "1MIZYsTifoO3j56rPDEzejEwzdOZyt30Z",
         "presentation_pptx_drive_id": "1ModyYKCc9eXGh0crIZqCArfTkndCtTj2",
         "latex_source_package_drive_id": "1n2dhxKAHZoUvgck1aikPFs9_EG6ScArI",
+        "latex_unzipped_source_folder_drive_id": "1CIYWLLN-wlQ3gtiMveVytDXLrFNpaVzi",
         "preview_pdf_drive_id": "1zTFajgkbGMmiuNBRcLF540SlbAb5_bC_",
         "preview_latex_source_package_drive_id": "17CineGjLuD81q9W-2BIv6s4iJho8DN-E",
         "discussion_review_matrix_drive_id": "1S59v06JAAaZLYKCNLsrosmsqBzsGWTFoAHY7HG35EMg",
@@ -278,7 +279,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "Authoritative scientific thesis milestone: R10.1 controlled working/review; R10.2 is a separate PU v1.12 formatting-only non-production preview, not a final release. Presentation PPT-CP10 is frozen; the separately filed presented PDF is review-only. GEE-V10 has 22/22 rows awaiting researcher decisions; full-period independent temporal validation is open and the V07 field-Landsat match is only a six-row subset.",
+      "public_note": "R10.3 is the verified 59-page CURRENT technical working thesis on the existing stable Drive PDF/source IDs; 58 separate files are available in the unzipped editable Drive working folder. Shared PU LaTeX style v2.6.4/verified font build; archive PRE R10.1 and POST R10.3 retained. The scientific locked period includes 44 dates/186 field events; the broader historic manuscript period extends to 47 dates/202 events. V07 is six contextual same-date comparisons, NOT full-period independent validation. GEE-V10 remains 22/22 pending researcher decisions, V11 blocked and PPT-CP10 frozen. No researcher Git LaTeX sequence was allocated; academic approval is separate.",
       "governance": {
         "read_first": "researchers/binay-karki/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
