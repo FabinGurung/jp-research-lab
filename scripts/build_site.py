@@ -208,7 +208,7 @@ def main():
             return '<a href="' + esc(drive_url(file_id)) + '">Open Drive file</a>'
         links="".join(f'<div>{esc(label)}</div><div>{_researcher_drive_link(label, fid)}</div>' for label, fid in rows)
         body=f'''<main class="wrap hero"><div class="eyebrow">{esc(r["researcher_id"])}</div><h1>{esc(r["display_name"])}</h1><p><span class="badge">{esc(status_label)}</span></p><div class="notice">{esc(notice_text)}</div><section class="section"><h2>Topic</h2><div class="kvs"><div>Title</div><div>{esc(title_value)}</div><div>Short name</div><div>{esc(r.get("topic_short_name") or "ON HOLD")}</div></div></section><section class="section"><h2>Version control and source</h2><p>Git branches are full-repository commits; these researcher-named refs are compatibility/work lanes. Public-safe website and tool code is versioned in the common <a href="https://github.com/FabinGurung/JP_Research-and-Development/tree/main">GitHub main repository</a>. Original thesis source packages and compiled outputs remain in Google Drive until an explicit source-code admission/migration is approved.</p></section><section class="section"><h2>Research lanes</h2><div class="lanes">{lane_html}</div></section>{website_section}{debt_section}<section class="section"><h2>Google Drive outputs</h2><div class="kvs">{links}</div></section></main>'''
-        # Shisheer CURRENT is an OPEN modular source tree, with no active ZIP.
+        # Shisheer CURRENT remains a permanent open modular Drive source, no new ZIP.
         if r["slug"] == "shisheer-kc" and drive.get("latex_working_folder_drive_id"):
             current_pdf = drive_url(drive["working_pdf_drive_id"])
             live_source = "https://drive.google.com/drive/folders/" + drive["latex_working_folder_drive_id"]
@@ -216,22 +216,30 @@ def main():
             front_tex = drive_url(drive["current_frontmatter_entrypoint_drive_id"])
             chapter3_tex = drive_url(drive["current_chapter3_entrypoint_drive_id"])
             end_tex = drive_url(drive["current_endmatter_entrypoint_drive_id"])
+            supplement_tex = drive_url(drive["current_open_scoped_hydraulics_appendix_tex_drive_id"])
+            monthly_figure = drive_url(drive["current_monthly_reconstructed_downstream_figure_drive_id"])
             corrections_doc = "https://docs.google.com/document/d/" + drive["corrections_live_google_doc_id"] + "/edit"
+            handover_base = REPO_URL + "/blob/main/docs/handovers/"
             current_section = (
-                '<section class="section"><h2>CURRENT thesis and open LaTeX — November 2026</h2>'
-                '<div class="notice"><strong>CURRENT CKPT15 WORKING SOURCE/PDF.</strong> '
-                '58 A4 pages; November 2026 on both title pages; project-specific first-cover logo matching Saugat scale; '
-                'Lists of Equations and Appendices on separate pages. PRE/POST version ordinal 000003. '
-                'Previous revisions are archived, not deleted.</div>'
-                '<p><a href="' + esc(current_pdf) + '">Open CURRENT thesis PDF (58 pages)</a> · '
-                '<a href="' + esc(live_source) + '">Browse CURRENT editable open LaTeX files</a></p>'
+                '<section class="section"><h2>CURRENT thesis and open LaTeX — 18 November 2026</h2>'
+                '<div class="notice"><strong>CURRENT working manuscript: 62 A4 pages.</strong> '
+                'Version 000004 replaces the previous 58-page release at the same permanent Drive ID. '
+                'November 2026 title pages, original 3x university logo scale, separate appendix list, '
+                'and embedded Times New Roman; original PRE/POST versions retained.</div>'
+                '<p><a href="' + esc(current_pdf) + '">Open CURRENT thesis PDF (62 pages)</a> · '
+                '<a href="' + esc(live_source) + '">Browse CURRENT open modular LaTeX files</a></p>'
                 '<p><a href="' + esc(main_tex) + '">main.tex</a> · '
                 '<a href="' + esc(front_tex) + '">frontmatter.tex</a> · '
                 '<a href="' + esc(chapter3_tex) + '">chapter3.tex</a> · '
-                '<a href="' + esc(end_tex) + '">endmatter.tex</a></p>'
-                '<p><a href="' + esc(corrections_doc) + '">Researcher live correction checklist and separate audit evidence</a></p>'
-                '<p class="muted">No new LaTeX ZIP produced. Obsolete ZIP, source duplicates and tracking materials '
-                'were moved to preserved archives. The student manuscript has no internal audit text.</p>'
+                '<a href="' + esc(end_tex) + '">endmatter.tex</a> · '
+                '<a href="' + esc(supplement_tex) + '">supplementary model appendix</a></p>'
+                '<p><a href="' + esc(monthly_figure) + '">Reconstructed monthly downstream-flow figure</a> · '
+                '<a href="' + esc(corrections_doc) + '">Researcher correction checklist and owner reminders</a></p>'
+                '<p class="muted">35-item checklist: 31 done; 4 partial, documented in the live Google Doc. '
+                'Archived hydraulic-model comparisons do not establish an approved minimum release. '
+                'The shared university LaTeX template remains unchanged. No new ZIP was created.</p>'
+                '<p><a href="' + esc(handover_base + "BINAY_KARKI_RSH006_ENGINE_AND_OPEN_LATEX_20261118.md") + '">Binay Karki handover</a> · '
+                '<a href="' + esc(handover_base + "ALL_RESEARCHERS_LATEST_ENGINE_AND_VERSION_PATH_20261118.md") + '">All-researcher engine handover</a></p>'
                 '</section>'
             )
             body = body.replace("</main>", current_section + "</main>")
