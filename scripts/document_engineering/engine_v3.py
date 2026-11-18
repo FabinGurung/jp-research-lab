@@ -120,32 +120,78 @@ def render(payload):
         "auto_approve":False,"fixture_only":payload.get("fixture_only") is True}
     return result,qa
 
+def modularize(tex):
+    """Split a rendered v3 document into independently editable section files.
+
+    Historical template blobs, type registry and format authority stay unchanged.
+    """
+    pre, begin, remainder = tex.partition(r"\begin{document}")
+    body, end, suffix = remainder.partition(r"\end{document}")
+    if not begin or not end or r"\begin{document}" in body:
+        raise ValueError("Expected exactly one complete document environment")
+    headings = list(re.finditer(r"\\EnterpriseSection\{[^{}]+\}", body))
+    if not headings:
+        raise ValueError("Enterprise template requires at least one content section")
+    chunks = [body[:headings[0].start()]]
+    chunks.extend(body[match.start():headings[i+1].start() if i+1<len(headings) else len(body)]
+                  for i,match in enumerate(headings))
+    sections = {}
+    calls = []
+    for index, chunk in enumerate(chunks):
+        relative = f"sections/{index:02d}_{'opening' if index == 0 else 'section'}.tex"
+        if not chunk.strip():
+            raise ValueError("Empty v3 section: "+relative)
+        sections[relative] = chunk.strip() + "\n"
+        calls.append(r"\input{" + relative.removesuffix(".tex") + "}")
+    main = pre.rstrip() + "\n" + begin + "\n" + "\n".join(calls) + "\n" + end + suffix
+    return main.rstrip() + "\n", sections
+
+
 def build(payload,out,compile_pdf=False):
     tex,qa=render(payload)
+    main, sections = modularize(tex)
     out.mkdir(parents=True,exist_ok=True)
+    (out/"sections").mkdir(exist_ok=True)
     name=qa["type_id"]
-    target=out/(name+".tex")
-    target.write_text(tex,encoding="utf-8")
+    target=out/"main.tex"
+    target.write_text(main,encoding="utf-8")
     check_tex(target)
+    for relative, source in sections.items():
+        f=out/relative
+        f.write_text(source,encoding="utf-8")
+        check_tex(f)
+    (out/"README.md").write_text(
+        "# " + name + " — editable source\n\n"
+        "Compile only main.tex from this directory. Each editable part "
+        "lives under sections/; enterprise-v3.sty is the pinned shared "
+        "style for this generated project.\n\n"
+        "Build: latexmk -pdf -no-shell-escape -interaction=nonstopmode "
+        "-halt-on-error main.tex\n\n"
+        "The compiled PDF keeps the existing name " + name + ".pdf. "
+        "Review notes and source checks belong outside the visible document.\n",
+        encoding="utf-8")
     shutil.copy2(ROOT/"templates/enterprise/v3/enterprise-v3.sty",out/"enterprise-v3.sty")
     if compile_pdf:
         if not shutil.which("latexmk"):raise RuntimeError("No latexmk compiler")
         process=subprocess.run(
             ["latexmk","-pdf","-no-shell-escape","-interaction=nonstopmode",
-             "-halt-on-error",name+".tex"],
+             "-halt-on-error","main.tex"],
             cwd=out,capture_output=True,text=True,timeout=180)
-        if process.returncode or not target.with_suffix(".pdf").is_file():
+        pdf=out/"main.pdf"
+        if process.returncode or not pdf.is_file():
             raise RuntimeError("PDF compile failed: "+name+"\n"+process.stdout[-2600:])
-        logfile=target.with_suffix(".log").read_text(errors="replace")
+        logfile=(out/"main.log").read_text(errors="replace")
         if "Overfull \\hbox" in logfile or "Overfull \\vbox" in logfile:
             raise ValueError("Unresolved page margin overflow: "+name)
-        pdf=target.with_suffix(".pdf")
         check_pdf(pdf)
         qa["pdf_client_language"]="PASS"
         qa["pdf_sha256"]=hashlib.sha256(pdf.read_bytes()).hexdigest()
         qa["pdf_size_bytes"]=pdf.stat().st_size
+        pdf.replace(out/(name+".pdf"))  # Compatible PDF name; compile entrypoint is main.tex
         qa["compilation"]="PASS_TECHNICAL_VISUAL_REVIEW_PENDING"
     else:qa["compilation"]="SOURCE_ONLY"
+    qa["source_entrypoint"]="main.tex"
+    qa["editable_modules"]=list(sections)
     (out/(name+".qa.json")).write_text(json.dumps(qa,indent=2)+"\n",encoding="utf-8")
     return qa
 
@@ -159,6 +205,9 @@ def selftest():
         assert qa["state"]=="FICTIONAL_QA_SAMPLE"
         assert r"\EnterpriseHeading" in tex
         assert "{{" not in tex
+        entry, parts = modularize(tex)
+        assert "sections/" in entry and len(parts)>=2
+        assert all(value.strip() for value in parts.values())
         fail=json.loads(json.dumps(data))
         fail["fields"].pop("document_ref")
         try:render(fail)
