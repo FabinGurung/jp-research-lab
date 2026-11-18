@@ -53,6 +53,13 @@ def build_document_pages(out):
       '<p><a href="'+esc(REPO_URL+'/blob/main/templates/enterprise/projects/site-engineer-employment/main.tex')+'">Main LaTeX entrypoint</a> · '
       '<a href="'+esc(REPO_URL+'/tree/main/templates/enterprise/projects/site-engineer-employment/sections')+'">Editable sections</a> · '
       '<a href="'+esc(REPO_URL+'/blob/main/docs/ENTERPRISE_MODULAR_EMPLOYEE_TEMPLATES_READ_FIRST_20261118.md')+'">Employee template instructions</a></p></section></main>')
+    enterprise=enterprise.replace("</main>",
+      '<section class="section"><h2>JP Enterprise · Damauli wedding ceremony and reception</h2>'
+      '<p>Explore five proposed Damauli venues, catering services, a wedding programme,'
+      ' a budget calculator, source references and the editable master proposal.'
+      ' Supplier dates and quotations require direct confirmation.</p>'
+      '<p><a href="wedding-damauli/">Open the wedding venue and catering proposal →</a></p>'
+      '</section></main>')
     write(out,"enterprise-documents/index.html",shell("Enterprise Documents",enterprise,1))
     source_body=(
       '<main class="wrap hero"><div class="eyebrow">A9 · Enterprise Document Engineering</div>'
