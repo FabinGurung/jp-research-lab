@@ -9,8 +9,8 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[1]
-REPO_URL="https://github.com/FabinGurung/JP_Research-and-Development"
-SITE_URL="https://fabingurung.github.io/JP_Research-and-Development/"
+REPO_URL="https://github.com/FabinGurung/jp-research-lab"
+SITE_URL="https://fabingurung.github.io/jp-research-lab/"
 
 def load(path): return json.loads((ROOT/path).read_text(encoding="utf-8"))
 def esc(v): return html.escape("" if v is None else str(v))
