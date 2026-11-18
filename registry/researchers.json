@@ -215,7 +215,11 @@
         "current_frontmatter_entrypoint_drive_id": "13EDUTt8aCUrsO8BL--6KYZXr21OhjEcE",
         "current_endmatter_entrypoint_drive_id": "1OMQeP0o5tajMM6gTNSaN3QHi7m40rLC1",
         "current_chapter3_entrypoint_drive_id": "1DXQhySvUUPFDahPUl9Km0T2VkcxzS7wW",
-        "current_source_qa_manifest_archive_drive_id": "1bR74iN7MYbyb8GDHcC7EAVJ5w_PTSz1M"
+        "current_source_qa_manifest_archive_drive_id": "1bR74iN7MYbyb8GDHcC7EAVJ5w_PTSz1M",
+        "current_open_scoped_hydraulics_appendix_tex_drive_id": "15Y_wGdP86wZEfuWW_tRutVHJa5UDPGgs",
+        "current_efa_methodology_adapted_figure_drive_id": "17aDd66bhDQSbVb9ZC4dAyf7UiwhvFrew",
+        "current_monthly_reconstructed_downstream_figure_drive_id": "1n892dQkZmbcgyd_6W_LCFj8ifwerGRqW",
+        "current_hydraulic_breakpoint_sensitivity_figure_drive_id": "1JN9m6MYWl9aXMOoyAQSsyTATzFS4ozQo"
       },
       "lanes": {
         "discussion": {
@@ -231,7 +235,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "CKPT15 CURRENT student-facing thesis is the latest 58-page A4 PDF (17 Nov 2026, November 2026 printed), permanent same-ID Drive output. Cover logo uses Saugat Paneru's project scale 3.0×; preliminary List of Appendices starts on a separate page after List of Equations. Fully OPEN modular LaTeX Drive folder is CURRENT: main.tex calls frontmatter/frontmatter.tex, five individual chapter wrappers and endmatter/endmatter.tex, with Chapter 3 split into 13 source modules. No new ZIP was generated; old source ZIP and duplicate/operational files were archived. Exact Times New Roman was embedded; original scientific calculations retained. 000003 numbered PRE/POST snapshots and the existing corrections Google Doc record release evidence. Latest 35-item correction checklist: 26 implemented/verified, 7 partial, 2 held; hydraulic scientific source admission remains separately evidentiary and no approved hydraulic minimum is asserted.",
+      "public_note": "CURRENT 62-page November 2026 thesis and matching fully open modular LaTeX, version-history event 000004 on 18 Nov 2026. Same original PDF and main.tex Drive IDs retained, actual XeLaTeX+Biber build with embedded Times New Roman and full PDF provider SHA readback. New source-derived EFA classification figure, 2013–2019 calculated (not gauged) monthly downstream-flow figure, and separately qualified archived HEC-RAS exploratory Appendix 5. Original hydrological/EMC findings preserved. The archived hydraulic calculation sensitivity does not justify a calibrated minimum-flow release: original inflow scenario and field information require external evidence. Original live 35-item Google Doc: 31 done, 4 partial (C03, C04, C05, C06), 0 hold, with exact researcher reminders. No new ZIP created; old ZIP remained archived. Source uses global shared PU LaTeX style v2.6.4 unchanged. Working CURRENT is distinct from final university approval.",
       "governance": {
         "read_first": "researchers/shisheer-kc/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
@@ -239,7 +243,8 @@
         "sequence_register": "registry/researcher-latex-sequences.json",
         "deliverable_contract": "controls/academic-writing/research-deliverables.json"
       },
-      "current_working_pdf_pages": 58
+      "current_working_pdf_pages": 62,
+      "latest_researcher_revision_ordinal": "000004"
     },
     {
       "researcher_id": "RSH-006",
