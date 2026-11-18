@@ -50,6 +50,23 @@ def resolve(name):
         raise ValueError("Unregistered or ambiguous template name; no legacy fallback: "+name)
     return found
 
+def role_profile(name, role):
+    """Select a registered specialization without changing the generic v3 route."""
+    info=resolve(name)
+    slug=key(role).replace(" ","_")
+    path=ROOT/"controls/document-engineering/types"/(info["id"]+".json")
+    control=json.loads(path.read_text(encoding="utf-8"))
+    selected=control.get("role_profiles",{}).get(slug)
+    if not selected or not (ROOT/selected).is_file():
+        raise ValueError("No registered role specialization for "+info["id"]+" / "+role)
+    mapping=json.loads((ROOT/selected).read_text(encoding="utf-8"))
+    if info["id"] not in mapping["type_ids"]:
+        raise ValueError("Role profile not authorized for this document type")
+    return {"canonical_id": info["id"], "template": info["path"],
+            "role_profile": selected, "modular_entrypoint": mapping["compile_entrypoint"],
+            "generator": mapping["generator"]}
+
+
 def selftest():
     records,index=catalog()
     assert len(records)==14 and len(index)>=14
@@ -58,6 +75,8 @@ def selftest():
         assert resolve(entry["title"])["path"]==entry["path"]
         for alias in entry.get("aliases",[]):
             assert resolve(alias)["id"]==entry["id"]
+    for type_id in ("job-contract", "salary-contract"):
+        assert role_profile(type_id,"Site Engineer")["modular_entrypoint"]=="main.tex"
     for bad in ("contract","letter","estimate old","works_contract.tex"):
         try:resolve(bad)
         except ValueError:pass
@@ -67,6 +86,7 @@ def selftest():
 if __name__=="__main__":
     ap=argparse.ArgumentParser()
     ap.add_argument("--name")
+    ap.add_argument("--role")
     ap.add_argument("--list",action="store_true")
     ap.add_argument("--self-test",action="store_true")
     args=ap.parse_args()
@@ -76,5 +96,7 @@ if __name__=="__main__":
         print(json.dumps([{"id":r["id"],"title":r["title"],"template":r["path"]} for r in records],indent=2))
     elif args.name:
         r=resolve(args.name)
-        print(json.dumps({"canonical_id":r["id"],"template":r["path"],"engine":"scripts/document_engineering/engine_v3.py","registry_version":"3.0.0"},indent=2))
+        answer={"canonical_id":r["id"],"template":r["path"],"engine":"scripts/document_engineering/engine_v3.py","registry_version":"3.0.0"}
+        if args.role:answer.update(role_profile(args.name,args.role))
+        print(json.dumps(answer,indent=2))
     else:ap.error("Use --name, --list or --self-test")

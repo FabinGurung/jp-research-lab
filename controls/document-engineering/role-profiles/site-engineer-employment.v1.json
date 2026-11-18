@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "id": "A9-ENT-EMP-SITE-ENG-V1",
+  "family": "enterprise",
+  "type_ids": [
+    "job-contract",
+    "salary-contract"
+  ],
+  "module_parent": "templates/enterprise/projects/site-engineer-employment",
+  "generator": "scripts/document_engineering/create_site_engineer_agreement.py",
+  "compile_entrypoint": "main.tex",
+  "config_file": "project_config.tex",
+  "content_directory": "sections",
+  "company_letterhead": "assets/letterhead.pdf",
+  "company_assets_authority": "private original approved employer Drive asset",
+  "variants": [
+    "initial",
+    "revision"
+  ],
+  "required_private_fields": [
+    "employer_name",
+    "employee_name",
+    "employee_address",
+    "designation",
+    "agreement_kind",
+    "service_start",
+    "effective_from",
+    "pay_period",
+    "duty_station",
+    "salary_components",
+    "gross_pay",
+    "vehicle_servicing"
+  ],
+  "default_role": "Site Engineer",
+  "salary_arithmetic_gate": "sum of salary_components must equal gross_pay",
+  "wage_legal_gate": "Human review of statutory wage components for the employee's effective date; numeric total alone is insufficient",
+  "identity_policy": "Only fictional samples and generic reusable source may enter public GitHub",
+  "signatures": "never automatically generated",
+  "audit_policy": "legal/QA/source findings in a separate native Google Doc, never the human-facing PDF",
+  "version_policy": "new employee gets new LIVE files; existing employee revision preserves same Drive file IDs with PRE and POST archives",
+  "historical_v3_sources": "unchanged; version-pinned registry still authoritative for generic 14 types",
+  "status": "REUSABLE_ROLE_PROFILE_SEPARATE_FROM_PINNED_V3_LAYOUTS"
+}

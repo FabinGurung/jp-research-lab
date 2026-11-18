@@ -1,0 +1,67 @@
+name: Enterprise modular source — 14 templates and Site Engineer profile
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/document_engineering/engine_v3.py'
+      - 'scripts/document_engineering/create_site_engineer_agreement.py'
+      - 'templates/enterprise/projects/site-engineer-employment/**'
+      - 'controls/document-engineering/role-profiles/**'
+      - 'controls/document-engineering/tower.json'
+      - 'controls/document-engineering/types/**'
+      - '.github/workflows/enterprise-modular-delivery.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/document_engineering/engine_v3.py'
+      - 'scripts/document_engineering/create_site_engineer_agreement.py'
+      - 'templates/enterprise/projects/site-engineer-employment/**'
+      - 'controls/document-engineering/role-profiles/**'
+      - '.github/workflows/enterprise-modular-delivery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-modular-enterprise:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate role schema, type routing and all 14 generated modules
+        run: |
+          python3 scripts/document_engineering/resolve_template.py --self-test
+          python3 scripts/document_engineering/engine_v3.py --self-test
+          python3 scripts/document_engineering/create_site_engineer_agreement.py --self-test
+          python3 scripts/document_engineering/check_client_facing_language.py --self-test
+      - name: Install compiler and PDF inspector
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils
+      - name: Build all 14 from main.tex and validate separate sections
+        run: |
+          python3 scripts/document_engineering/engine_v3.py --demo-all --out /tmp/a9-enterprise-modular --compile
+          test "$(find /tmp/a9-enterprise-modular -name '*.pdf' | wc -l)" -eq 14
+          for p in /tmp/a9-enterprise-modular/*; do
+            python3 scripts/latex/check_modular_project.py "$p"
+            test -f "$p/main.tex"
+            test "$(find "$p/sections" -name '*.tex' | wc -l)" -ge 2
+          done
+      - name: Compile reusable Site Engineer contract from fictional data
+        run: |
+          python3 scripts/document_engineering/create_site_engineer_agreement.py --data templates/enterprise/projects/site-engineer-employment/sample_employee.json --out /tmp/a9-site-engineer-example --compile
+          python3 scripts/latex/check_modular_project.py /tmp/a9-site-engineer-example
+          python3 scripts/document_engineering/check_client_facing_language.py --pdf /tmp/a9-site-engineer-example/main.pdf
+          test "$(find /tmp/a9-site-engineer-example/sections -name '*.tex' | wc -l)" -eq 9
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enterprise-modular-source-review
+          path: |
+            /tmp/a9-enterprise-modular/**/main.tex
+            /tmp/a9-enterprise-modular/**/sections/*.tex
+            /tmp/a9-enterprise-modular/**/*.pdf
+            /tmp/a9-site-engineer-example/main.tex
+            /tmp/a9-site-engineer-example/sections/*.tex
+            /tmp/a9-site-engineer-example/main.pdf
+          retention-days: 7

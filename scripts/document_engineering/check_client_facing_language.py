@@ -41,6 +41,9 @@ def visible_tex_text(source):
         line=re.split(r"(?<!\\)%",line,maxsplit=1)[0]
         lines.append(line)
     text="\n".join(lines)
+    # LaTeX include paths are implementation references, not printed text.
+    # Their numeric section filenames must not trigger client-language lint.
+    text=re.sub(r"\\(?:input|include|subfile)\{[^{}]*\}", "", text)
     text=text.replace(r"\_", "_").replace(r"\%", "%")
     return text
 

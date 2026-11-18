@@ -10,7 +10,9 @@ def build_document_pages(out):
     enterprise=('<main class="wrap hero"><div class="eyebrow">A9 · Document Engineering</div><h1>Enterprise Documents</h1>'
       '<p class="lead">Contracts, experience letters, salary agreements, quotations, purchase orders, vouchers, estimates and proposals. '
       'One reusable code library for Fishtail, Rohini, Paila Pilates and other organizations; restricted source records remain in Drive.</p>'
-      '<section class="section"><h2>Reusable source templates</h2><div class="grid">'+cards+'</div></section>'
+      '<section class="section"><h2>Reusable source templates</h2>'
+      '<p>The fourteen linked v3 files are pinned layout inputs. New generated working documents are unzipped folders with main.tex and independently editable sections; compile only main.tex.</p>'
+      '<div class="grid">'+cards+'</div></section>'
       '<section class="section"><h2>Version 3: Enterprise control tower</h2>'
       '<p>14 uniquely routed and layout-approved templates, one shared LaTeX style, eight release gates, source-first provenance. Private document issuance still requires independent review.</p>'
       '<p><a href="control-tower/index.html">Explore the 14 document controls and validation gates →</a></p></section>'
@@ -44,6 +46,13 @@ def build_document_pages(out):
       'Only restricted Drive holds real client files; public Pages contains reusable method and code only.</p>'
       '<p><a href="source-backed-contracts/">View source-to-scope documentation and checks →</a> · '
       '<a href="'+esc(REPO_URL+'/blob/main/docs/document-engineering/CONSTRUCTION_AGREEMENT_THREE_DOCUMENT_STANDARD.md')+'">Three-file A/B/C material standard →</a></p></section></main>')
+    enterprise=enterprise.replace('</main>',
+      '<section class="section"><h2>Site Engineer — reusable employment and salary agreement</h2>'
+      '<p>For a new employee, enter their verified identity, service dates, itemized remuneration and employer-approved letterhead in a private working source. The shared Site Engineer role profile includes site duties, reporting, notifications, Primavera, shifts, leave, insurance, vehicle servicing and separation clauses. It does not copy another employee\'s personal records.</p>'
+      '<p>One main.tex compiles the independent sections. Salary totals are checked, and legal source review is recorded separately from the employee-facing PDF.</p>'
+      '<p><a href="'+esc(REPO_URL+'/blob/main/templates/enterprise/projects/site-engineer-employment/main.tex')+'">Main LaTeX entrypoint</a> · '
+      '<a href="'+esc(REPO_URL+'/tree/main/templates/enterprise/projects/site-engineer-employment/sections')+'">Editable sections</a> · '
+      '<a href="'+esc(REPO_URL+'/blob/main/docs/ENTERPRISE_MODULAR_EMPLOYEE_TEMPLATES_READ_FIRST_20261118.md')+'">Employee template instructions</a></p></section></main>')
     write(out,"enterprise-documents/index.html",shell("Enterprise Documents",enterprise,1))
     source_body=(
       '<main class="wrap hero"><div class="eyebrow">A9 · Enterprise Document Engineering</div>'
