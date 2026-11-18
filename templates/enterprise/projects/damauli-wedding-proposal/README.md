@@ -4,7 +4,7 @@ Editable **LIVE Google Doc** is the primary human-written record: https://docs.g
 
 This is a public-safe, modular LaTeX derivative of that proposal, using only placeholder names and non-private facts. It does **not** replace the native Docs document or the pinned fourteen Enterprise v3 template sources.
 
-## Build
+## Build (PU-style layout)
 
 ```bash
 xelatex -interaction=nonstopmode -halt-on-error main.tex
@@ -15,7 +15,7 @@ Uses the installed *Times New Roman* font if present and TeX Gyre Termes as a Ti
 
 ## Links
 
-- [Public website derivative](https://fabingurung.github.io/JP_Research-and-Development/enterprise-documents/wedding-damauli/)
+- [Public website derivative](https://fabingurung.github.io/jp-research-lab/enterprise-documents/wedding-damauli/)
 - [Numbered vector PDF](https://drive.google.com/file/d/1a5yve4fz4zWDYBy7F0AbqPX67xsBu3By/view)
 - [Authoritative Drive project folder](https://drive.google.com/drive/folders/1Lh7XMDMP8Sp3EYrQl3pEbEARd_mAzaIA)
 
