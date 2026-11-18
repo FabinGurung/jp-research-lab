@@ -67,3 +67,16 @@ cautions, suggested changes and all QA/provenance in a separate native Google Do
 for the owning person/project. Preserve original Google Drive LIVE IDs, with
 PRE/POST archival copies for authorized revisions, rather than issuing
 a different live file ID each time. Retain old ZIPs and Git source history.
+
+## Enterprise Writing — all-fourteen modular outputs and Site Engineer profile (2026-11-18)
+
+Read docs/ENTERPRISE_MODULAR_EMPLOYEE_TEMPLATES_READ_FIRST_20261118.md for employee contracts.
+The fourteen pinned source templates under templates/enterprise/v3/ remain immutable
+type-layout inputs, but engine_v3 generates NEW per-document working projects with
+main.tex plus individual sections/*.tex and compiles only main.tex. The
+site-engineer-employment role profile specializes the existing job-contract and
+salary-contract types without adding a fifteenth canonical route. Employee data
+and Fishtail letterhead are in authorized private Drive, not public GitHub.
+Do not introduce draft/status/AI/database text into human-facing documents.
+All review conclusions go into a separate native Google Doc, and existing
+employee LIVE Drive IDs plus PRE/POST history are preserved.
