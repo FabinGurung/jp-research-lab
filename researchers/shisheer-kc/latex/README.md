@@ -26,3 +26,9 @@ The one shared PU style is `controls/latex/template/pumlsc-shared.sty` v2.6.4 bl
 
 - [Binay Karki standalone handover](../../../docs/handovers/BINAY_KARKI_RSH006_ENGINE_AND_OPEN_LATEX_20261118.md)
 - [All-researcher reusable handover](../../../docs/handovers/ALL_RESEARCHERS_LATEST_ENGINE_AND_VERSION_PATH_20261118.md)
+
+### A7 Chapter 07 live-file numbering (register-only event 000005, 18 November 2026)
+
+The 62-page researcher manuscript remains CURRENT **000004**, and original PDF, `main.tex`, `project_config.tex`, sections and images all retain the same original Drive IDs and compile-safe filenames. Their **109 unique `000004-CURRENT-001`–`000004-CURRENT-109` register keys** (106 source files + PDF + existing audit Doc + PROJECT_STATE) and **17 exact live folder IDs** are recorded as Section XXV in the [same permanent researcher audit Google Doc](https://docs.google.com/document/d/14IpKVGpFVUbvZDGTauAEVIdqZvEQpSiNDsliNkvq-qU/edit). No second audit Doc or student-facing appendix was created.
+
+This follows the [A7 Memory Wall Chapter 07](https://fabingurung.github.io/JP_A7_System_Registry_and_Knowledge_Graph/memory-wall.html#live-file-version-control), whose original rule is **number PRE/POST archive-copy filenames but never rename the original LIVE filename or replace its stable ID per revision**. Registration event **000005** is metadata-only; no new scientific/PDF edition, source ZIP, Git researcher SEQ or additional PDF email was created. All research-editor notes remain in the live Doc, not the academic manuscript.
