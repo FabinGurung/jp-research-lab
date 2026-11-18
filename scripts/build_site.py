@@ -587,6 +587,10 @@ def main():
         shutil.copy2(src,data_dir/name)
     shutil.copy2(ROOT/"registry/researcher-folder-roles.json",data_dir/"researcher-folder-roles.json")
     shutil.copy2(ROOT/"registry/latex-build-profiles.json",data_dir/"latex-build-profiles.json")
+    # Public-safe JP Enterprise wedding microsite, derived from the stable native Google Doc.
+    wedding_site=ROOT/"web"/"wedding-damauli"
+    if wedding_site.is_dir():
+        shutil.copytree(wedding_site,out/"enterprise-documents"/"wedding-damauli",dirs_exist_ok=True)
     build_document_pages(out)
     build_academic_portal(out)
     search_index=render_search(out,researchers,branch_inventory,websites)
