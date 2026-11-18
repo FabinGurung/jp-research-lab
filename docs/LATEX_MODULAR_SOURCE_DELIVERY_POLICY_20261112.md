@@ -57,3 +57,20 @@ A normal working folder lets a human open `chapters/chapter4_results_discussion.
 - The preceding layout rule is a professional publishing convention. It does **not** silently approve an unsigned contract, confer engineering authority, or remove real legally necessary employee rights/obligations. Safety/contractual substance must remain in the document; the private Google Doc preserves uncertainties and comparison evidence.
 
 This paragraph complements the A7 public-safe Memory Wall; the owning R&D repository remains authority for its template source and builds.
+
+## Enterprise Document Engine: all fourteen working outputs now modular (2026-11-18)
+
+The original pinned canonical v3 source blobs stay unchanged and continue to be
+validated by their historical Git digest. The v3 engine now transforms each
+rendered document into an uncompressed working-source folder with main.tex,
+independent section modules and a single main.tex PDF compilation entrypoint.
+This applies to all fourteen type routes, not just employment records. The
+existing filename for the compiled type PDF remains intact for downstream links.
+
+For a new Site Engineer, the reusable specialized profile is in
+templates/enterprise/projects/site-engineer-employment/; use the private input
+materializer scripts/document_engineering/create_site_engineer_agreement.py.
+For other roles, keep using their applicable registered generic types rather
+than copying the Site Engineer clauses blindly. Read
+docs/ENTERPRISE_MODULAR_EMPLOYEE_TEMPLATES_READ_FIRST_20261118.md for the
+version, branded-assets, safety, pay review and source-custody workflow.
