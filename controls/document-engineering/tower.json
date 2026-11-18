@@ -45,5 +45,17 @@
     "v3 generated LaTeX validation",
     "v3 final PDF text validation",
     "human visual QA"
-  ]
+  ],
+  "modular_output_rule": {
+    "source_policy": "docs/LATEX_MODULAR_SOURCE_DELIVERY_POLICY_20261112.md",
+    "renderer": "scripts/document_engineering/engine_v3.py",
+    "entrypoint": "main.tex",
+    "sections": "sections/*.tex",
+    "applies_to_all_registered_types": 14,
+    "immutable_type_sources": true
+  },
+  "employee_role_profiles": {
+    "site-engineer": "controls/document-engineering/role-profiles/site-engineer-employment.v1.json"
+  },
+  "company_branding_source": "private employer-authorized Drive original; inject at working-project assets/letterhead.pdf"
 }
