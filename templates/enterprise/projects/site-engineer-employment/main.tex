@@ -5,8 +5,8 @@
 \definecolor{ink}{HTML}{24364B}
 \definecolor{rulegray}{HTML}{C9D3DC}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{2pt}
-\setlist[enumerate]{leftmargin=7mm,itemsep=1.5pt,topsep=2pt}
+\setlength{\parskip}{0.8pt}
+\setlist[enumerate]{leftmargin=7mm,itemsep=0.5pt,topsep=1pt}
 \newcommand{\docsection}[1]{\Needspace{5\baselineskip}\par\medskip\noindent{\normalsize\bfseries\color{ink}#1}\par\nobreak\vspace{2pt}{\color{rulegray}\hrule}\vspace{4pt}}
 % The authorized employer-owned company letterhead remains a private Drive asset.
 \IfFileExists{assets/letterhead.pdf}{%
@@ -16,6 +16,7 @@
 \pagestyle{empty}
 \input{project_config.tex}
 \begin{document}
+\fontsize{9}{10.5}\selectfont
 \input{sections/01_parties.tex}
 \input{sections/02_pay.tex}
 \input{sections/03_site_engineer_duties.tex}
