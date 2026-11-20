@@ -9,6 +9,7 @@ from site_pages import build_home, render_start_here, render_owner_prompt, rende
 from site_search import render_search
 from site_document_engineering import build_document_pages
 from site_family_portal import build_family_home, build_academic_portal
+from site_fabin_experiment import build_fabin_experiment
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--out",default="dist"); args=ap.parse_args()
@@ -46,6 +47,7 @@ def main():
         src=legacy/site_name
         if src.is_dir(): shutil.copytree(src,out/site_name,dirs_exist_ok=True)
     home=build_family_home(researchers,folder_roles)
+    build_fabin_experiment(ROOT,out)
     render_start_here(out)
     roadmap=load(Path("registry/roadmap.json"))
     def stage_cards(items,kind):
@@ -208,6 +210,8 @@ def main():
             return '<a href="' + esc(drive_url(file_id)) + '">Open Drive file</a>'
         links="".join(f'<div>{esc(label)}</div><div>{_researcher_drive_link(label, fid)}</div>' for label, fid in rows)
         body=f'''<main class="wrap hero"><div class="eyebrow">{esc(r["researcher_id"])}</div><h1>{esc(r["display_name"])}</h1><p><span class="badge">{esc(status_label)}</span></p><div class="notice">{esc(notice_text)}</div><section class="section"><h2>Topic</h2><div class="kvs"><div>Title</div><div>{esc(title_value)}</div><div>Short name</div><div>{esc(r.get("topic_short_name") or "ON HOLD")}</div></div></section><section class="section"><h2>Version control and source</h2><p>Git branches are full-repository commits; these researcher-named refs are compatibility/work lanes. Public-safe website and tool code is versioned in the common <a href="https://github.com/FabinGurung/JP_Research-and-Development/tree/main">GitHub main repository</a>. Original thesis source packages and compiled outputs remain in Google Drive until an explicit source-code admission/migration is approved.</p></section><section class="section"><h2>Research lanes</h2><div class="lanes">{lane_html}</div></section>{website_section}{debt_section}<section class="section"><h2>Google Drive outputs</h2><div class="kvs">{links}</div></section></main>'''
+        if r["slug"] == "fabin-gurung":
+            body=body.replace('</main>','<section class="section"><h2>Four-workflow experiment</h2><p>One Google Sheets parameter section connects a small schematic, gravity calculations, a construction sequence and concrete quantities. The academic narrative is maintained in Google Docs. This is a separate synthetic experiment.</p><p><a href="experiments/four-workflows/index.html">Open the new experiment</a></p></section></main>')
         # Shisheer CURRENT remains a permanent open modular Drive source, no new ZIP.
         if r["slug"] == "shisheer-kc" and drive.get("latex_working_folder_drive_id"):
             current_pdf = drive_url(drive["working_pdf_drive_id"])

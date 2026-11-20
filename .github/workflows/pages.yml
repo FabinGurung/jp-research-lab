@@ -20,9 +20,29 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Read pinned native scheduling kernel for Fabin experiment
+        uses: actions/checkout@v4
+        with:
+          repository: FabinGurung/jp-scheduling-resources-management
+          ref: 49f69e76a85eec9737f704691cc69c88aad62818
+          path: peers/scheduling
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read the two linked synthetic Google sources
+        run: python experiments/fabin-four-workflows/sync_google.py
+      - name: Verify the synthetic four-workflow calculation
+        run: python -m unittest discover -s experiments/fabin-four-workflows -p test_engine.py -v
       - run: python scripts/validate_repo.py
       - run: python scripts/test_site_links.py
       - run: python scripts/build_site.py --out dist
+        env:
+          FABIN_SCHEDULING_CHECKOUT: ${{ github.workspace }}/peers/scheduling
+      - name: Assemble private modular LaTeX from the live academic Doc
+        run: |
+          python experiments/fabin-four-workflows/latex.py --academic /tmp/fabin-experiment-private/academic.json --results dist/researchers/fabin-gurung/experiments/four-workflows/results.json --out /tmp/fabin-experiment-private/latex
+          python scripts/latex/check_modular_project.py /tmp/fabin-experiment-private/latex
       - run: python scripts/validate_repo.py --site dist
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
