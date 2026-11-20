@@ -1,0 +1,42 @@
+{
+  "parameters": {
+    "span_x": 4.0,
+    "span_y": 4.0,
+    "column_height": 3.0,
+    "column_width": 0.3,
+    "beam_width": 0.25,
+    "beam_depth": 0.45,
+    "slab_thickness": 0.15,
+    "concrete_density": 25.0,
+    "elastic_modulus": 25000000.0,
+    "finish_load": 1.0,
+    "live_load": 2.0,
+    "concrete_rate": 12000.0,
+    "column_output": 0.6,
+    "formwork_output": 6.0,
+    "rebar_output": 8.0,
+    "pour_output": 3.0,
+    "skilled_workers": 2.0,
+    "helpers": 3.0,
+    "shift_hours": 8.0,
+    "column_cure": 7.0,
+    "slab_cure": 14.0,
+    "start_date": "2026-11-22",
+    "saturday_off": true,
+    "steel_rate": null,
+    "formwork_rate": null,
+    "latitude": null,
+    "longitude": null
+  },
+  "provenance": {
+    "source_mode": "google_link_read_exports",
+    "read_at": "2026-11-20T02:08:28.522532+00:00",
+    "input_sha256": "4ea2474fadb26c813c94497e17dfa2fec8d122b3a2608a93286464323e4167f3",
+    "academic_sha256": "28187ef941e71c4f6359aa6609ccbb89e65430e873403dbe0589561bd4bed330",
+    "source_version_checked": false,
+    "source_payload_repeat_check": true,
+    "sheet_export_sha256": "de08cd9d76422343d17e0f7c4213088440d0145fa6cec851b5cf36fd2be6a9b4",
+    "academic_export_sha256": "b4e1045a83d3f47c64b8d79c89f558e288eedd18304fecac86622e2aee05371d",
+    "note": "Two identical bounded export reads. Native revision identifiers are not available through link-based exports."
+  }
+}

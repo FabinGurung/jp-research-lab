@@ -63,6 +63,23 @@ async function main() {
    await assertNoOverflow(page,"enterprise template audit");
    await page.goto(base,{waitUntil:"networkidle"});
   });
+  await check("fabin_four_workflows_desktop",async()=>{
+   await page.goto(base+"researchers/fabin-gurung/experiments/four-workflows/",{waitUntil:"networkidle"});
+   await page.locator('#building [data-element="S1"]').waitFor();
+   assert.equal(await page.locator('#source-state').innerText().then(x=>x.includes('snapshot read')),true);
+   assert.equal(await page.locator('#building [data-element]').evaluateAll(els=>new Set(els.map(e=>e.dataset.element)).size),9);
+   await page.locator('[data-view="plan"]').click();
+   await page.locator('#building [data-element="C2"]').click();
+   assert.ok((await page.locator('#selection h3').innerText()).includes('Column C2'));
+   await page.locator('[data-tab="estimate"]').click();
+   assert.ok((await page.locator('#cost-table').innerText()).includes('55,080'));
+   await page.locator('[data-tab="schedule"]').click();
+   assert.equal(await page.locator('#schedule-table tr').count(),9);
+   await page.locator('[data-tab="drawings"]').click();
+   await assertNoOverflow(page,'Fabin desktop experiment');
+   await page.screenshot({path:path.join(out,'fabin-four-workflows-desktop.png'),fullPage:true,animations:'disabled'});
+   await page.goto(base,{waitUntil:'networkidle'});
+  });
   await check("desktop_pause_and_resume",async()=>{
    const btn=page.locator("[data-motion-toggle]");
    await btn.click();
@@ -174,6 +191,16 @@ async function main() {
    await mp.locator(".search-result").first().waitFor();
    await assertNoOverflow(mp,"mobile catalogue");
    await mp.screenshot({path:path.join(out,"mobile-search.png"),fullPage:true,animations:"disabled"});
+  });
+  await check("fabin_four_workflows_mobile",async()=>{
+   await mp.goto(base+'researchers/fabin-gurung/experiments/four-workflows/',{waitUntil:'networkidle'});
+   await mp.locator('#building [data-element="S1"]').waitFor();
+   for(const name of ['drawings','structure','schedule','estimate','method']){
+    await mp.locator('[data-tab="'+name+'"]').click();
+    await assertNoOverflow(mp,'Fabin mobile '+name);
+   }
+   await mp.locator('[data-tab="drawings"]').click();
+   await mp.screenshot({path:path.join(out,'fabin-four-workflows-mobile.png'),fullPage:true,animations:'disabled'});
   });
   await check("mobile_wcag_axe",async()=>{
    await mp.goto(base,{waitUntil:"networkidle"});
