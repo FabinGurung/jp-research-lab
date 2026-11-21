@@ -33,7 +33,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "MSc Structural AEC thesis v0.10 CURRENT WORKING: 96-page shared-style v2.6.4 build with complete PDF and modular source verified by provider byte readback on 18 November 2026. Format/source migration only; original scientific values, title and bibliography preserved. Administrative evidence and structural sign-convention reconciliation remain open; NOT FINAL/SUBMISSION. No researcher Git LaTeX sequence allocated. Separate from MScH Hydropower and PhD application modules. Current editable-source and audit locations are retained in the existing private project controls.",
+      "public_note": "MSc Structural AEC thesis v0.11 CURRENT WORKING: 97-page shared-style v2.6.4 build dated November, 2026. Adds the controlled four-workflow experiment. The original two-span data are preserved. The permanent PDF and all 17 revised LaTeX files passed exact Drive readback on 21 November 2026. Final academic approval and the original diagram sign-convention check remain open. Separate from MScH Hydropower and PhD application work.",
       "governance": {
         "read_first": "researchers/fabin-gurung/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
