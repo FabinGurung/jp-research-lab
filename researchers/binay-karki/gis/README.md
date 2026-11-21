@@ -24,7 +24,7 @@ Binay's manuscript and earlier map artifact IDs are preserved. The three mapped 
 
 The [existing live owner audit](https://docs.google.com/document/d/11EyRADuMW9ql_NhQTuFoop7BrPKFJmbBbJaMXFCt4Z0/edit) has 22 individually cited **AI analytical dispositions**, and [the original V10 scientist-review matrix](https://docs.google.com/spreadsheets/d/1S59v06JAAaZLYKCNLsrosmsqBzsGWTFoAHY7HG35EMg/edit) retains its 22 researcher-approval gates. No approval was fabricated. Scientific submission admission remains distinct from version control.
 
-This Git public-safe manifest is **not a Git copy of the full Python modules**. Drive contains the complete Python originals; the Git manifest pins verified file identifiers and evidence links. The full-code Git migration can be undertaken as a separate checksum-confirmed protected-main PR. Do not invent Git researcher LaTeX sequences or A9 Local/Main cursor increments for this GIS source-index update.
+The **four complete Python source files are now also versioned in this repository**, and their Git blob hashes have been checked against the exact executed Drive-source files: [MAP002 Python directory](map002/). The renderer, pixel-ledger exporter and workbook builder were executed; the separate authenticated Earth Engine citywide exporter was **not executed**. [Machine provenance manifest](map002-source-and-drive-manifest.json) includes each exact Git SHA and matching source SHA-256. Git and Drive share reproducible source custody while Google Drive owns private scientific inputs/binaries. Do not invent researcher LaTeX sequences or A9 Local/Main cursor increments for GIS source changes.
 
 ## Method sources
 
