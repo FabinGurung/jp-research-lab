@@ -1,8 +1,11 @@
-import copy, math, sys, unittest
+import copy, json, math, sys, unittest
 from datetime import date, timedelta
 from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).parent))
-from engine import PARAMETERS,compute,make_schedule,parse_rows,mdm
+import build_public
+from engine import PARAMETERS,compute,digest,make_schedule,parse_rows,mdm
 
 class ExperimentTests(unittest.TestCase):
     def setUp(self): self.p={k:v for k,v,u,n in PARAMETERS}
@@ -48,5 +51,36 @@ class ExperimentTests(unittest.TestCase):
         for bad in [None,0,float('nan'),True]:
             with self.assertRaises(ValueError):compute({**self.p,'span_x':bad})
         with self.assertRaises(ValueError):compute({**self.p,'beam_depth':.1})
+
+    def test_public_build_keeps_inactive_inputs_and_raw_hashes_out_of_artifacts(self):
+        inactive = dict(steel_rate=98765, formwork_rate=87654, latitude=1.23456, longitude=-2.34567)
+        parameters = {**self.p, **inactive, 'span_x': 5}
+        public_inputs = {**self.p, 'span_x': 5}
+        for key in inactive:
+            del public_inputs[key]
+        raw_hashes = dict(input_sha256=digest(parameters), sheet_export_sha256='a'*64,
+                          academic_export_sha256='b'*64, academic_sha256='c'*64)
+        provenance = {**raw_hashes, 'source_mode': 'google_link_read_exports',
+                      'read_at': '2026-01-01T00:00:00+00:00', 'source_payload_repeat_check': True}
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            snapshot = root / 'source-snapshot.json'
+            snapshot.write_text(json.dumps(dict(parameters=parameters, provenance=provenance)))
+            (root / 'peer-methods.json').write_text((build_public.ROOT / 'peer-methods.json').read_text())
+            out = root / 'public'
+            with patch.object(build_public, 'ROOT', root):
+                build_public.build(out)
+            self.assertEqual(json.loads(snapshot.read_text())['parameters'], parameters)
+            published = json.loads((out / 'results.json').read_text())
+            self.assertEqual(published['parameters'], public_inputs)
+            self.assertEqual(published['input_sha256'], digest(public_inputs))
+            self.assertEqual(published['provenance']['public_input_sha256'], digest(public_inputs))
+            self.assertEqual(published['provenance']['read_at'], provenance['read_at'])
+            self.assertEqual(published['slab']['area_m2'], 20)
+            self.assertTrue(published['schedule']['activities'])
+            self.assertGreater(published['concrete_subtotal_npr'], 55080)
+            for artifact in out.iterdir():
+                for fingerprint in raw_hashes.values():
+                    self.assertNotIn(fingerprint, artifact.read_text())
 
 if __name__=='__main__':unittest.main()
