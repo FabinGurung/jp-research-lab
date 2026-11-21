@@ -79,5 +79,36 @@
     "pre_snapshot": "11iAjnwP7kNe-22sDEb-mo9m56UICL9JYMwrpR10UO0M",
     "post_snapshot": "1AdHxl22hLrQoaguJK8oftwXd--TrKqnw9OKsQvg-wBA"
   },
-  "version_control": "Git public-safe pointer and controls; full working source Python in Drive; no code-content claim for Git-only files; no A9 main/local scientific cursor increment"
+  "version_control": "Git public-safe exact Python executable source, README, and Drive manifest on protected-main PR; Google Drive original field/satellite data and binaries; no A9 science cursor or LaTeX researcher sequence claimed.",
+  "git_source": {
+    "scope": "public_safe_exact_executable_python_source",
+    "repository": "FabinGurung/jp-research-lab",
+    "paths": {
+      "renderer": {
+        "path": "researchers/binay-karki/gis/map002/make_maps.py",
+        "git_blob_sha": "b406f94e933980912f846b983f779773170bd117",
+        "sha256": "be641b275f91c981aa46afc1d5dda05e7d16c49501853431ef47eb29aa339cf7",
+        "executed": true
+      },
+      "pixel_ledger": {
+        "path": "researchers/binay-karki/gis/map002/export_pixel_ledger.py",
+        "git_blob_sha": "7920d1a454bc6d1609a571da6cb6e8d219293c22",
+        "sha256": "c88ea2f3f6fbd9ba13787b344f28bd88f3f11266a5e0dc4b4ff9bcf3f8e8ca16",
+        "executed": true
+      },
+      "workbook": {
+        "path": "researchers/binay-karki/gis/map002/make_preview_workbook.py",
+        "git_blob_sha": "f4a1e8bea7ed22853672386acdbb34e20b7d39aa",
+        "sha256": "80b0a317bfcb3dbf12cc5091cc271bfe1710a476b8178452ad9bc11ed0ecaa83",
+        "executed": true
+      },
+      "full_city_gee": {
+        "path": "researchers/binay-karki/gis/map002/export_full_city_wet_GEE_AUTH_REQUIRED.py",
+        "git_blob_sha": "cdbe2d2aa43513447b191a5ed674b175d7efeccb",
+        "sha256": "76cfd0dcd998982572d3377c7521eff05bad58a917fb753b34094f76bd8b3463",
+        "executed": false,
+        "reason": "Earth Engine authentication/project required"
+      }
+    }
+  }
 }
