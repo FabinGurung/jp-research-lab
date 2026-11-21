@@ -39,4 +39,4 @@ Four columns, four perimeter beams, one slab; symmetric unfactored gravity, line
 
 One sequential crew, Saturday-off active work and calendar-day curing waits. Programme durations, rates and geometry are synthetic assumptions. Concrete subtotal only; BBS/steel, formwork, foundations, full cost and surveyed GIS remain unavailable. Retained wider SQL-specific thesis objectives are deferred rather than declared complete. This is not an approved building design or construction programme.
 
-Only the allowlisted synthetic parameter/result projection reaches Pages. Raw Google Doc text is not uploaded as a public Actions artifact. The browser views inspect a dated result; they are not a second input authority.
+Pages and public Actions artifacts include the inputs used by the four workflows and their results. The unused steel and formwork rates, latitude, longitude, full source fingerprints and Google Doc text stay out of those outputs. The public input fingerprint covers only the exported inputs. The existing Open inputs link follows the Sheet's own Drive sharing settings.
