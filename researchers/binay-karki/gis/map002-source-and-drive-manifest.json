@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "RSH-006/binay-karki",
+  "edition": "MAP002_20261121",
+  "status": "REPRODUCIBLE_PARTIAL_COVERAGE_REVIEW_NOT_FINAL_THESIS_ADMISSION",
+  "description": "Drive-owned GIS source and map artifact provenance; no researcher raw data or satellite rasters in public Git.",
+  "source_authority": {
+    "original_manual_geojson": "1xJtgZnG0mcdGEFSWfpqAa7y9YYec_36E",
+    "broader_manual_csv": "1PGo2M4RM4HzKx5dWaZGfHzhER6tbEh6C",
+    "original_gee_v05_wet_raster": "1djjbRqPqDbZDsIETgVi2zUBFRP5kDZuC",
+    "historical_rupesh_municipality_shapefile_zip": "1OofaW0cP7UxvdFE-awBIWEMAvXIg_kjZ",
+    "derived_municipal_geojson": "1PxGcC1OMT8A7AZpa_a2HCUgKzURTyT7l",
+    "boundary_qualification": "Historical Pokhara Lekhnath NepalDD/Everest boundary; NOT current municipal certification"
+  },
+  "drive_outputs": {
+    "folder": "1sndYDWQgI8OnG32LYOo9oWZIRZ9hEjFx",
+    "atlas_pdf": "1AClUoCdJ11094MQaxXlC_80LHc49wnrv",
+    "manual_field_pdf": "1LXfnuoJIiKAfeRZs5u7jwxOWSrlspbrs",
+    "gee_wet_partial_coverage_pdf": "17b1LuWL11QRa9aol-lzLjKEezIEo8APc",
+    "native_input_data_sheet": "1NmiHM1jOvXT2LePxkXtUsv94dSPVcHTJwENQv-cshpo",
+    "exact_gee_valid_pixel_ledger_csv": "1aS96z9FkASa7PE5jMG5DWDx1ziQimt8g",
+    "mapping_renderer_python": "1tLu485mMuMzmQKeu7UMk3dOpsw2i_vqL",
+    "pixel_ledger_exporter_python": "16Ef3oo34EbkWGL2SnT3dA2IXMaGz00BW",
+    "gee_full_city_auth_export_python_unexecuted": "1FkHKkiJlNPH6PnDI52Ygx6ON2lNEgro9",
+    "preview_workbook_builder_python": "1K-vJJhNMb8byaB0CLRTkShra85j25lOC",
+    "source_qa_manifest": "1-awfCKftlC7KfVy9Sm8g-9TVsECUMlr0",
+    "ai_v10_appraisals": "1FPeYu87Ik9G4tqbS5NznsynzEWhihQxV"
+  },
+  "quantities": {
+    "historical_municipality_area_km2": 465.056,
+    "exemplar_official_area_km2": 464.24,
+    "gee_original_raster_30m_shape": [
+      278,
+      411
+    ],
+    "valid_gee_30m_cells_inside_city": 106301,
+    "city_area_with_valid_gee_landsat_pct_approx": 20.572,
+    "field_R8_time_window": "2026-05-31/2026-07-31",
+    "field_R8_dates": 44,
+    "field_R8_events": 186,
+    "broader_field_rows": 202,
+    "broader_field_dates": 47,
+    "temperature_classes_C": [
+      "<=5",
+      "(5,10]",
+      "(10,15]",
+      "(15,20]",
+      "(20,25]",
+      "(25,30]",
+      "(30,35]",
+      ">35"
+    ],
+    "palette_hex": [
+      "#2B073D",
+      "#446FE6",
+      "#22C9CD",
+      "#48E85F",
+      "#D9EA35",
+      "#FFA12A",
+      "#E43F0B",
+      "#870700"
+    ]
+  },
+  "scientific_scope": {
+    "field": "Three wards 6/8/16; region-wide geometry is context, no temperature interpolation outside monitored wards",
+    "satellite": "Preexisting V05 wet LST only; valid pixels 20.6 percent municipality; all unsampled area displayed NoData gray",
+    "prohibited_claims": [
+      "Complete citywide wet LST",
+      "LST equals manual air temperature or ground-surface temperature",
+      "Researcher approved V10 decisions",
+      "Source polygon is certified 2026 ward boundary"
+    ],
+    "full_city_earth_engine_export_state": "AUTH_REQUIRED_UNEXECUTED",
+    "gee_v10_original_authorization": "22 rows retain PENDING_RESEARCHER_REVIEW; separately AI-evaluated without impersonating authorization",
+    "full_period_satellite_field_validation": "OPEN: only 6 Tier-A matched rows from two common dates"
+  },
+  "audit": {
+    "live_google_doc": "11EyRADuMW9ql_NhQTuFoop7BrPKFJmbBbJaMXFCt4Z0",
+    "pre_snapshot": "11iAjnwP7kNe-22sDEb-mo9m56UICL9JYMwrpR10UO0M",
+    "post_snapshot": "1AdHxl22hLrQoaguJK8oftwXd--TrKqnw9OKsQvg-wBA"
+  },
+  "version_control": "Git public-safe pointer and controls; full working source Python in Drive; no code-content claim for Git-only files; no A9 main/local scientific cursor increment"
+}
