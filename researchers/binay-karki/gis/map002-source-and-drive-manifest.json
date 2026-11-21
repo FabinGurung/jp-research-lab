@@ -10,7 +10,8 @@
     "original_gee_v05_wet_raster": "1djjbRqPqDbZDsIETgVi2zUBFRP5kDZuC",
     "historical_rupesh_municipality_shapefile_zip": "1OofaW0cP7UxvdFE-awBIWEMAvXIg_kjZ",
     "derived_municipal_geojson": "1PxGcC1OMT8A7AZpa_a2HCUgKzURTyT7l",
-    "boundary_qualification": "Historical Pokhara Lekhnath NepalDD/Everest boundary; NOT current municipal certification"
+    "boundary_qualification": "Historical Pokhara Lekhnath NepalDD/Everest boundary; NOT current municipal certification",
+    "official_municipality_overview_url": "https://pokharamun.gov.np/node/99"
   },
   "drive_outputs": {
     "folder": "1sndYDWQgI8OnG32LYOo9oWZIRZ9hEjFx",
@@ -54,11 +55,23 @@
       "#2B073D",
       "#446FE6",
       "#22C9CD",
-      "#48E85F",
-      "#D9EA35",
-      "#FFA12A",
-      "#E43F0B",
-      "#870700"
+      "#50ED67",
+      "#D8E83A",
+      "#FFA02B",
+      "#E04510",
+      "#860300"
+    ],
+    "gee_original_raster_30m_width": 278,
+    "gee_original_raster_30m_height": 411,
+    "valid_gee_30m_cell_count_per_class": [
+      0,
+      0,
+      0,
+      1139,
+      4581,
+      21074,
+      44923,
+      34584
     ]
   },
   "scientific_scope": {
@@ -110,5 +123,6 @@
         "reason": "Earth Engine authentication/project required"
       }
     }
-  }
+  },
+  "provenance_correction_note": "This manifest now matches the exact executed MAP002 Python hex palette, 8-class counts, width/height, and live municipality area source."
 }
