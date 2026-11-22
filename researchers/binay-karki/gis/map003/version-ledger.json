@@ -26,9 +26,21 @@
       "previous_failure": "Earth Engine listOperations 403 insufficient authentication scopes after 11 Landsat scenes and pre-export coverage; task not started",
       "working_git_source_blob_sha": "acaacf28a6e4274101672acfc476f7362ee8893c",
       "working_source_sha256": "c34874e2a1d2874120b0969e7c7b491c8dbd8ea52776e44e4556246454ebe553",
-      "post_drive_id": null,
-      "post_sha256": null,
-      "status": "FIX_SOURCE_STATIC_VERIFIED_POST_PENDING"
+      "post_drive_id": "1zYIKBHqOJPICI7zQ1uIPf5DPkrg2VN17",
+      "post_sha256": "c34874e2a1d2874120b0969e7c7b491c8dbd8ea52776e44e4556246454ebe553",
+      "status": "CLOSED_SOURCE_REPAIR__PROVIDER_READBACK_PASS__EARTH_ENGINE_EXPORT_UNEXECUTED",
+      "post_size_bytes": 48404,
+      "permanent_id_readback_sha256": "c34874e2a1d2874120b0969e7c7b491c8dbd8ea52776e44e4556246454ebe553",
+      "git_source_merge_pr": 269,
+      "git_source_merge_sha": "13a7a4e76c4a4262cdffc9cea03924e355a5f523",
+      "qa_checks": [
+        "Notebook nbformat validation PASSED",
+        "14 code cells AST PASSED",
+        "Fail-closed auth/task-list mocked tests PASSED",
+        "Protected-main validate PASSED",
+        "Chromium desktop/mobile QA PASSED",
+        "CURRENT and 000002_POST source bytes match SHA256"
+      ]
     }
   ],
   "scientific_limitations": "Earth Engine export unexecuted. Original current failed notebook outputs archived. Previous 11 scene and coverage figures are recorded but no complete GeoTIFF received.",
@@ -37,5 +49,6 @@
     "researchers/binay-karki/gis/map003/README.md",
     "researchers/binay-karki/gis/map003/version-ledger.json"
   ],
-  "method_citation": "https://developers.google.com/earth-engine/guides/auth"
+  "method_citation": "https://developers.google.com/earth-engine/guides/auth",
+  "last_closed_ordinal": "000002"
 }
