@@ -54,7 +54,7 @@
       "permanent_id_readback_sha256": "6d9ead2c0d0148608f308d0a280ffad9bf3c31c7fb99c2f79fd93ed13a22bbba",
       "working_git_source_blob_sha": "d9d57068285e70e912993818d599ef24b2b2bd17",
       "change": "V03 run-all source acquisition only; removed raster plotting/QA/CSV/Sheets in Colab. Server-side scene discovery, original V05 QA, coverage, asynchronous export and task guards remain unchanged.",
-      "status": "SOURCE_VERIFIED_PENDING_PROTECTED_MAIN_MERGE__GEE_EXPORT_UNEXECUTED",
+      "status": "CLOSED_SOURCE_V03_EXTRACTION_ONLY__DRIVE_READBACK_PASS__GEE_EXPORT_UNEXECUTED",
       "qa_checks": [
         "PRE V02 byte readback SHA256 verified",
         "POST and current same-ID byte readback SHA256 verified",
@@ -62,10 +62,13 @@
         "8 code cells Python AST PASSED",
         "Unchanged original EE authentication, scene selection, V05 QA, coverage, and export code",
         "Source Git blob matches V03 Drive bytes",
-        "Google Earth Engine authenticated Run All NOT executed in this session"
+        "Google Earth Engine authenticated Run All NOT executed in this session",
+        "Protected-main PR #272 repository validate SUCCESS",
+        "Protected-main PR #272 real-browser/mobile QA SUCCESS",
+        "PR #272 MERGED and main source blob readback matches Drive V03"
       ],
-      "git_source_merge_pr": null,
-      "git_source_merge_sha": null
+      "git_source_merge_pr": 272,
+      "git_source_merge_sha": "6358e3442f2b3632173ddc16b27847b6aa703063"
     }
   ],
   "scientific_limitations": "No completed 2026 full-municipality GeoTIFF is verified as of V03 source promotion; original V02 saved pre-export estimates are not independently TIFF-verified; Colab V03 executes only acquisition and task receipt, Python produces future figures.",
@@ -75,5 +78,6 @@
     "researchers/binay-karki/gis/map003/version-ledger.json"
   ],
   "method_citation": "https://developers.google.com/earth-engine/guides/auth",
-  "last_closed_ordinal": "000002"
+  "last_closed_ordinal": "000003",
+  "last_closed_source_version": "V03"
 }
