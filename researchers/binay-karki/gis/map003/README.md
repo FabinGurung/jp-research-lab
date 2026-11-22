@@ -25,6 +25,17 @@ The historical Google Drive revisions and original scientific data folders remai
 
 **Execution state:** Source and static `nbformat` / AST validation completed. **GEE has not been executed by ChatGPT** (no interactive signed-in Earth Engine runtime). No project submission, complete-coverage or researcher-scientific-approval claim is made.
 
+
+## MAP003 V02 — 22 November 2026 / Drive archive ordinal 000002
+
+The latest saved Colab run (30 cells, old V01) has the real Earth Engine error `EEException: Request had insufficient authentication scopes` at **Section 7** when `ee.batch.Task.list()` called `listOperations`. Sections 1–6 had run, listing **11 Landsat 8/9 scenes**, and computing **100% scene footprint, 97.043% base-QA LST, 82.141% strict-V05-QA LST** (municipal projected 30-m grid; not independently raster-verified). An export was **not started** by the failing cell because the task-list request failed before `task.start()`.
+
+Exact saved failed notebook copied **before repair** to [000002_PRE with outputs and traceback](https://drive.google.com/file/d/1ypOJEqEhaMLjxRHfBM9Pqs5NcIeCLcaI/view), original source SHA-256 `f0cf540ef713225c8ce316443efa860c516b3a0b53978100f322a4489e8168cc`. New source V02 SHA-256 `c34874e2a1d2874120b0969e7c7b491c8dbd8ea52776e44e4556246454ebe553` and Git blob `acaacf28a6e4274101672acfc476f7362ee8893c`. V02 has 30 notebook cells, 14 Python code cells, Python AST validated; prior outputs were intentionally removed from the current source so they cannot be confused with successful V02 execution.
+
+**Fix:** Section 3 now explicitly requests fresh Colab Earth Engine authentication and checks the exact task-list/operations endpoint. If its default scopes are still insufficient, change `EE_AUTH_MODE` to `gcloud` in Section 1 and rerun Section 3 with Google authorization. Section 7 stops before export unless the batch preflight passed; duplicate tasks by `RUN_KEY` are not silently created, even if an earlier task has failed or completed. Section 8 can recover the existing task after a runtime restart.
+
+**Important:** The temporary authenticated browser consent must occur in the researcher's Colab runtime. V02 is a **source-code repair**, not a completed GEE raster or final scientific release. A7 remains a read-only catalogue; the `000002` archive enumeration is scoped to Binay's Colab PRE/POST, not a new A7-SEQ or an R&D researcher LaTeX sequence. See [version ledger](version-ledger.json).
+
 ## Units and limitations
 
 - LST: degrees Celsius; geographic area: km²; coverage: percent **of a fixed municipal area**.
