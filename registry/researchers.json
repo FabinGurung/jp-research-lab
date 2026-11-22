@@ -33,7 +33,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "MSc Structural AEC thesis v0.12 CURRENT WORKING: 100-page shared-style v2.6.4 build dated November, 2026. Stage 1 retains the original two-span database results. Stage 2 validates common-input propagation through the one-bay four-workflow experiment, documented with live figures and reproducibility links. The permanent PDF, revised LaTeX and new figures passed exact Drive readback on 22 November 2026. Final academic approval and the original diagram sign-convention check remain open. Separate from MScH Hydropower and PhD application work.",
+      "public_note": "MSc Structural AEC thesis v0.13 CURRENT WORKING: 62-page November 2026 build. The original two-span end moments were independently reproduced, and the corrected reactions and diagrams are in the manuscript. The separate one-bay experiment and its baseline links remain. The cover logo retains its native proportions. The permanent PDF and revised editable source passed Drive readback. Academic approval and original database repair remain open.",
       "governance": {
         "read_first": "researchers/fabin-gurung/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
