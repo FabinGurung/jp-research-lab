@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "researcher_id": "RSH-006",
+  "researcher_slug": "binay-karki",
+  "source_kind": "Google Colab notebook, local PRE/POST revision ledger only",
+  "a7_catalogue": "READ_ONLY_NO_NEW_A7_SEQ",
+  "r_and_d_latex_sequence": "UNALLOCATED_SEPARATE_SCOPE",
+  "stable_current_colab_drive_id": "1Jf2JZwiIodAHMXn7Xr2XYvOifqnJ8FXv",
+  "stable_current_name": "BINAY_UHI_GEE_COLAB_MAP003_CITYWIDE_WET_2026_WORKING.ipynb",
+  "archive_folder_id": "1kdoujzwnsjs1Vjd17_kh2Afxmsrvs4R5",
+  "events": [
+    {
+      "ordinal": "000001",
+      "date": "2026-11-21",
+      "pre_drive_id": "1OIqegc2RLGNqgUuO1dyrl2WclrDJAkOe",
+      "pre_sha256": "ba831841ec0a25f03e1d3999719452fc45db31e3d657f66d89540ac156723696",
+      "post_drive_id": "1mOZulwpbpFO8FmhujG66CodGtp97FLfO",
+      "post_sha256": "55fa2a604f5a0d2289dcd1c7db291691b34f2bafd0267c01feeaaad66da6a48f",
+      "status": "SOURCE_VERIFIED_UNEXECUTED"
+    },
+    {
+      "ordinal": "000002",
+      "date": "2026-11-22",
+      "pre_drive_id": "1ypOJEqEhaMLjxRHfBM9Pqs5NcIeCLcaI",
+      "pre_sha256": "f0cf540ef713225c8ce316443efa860c516b3a0b53978100f322a4489e8168cc",
+      "previous_failure": "Earth Engine listOperations 403 insufficient authentication scopes after 11 Landsat scenes and pre-export coverage; task not started",
+      "working_git_source_blob_sha": "acaacf28a6e4274101672acfc476f7362ee8893c",
+      "working_source_sha256": "c34874e2a1d2874120b0969e7c7b491c8dbd8ea52776e44e4556246454ebe553",
+      "post_drive_id": null,
+      "post_sha256": null,
+      "status": "FIX_SOURCE_STATIC_VERIFIED_POST_PENDING"
+    }
+  ],
+  "scientific_limitations": "Earth Engine export unexecuted. Original current failed notebook outputs archived. Previous 11 scene and coverage figures are recorded but no complete GeoTIFF received.",
+  "updating_files": [
+    "researchers/binay-karki/gis/map003/BINAY_UHI_GEE_COLAB_MAP003_CITYWIDE_WET_2026_WORKING.ipynb",
+    "researchers/binay-karki/gis/map003/README.md",
+    "researchers/binay-karki/gis/map003/version-ledger.json"
+  ],
+  "method_citation": "https://developers.google.com/earth-engine/guides/auth"
+}
