@@ -17,7 +17,7 @@ def profile(model: dict) -> dict:
     b = float(d["column"])
     # The synthetic analysis uses 25 GPa. Store this input explicitly in model
     # rather than deriving a stiffness from the *beam* EI.
-    E = float(model.get("column_elastic_modulus_kN_m2", 25_000_000))
+    E = float(model["column_elastic_modulus_kN_m2"])
     EI = E * b**4 / 12.0
     mbase = float(a["column_moment_base"])
     mroof = float(a["column_moment_roof"])
