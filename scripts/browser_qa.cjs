@@ -42,7 +42,7 @@ async function main() {
    await page.locator("[data-winged-book]").waitFor();
    assert.equal(await page.locator("[data-motion-toggle]").count(),1);
    assert.ok((await page.locator("h1").first().innerText()).includes("One workspace."));
-   assert.equal(await page.locator("#site-nav-links a").count(),4);
+   assert.equal(await page.locator("#site-nav-links a").count(),3);
    assert.equal(await page.locator('a[href="academic-writing/index.html"]').count()>=1,true);
    assert.equal(await page.locator('a[href="enterprise-documents/index.html"]').count()>=1,true);
    await assertNoOverflow(page,"desktop");
@@ -214,7 +214,7 @@ async function main() {
   mp.on("pageerror",e=>javascriptErrors.push(String(e)));
   await check("mobile_390px_navigation_and_screenshot",async()=>{
    await mp.goto(base,{waitUntil:"networkidle"});
-   assert.equal(await mp.locator("#site-nav-links a").count(),4);
+   assert.equal(await mp.locator("#site-nav-links a").count(),3);
    await assertNoOverflow(mp,"mobile homepage");
    await mp.screenshot({path:path.join(out,"mobile-home.png"),fullPage:true,animations:"disabled"});
   });
