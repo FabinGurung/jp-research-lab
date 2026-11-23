@@ -37,6 +37,10 @@ function block(width,height,depth) {
  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(box.geometry),lineMat);
  edges.material.transparent=true;edges.material.opacity=.35;group.add(edges);
 }
+function displacementCurve(points,colour){
+ const geom=new THREE.BufferGeometry().setFromPoints(points.map(p=>new THREE.Vector3(...p)));
+ group.add(new THREE.Line(geom,new THREE.LineBasicMaterial({color:colour,linewidth:2})));
+}
 function sphere(p,r=.008,material=steel){
  const mesh=new THREE.Mesh(new THREE.SphereGeometry(r,12,8),material);mesh.position.set(...p);group.add(mesh);
 }
@@ -69,6 +73,9 @@ function drawBeam(isSection) {
   const xs=layout==='recorded' ? positions(20,-len/2+.05,len/2-.05)
     : banded(len).map(x=>x-len/2);
   xs.forEach(x=>hoopBeam(x,w,h,cover,layout==='concept'));
+  // Relative-chord beam bending, exaggerated 1,400-fold for visibility.
+  const profile=model.samples.map(p=>[(p.x/model.dimensions.span_x-.5)*len,p.deflection_mm*1400/1000,w/2+.055]);
+  displacementCurve(profile,0x94398e);
  }
 }
 function hoopColumn(y,w,cover,withHook) {
@@ -89,6 +96,11 @@ function drawColumn(isSection){
    const ys=layout==='recorded'?positions(16,-h/2+.10,h/2-.10)
     : banded(h,.62).map(v=>v-h/2);
    ys.forEach(y=>hoopColumn(y,w,cover,layout==='concept'));
+   // Per-plane bending under zero roof translation, not overall drift.
+   if(model.column_flexure){
+    const points=model.column_flexure.samples.map(p=>[p.relative_flexure_mm*2500/1000,p.z_m-h/2,w/2+.05]);
+    displacementCurve(points,0xc26920);
+   }
  }
 }
 function drawSlab(isSection){
@@ -152,7 +164,7 @@ function showResults(){
   metric('Beam section','250 × 450 mm');metric('Centreline span','4.00 m');
   metric('Midspan moment','+'+labelNum(mid.moment)+' kN·m');
   metric('Chord-relative sag',labelNum(mid.deflection_mm,5)+' mm');
-  description.textContent='Four perimeter beams have identical symmetric gravity results. The calculated beam line is relative to its end chord and is not total storey displacement.';
+  description.textContent='Four perimeter beams have identical symmetric gravity results. The purple deflection curve is magnified 1,400-fold. The calculated beam line is relative to its end chord and is not total storey displacement.';
   source.textContent='Original illustrative takeoff: 4 longitudinal Ø16 bars and 20 Ø8 links per beam. Two top and two bottom bars are placed inside closed stirrups in this view.';
  } else if(member==='column'){
   metric('Column section','300 × 300 mm');metric('Height','3.00 m');
@@ -160,7 +172,7 @@ function showResults(){
   metric('Peak in-plane flexure',cf?labelNum(cf.peak_chord_relative_mm,5)+' mm':'Unavailable');
   metric('Peak height',cf?labelNum(cf.peak_z_m,2)+' m':'Unavailable');
   metric('Roof sway / translation','0 in assumed no-sway model');
-  description.textContent='The derived curve is bending displacement relative to the fixed-end chord in EACH separate planar frame. It peaks 2.00 m above the base; no overall drift, global joint movement or column shortening was analysed.';
+  description.textContent='The derived curve is bending displacement relative to the fixed-end chord in EACH separate planar frame. The orange bending curve is magnified 2,500-fold and peaks 2.00 m above the base; no overall drift, global joint movement or column shortening was analysed.';
   source.textContent='Original illustrative takeoff: 4 vertical Ø16 bars and 16 Ø8 closed ties per column. End-region tie spacing and joint confinement require a separate design verification.';
  } else {
   metric('Slab panel','4.00 × 4.00 m');metric('Thickness','150 mm');
