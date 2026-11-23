@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "researcher_id": "RSH-001",
+  "scope": "Proposed new column bending verification and member rendering editorial extension",
+  "proposed_manuscript_version": "v0.17",
+  "status": "REVIEW_SOURCE_ONLY_NOT_COMPILED_NOT_CURRENT",
+  "current_authority": {
+    "version": "v0.16",
+    "a7_event": "000008",
+    "pages": 69,
+    "pdf_drive_id": "1LBt3R4u35BxhKjOGoX8YflP7zFJutxBk",
+    "source_folder_drive_id": "1BBs5wHRSwM6wBSVRhFiNh4XuRCQ5Y43B",
+    "current_manifest": "researchers/fabin-gurung/latex/production-current.json",
+    "appendix_05_tex_drive_id": "1MUQCEq0Iz9wiH9L4MSONiYsc6hQRviVy"
+  },
+  "shared_template": {
+    "version": "2.6.4",
+    "blob": "6deb30ec415fd386de104c0b7248eb9ea8b98ece",
+    "changed": false
+  },
+  "git_latex_sequence": null,
+  "git_sequence_hold": "BASELINE_VERIFICATION_REQUIRED",
+  "scientific_claims_to_verify": [
+    {
+      "claim": "Beam chord-relative midspan bending -0.45047 mm",
+      "source": "existing v0.16 Appendix E/F and frame samples"
+    },
+    {
+      "claim": "Column in-plane chord-relative max -0.130385 mm at z=2.00 m",
+      "source": "experiments/fabin-four-workflows/column_flexure.py",
+      "independent_check": "test_column_flexure.py"
+    },
+    {
+      "claim": "Slab displacement and global roof drift unsolved",
+      "source": "existing model and method limitations"
+    },
+    {
+      "claim": "Rebar layout illustrative, not certified NBC compliant",
+      "source": "current v0.16 quantities, not a design"
+    }
+  ],
+  "mandatory_release_gates": [
+    "Allocate/verify actual researcher LaTeX sequence; do not guess it",
+    "Compare candidate appendix with live 117-file source and its citations",
+    "Generate and inspect member figure captures (3D, elevation, plan, section) with dimensions and labels",
+    "Check applicable NBC edition and detailing requirements without silently changing quantities",
+    "Recompile complete thesis with pinned shared style and private licensed font",
+    "Run structural QA, full-page layout, references, captions, PDF link validation",
+    "Preserve PRE source/PDF, update same permanent Drive IDs, read back bytes/hashes and record POST",
+    "Only then promote to CURRENT and update examiner Doc, project state, Git registry, and A7 via separately authorized control"
+  ],
+  "source_version_lineage": {
+    "parent": "v0.16",
+    "candidate_type": "scoped_appendix_amendment",
+    "cross_researcher_source_modifications": false
+  },
+  "academic_signoff": "OPEN",
+  "final_submission": "OPEN"
+}
