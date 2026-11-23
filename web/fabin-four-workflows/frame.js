@@ -96,7 +96,7 @@ function spatialView(model, active) {
     for (const c of columns) {
       const p = base(c.id), start = offset(p,0,43);
       result += stroke(start,p,ink.positive,3,'marker-end="url(#reaction-tip)"');
-      if (c.id === 'C2') result += label(offset(p,21,29),number(a.axial_base,4)+' kN',16);
+      result += label(offset(p,c.x === 0 ? -46 : 46,29),number(a.axial_base,4)+' kN',13);
     }
   }
   if (active === 'rebar') {
@@ -126,6 +126,18 @@ function spatialView(model, active) {
         result += stroke(p,q,ink.steel,1.75);
       }
     }
+  }
+  // Numeric values follow each beam's local direction. Excluded DOFs are not zeroes.
+  if (active === 'moment' || active === 'shear') {
+    for (const b of beams) {
+      const midPoint = along(b.start_column,b.end_column,.5,d.height);
+      const value = active === 'moment' ? samples[20].moment : samples[0].shear;
+      const units = active === 'moment' ? 'kN·m' : 'kN';
+      result += label(offset(midPoint,0,-58),(active==='moment' ? 'Mmid ' : 'Vnear ')+number(value)+' '+units,13);
+    }
+  }
+  if (active === 'movement') {
+    result += label([475,460],'Midspan '+number(samples[20].deflection_mm,5)+' mm (relative to chord)',15);
   }
   const notes = active === 'torsion' ? label([475,492],'Torsion was not calculated',21) :
     active === 'reactions' ? '' : label([475,490],'4.00 m × 4.00 m grid',16,'normal');
@@ -171,6 +183,45 @@ function resultsFor(mode, model) {
   }
 }
 
+
+function highlightsFor(mode, model) {
+  const a=model.actions, near=model.samples[0], mid=model.samples[20], far=model.samples.at(-1);
+  switch(mode) {
+    case 'moment': return [
+      ['Near end, B1–B4',number(near.moment)+' kN·m'],
+      ['Midspan, B1–B4',number(mid.moment)+' kN·m'],
+      ['Far end, B1–B4',number(far.moment)+' kN·m'],
+      ['Column roof / base, per plane',number(a.column_moment_roof)+' / '+number(a.column_moment_base)+' kN·m']];
+    case 'shear': return [
+      ['Near end, B1–B4',number(near.shear)+' kN'],
+      ['Midspan, B1–B4',number(mid.shear)+' kN'],
+      ['Far end, B1–B4',number(far.shear)+' kN'],
+      ['Column horizontal shear, per plane',number(a.column_shear)+' kN']];
+    case 'axial': return [
+      ['Column roof compression',number(a.axial_roof,4)+' kN'],
+      ['Column base compression',number(a.axial_base,4)+' kN'],
+      ['One-bay beam axial','Not calculated'],
+      ['Slab membrane force','Not calculated']];
+    case 'reactions': return [
+      ['Each of C1–C4, vertical',number(a.axial_base,4)+' kN up'],
+      ['All four bases',number(a.total_reaction,3)+' kN up'],
+      ['Horizontal shear, each plane',number(a.column_shear)+' kN'],
+      ['Base couple, each plane',number(a.column_moment_base)+' kN·m']];
+    case 'movement': return [
+      ['Beam midspan relative to chord',number(mid.deflection_mm,5)+' mm'],
+      ['Near and far relative deflection',number(near.deflection_mm)+' / '+number(far.deflection_mm)+' mm'],
+      ['Illustration scale','1,400×'],
+      ['Slab and global joint movements','Not calculated']];
+    case 'torsion': return [
+      ['Beam torsion','Not calculated'],['Column torsion','Not calculated'],
+      ['Slab twisting','Not calculated'],['Analysis scope','Two planar gravity frames']];
+    case 'rebar': return [
+      ['Illustrative frame steel',number(model.rebar.mass_kg,2)+' kg'],
+      ['Slab bars, each direction','21 × Ø10 mm'],
+      ['Design certification','Not provided'],['Purchasing schedule','Not provided']];
+  }
+}
+
 async function mount() {
   const entries = Object.entries(tabs);
   const box = document.querySelector('#frame-tabs');
@@ -198,6 +249,18 @@ async function mount() {
     panel.setAttribute('aria-labelledby','view-'+mode);
     panel.dataset.active = mode;
     document.querySelector('#frame-drawing').innerHTML = spatialView(model, mode);
+    const highlights = document.querySelector('#frame-highlights');
+    highlights.replaceChildren();
+    for (const [label,value] of highlightsFor(mode,model)) {
+      const card=document.createElement('div');
+      card.className='frame-stat';
+      const name=document.createElement('span');
+      name.textContent=label;
+      const output=document.createElement('strong');
+      output.textContent=value;
+      card.append(name,output);
+      highlights.append(card);
+    }
     const [headline, detail, rows] = resultsFor(mode,model);
     const strong = document.createElement('strong');
     strong.textContent = headline;

@@ -17,3 +17,15 @@
   #frame-key {font-size:1rem}
   #frame-values td,#frame-values th {padding:.45rem .35rem}
 }
+
+/* Selected structural view: visible key numbers and mobile-readable tables */
+.frame-highlights {display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:.65rem;margin:1rem 0 1.1rem}
+.frame-stat {background:#fff;border:1px solid #d5e1e7;border-radius:12px;padding:.8rem 1rem;box-shadow:0 4px 14px rgba(23,51,66,.05);min-width:0}
+.frame-stat span {display:block;color:#496473;font-size:.79rem;line-height:1.3}
+.frame-stat strong {display:block;color:#163b50;font-variant-numeric:tabular-nums;font-size:clamp(1rem,2vw,1.33rem);line-height:1.45;overflow-wrap:anywhere}
+#frame-values {overflow-x:auto}
+#frame-values table {width:100%;max-width:none}
+#frame-values th,#frame-values td {overflow-wrap:anywhere}
+.frame-page header nav {display:flex;flex-wrap:wrap;gap:.55rem;align-items:center}
+.frame-page main {padding-top:1.7rem}
+@media(max-width:480px){.frame-highlights{grid-template-columns:repeat(2,minmax(0,1fr))}.frame-stat{padding:.65rem}.frame-page header{gap:.5rem}}

@@ -1,0 +1,36 @@
+/* Non-destructive R&D portal gallery, shared by all generated pages. */
+:root { --gallery-edge: color-mix(in srgb,var(--line) 75%,transparent); }
+html, body { max-width:100%; overflow-x:clip; }
+.card,.lane,.notice,.code,.kvs,main,section { min-width:0; }
+.card,.lane,.notice,.code,td,a { overflow-wrap:anywhere; }
+.code { white-space:normal; word-break:break-word; font-size:.78rem; line-height:1.55; }
+.record-details { font-size:.84rem; margin:.5rem 0 1rem; border-top:1px solid var(--line); padding-top:.4rem; }
+.record-details summary { cursor:pointer; color:var(--accent); font-weight:650; }
+.record-details code { display:block; font:inherit; font-size:.74rem; overflow-wrap:anywhere; margin:.45rem 0; color:var(--muted); }
+.arc-toolbar { display:flex; align-items:center; justify-content:space-between; gap:.7rem; flex-wrap:wrap; margin:.9rem 0 .6rem; }
+.arc-toolbar .arc-title { font-size:.85rem; color:var(--muted); font-weight:650; }
+.arc-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.45rem; }
+.arc-toolbar button { border:1px solid var(--line); background:var(--panel); color:var(--text); border-radius:999px; padding:.4rem .85rem; font:inherit; font-size:.86rem; cursor:pointer; }
+.arc-toolbar button:hover { border-color:var(--accent); }
+.arc-toolbar button:focus-visible,.arc-stage:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+.arc-count { min-width:4rem; text-align:center; font-variant-numeric:tabular-nums; font-size:.84rem; color:var(--muted); }
+.grid.arc-stage,.lanes.arc-stage { display:block!important; position:relative; perspective:1100px; perspective-origin:50% 42%; overflow:hidden; width:100%; border-radius:22px; isolation:isolate; padding:0!important; transition:min-height .3s ease; }
+.arc-stage > .card,.arc-stage > .lane { position:absolute!important; top:50%; left:50%; margin:0!important; width:min(420px,calc(100% - 42px))!important; max-width:420px; transform-origin:center; transition:transform .48s cubic-bezier(.2,.7,.2,1), opacity .32s ease, filter .32s ease; will-change:transform; opacity:0; background:var(--panel); border:1px solid var(--gallery-edge); box-shadow:var(--shadow); overflow:auto; max-height:calc(100% - 26px); }
+.arc-stage > .is-current { opacity:1; filter:none; }
+.arc-stage > .is-neighbor { opacity:.66; filter:saturate(.7); }
+.arc-stage > .is-far { opacity:0; pointer-events:none; visibility:hidden; }
+.arc-stage > .is-neighbor a { pointer-events:none; }
+.arc-stage > .is-current a { pointer-events:auto; }
+.arc-stage:not(.arc-expanded) { touch-action:pan-y; cursor:grab; }
+.arc-stage.is-dragging { cursor:grabbing; }
+.arc-stage.arc-expanded { display:grid!important; grid-template-columns:repeat(auto-fit,minmax(min(100%,275px),1fr)); align-items:start; gap:1rem; perspective:none; min-height:0!important; overflow:visible; }
+.arc-stage.arc-expanded > .card,.arc-stage.arc-expanded > .lane { position:static!important; width:100%!important; max-width:none; max-height:none; transform:none!important; opacity:1!important; filter:none!important; visibility:visible!important; pointer-events:auto; transition:none; }
+.arc-stage.arc-expanded > .card a,.arc-stage.arc-expanded > .lane a { pointer-events:auto; }
+.gallery-feature { background:var(--panel); border:1px solid var(--line); border-radius:22px; margin:0 0 1.5rem; padding:clamp(1.1rem,3vw,2rem); box-shadow:var(--shadow); }
+.gallery-feature h2 { margin:.15rem 0 .45rem; font-size:clamp(1.4rem,2.6vw,2.2rem); }
+.gallery-feature p { margin:.4rem 0 .8rem; max-width:65ch; }
+.gallery-feature-links { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; }
+.gallery-feature-links a { display:inline-flex; align-items:center; padding:.55rem .8rem; border:1px solid var(--line); border-radius:12px; font-weight:650; background:var(--bg-soft); }
+.navlinks a[href*="/four-workflows/frame.html"] { font-weight:750; }
+@media (max-width:640px) { .arc-toolbar { align-items:flex-start; } .arc-stage > .card,.arc-stage > .lane { width:calc(100% - 30px)!important; } .gallery-feature { border-radius:16px; } }
+@media (prefers-reduced-motion:reduce) { .arc-stage > .card,.arc-stage > .lane,.grid.arc-stage,.lanes.arc-stage { transition:none!important; } }
