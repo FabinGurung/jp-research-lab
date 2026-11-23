@@ -63,10 +63,11 @@ async function main() {
    await assertNoOverflow(page,"enterprise template audit");
    await page.goto(base,{waitUntil:"networkidle"});
   });
-  await check("fabin_researcher_curved_gallery_and_frame_link",async()=>{
+  await check("fabin_researcher_curved_gallery_without_level_one_frame",async()=>{
    await page.goto(base+"researchers/fabin-gurung/index.html",{waitUntil:"networkidle"});
    await page.locator('.lanes.arc-stage').first().waitFor();
-   assert.ok((await page.getByRole('link',{name:/Open interactive frame viewer/}).count())>=1);
+   assert.equal(await page.getByRole('link',{name:/Open interactive frame viewer/}).count(),0);
+    assert.ok((await page.locator('a[href="experiments/four-workflows/index.html"]').count())>=1);
    assert.ok((await page.locator('.record-details').count())>=1);
    assert.equal(await page.locator('a[href="../../assets/arc-gallery.css"]').count(),0);
    const first=page.locator('.arc-toolbar').first();
@@ -131,6 +132,35 @@ async function main() {
     await frameDesktop.close();
     await frameMobile.close();
    }
+  });
+  await check("fabin_threejs_member_details_and_column_curve",async()=>{
+    const route=base+"researchers/fabin-gurung/experiments/four-workflows/";
+    await page.goto(route+"frame.html?view=movement",{waitUntil:"networkidle"});
+    assert.ok((await page.locator("#frame-values").innerText()).includes("−0.13039"));
+    assert.ok((await page.locator("#frame-drawing").innerText()).includes("Column"));
+    assert.ok(await page.locator('a[href="detail.html"]').count()>=1);
+    const model=await page.evaluate(()=>fetch('frame-results.json').then(r=>r.json()));
+    assert.ok(model.column_flexure);
+    assert.ok(Math.abs(model.column_flexure.peak_z_m-2.0)<1e-8);
+    assert.ok(Math.abs(model.column_flexure.peak_chord_relative_mm+0.1303853917)<1e-8);
+    await page.goto(route+"detail.html",{waitUntil:"networkidle"});
+    await page.locator("#three-stage canvas").waitFor({timeout:30000});
+    assert.ok((await page.locator("#render-state").innerText()).includes("Three.js active"));
+    assert.ok((await page.locator("#member-metrics").innerText()).includes("−0.45047"));
+    for(const name of ["beam","column","slab"]){
+      await page.locator('[data-member="'+name+'"]').click();
+      assert.equal(await page.locator('[data-member="'+name+'"]').getAttribute("aria-pressed"),"true");
+      for(const view of ["3d","elevation","plan","section"]){
+        await page.locator('[data-view="'+view+'"]').click();
+        assert.equal(await page.locator('[data-view="'+view+'"]').getAttribute("aria-pressed"),"true");
+      }
+    }
+    await page.locator('[data-member="column"]').click();
+    assert.ok((await page.locator("#member-metrics").innerText()).includes("−0.13039"));
+    await page.locator('[data-layout="concept"]').click();
+    assert.ok((await page.locator("#member-steel").innerText()).includes("not"));
+    await assertNoOverflow(page,"Fabin Three.js desktop details");
+    await page.screenshot({path:path.join(out,"fabin-threejs-member-details.png"),fullPage:true,animations:"disabled"});
   });
   await check("desktop_pause_and_resume",async()=>{
    const btn=page.locator("[data-motion-toggle]");
