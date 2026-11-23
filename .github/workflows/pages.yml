@@ -43,6 +43,8 @@ jobs:
         run: |
           python experiments/fabin-four-workflows/latex.py --academic /tmp/fabin-experiment-private/academic.json --results dist/researchers/fabin-gurung/experiments/four-workflows/results.json --out /tmp/fabin-experiment-private/latex
           python scripts/latex/check_modular_project.py /tmp/fabin-experiment-private/latex
+      - name: Install the registered Google Drive source gallery
+        run: python3 .github/source-gallery/install.py dist jp-research-lab
       - run: python scripts/validate_repo.py --site dist
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
