@@ -6,6 +6,10 @@ def build_fabin_experiment(root:Path,out:Path):
     destination=out/'researchers/fabin-gurung/experiments/four-workflows'
     shutil.copytree(root/'web/fabin-four-workflows',destination,dirs_exist_ok=True)
     subprocess.run([sys.executable,str(root/'experiments/fabin-four-workflows/build_public.py'),str(destination)],check=True)
+    # Preserve the pinned source snapshot; publish the separately checked
+    # column in-plane bending derivation only in the generated Pages JSON.
+    subprocess.run([sys.executable,str(root/'experiments/fabin-four-workflows/column_flexure.py'),
+                    str(destination/'frame-results.json')],check=True)
     # Both shared assets are copied into the existing portal asset directory.
     (out/'assets').mkdir(exist_ok=True)
     for filename in ('arc-gallery.css','arc-gallery.js'):
