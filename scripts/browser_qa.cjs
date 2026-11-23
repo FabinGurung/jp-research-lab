@@ -65,7 +65,7 @@ async function main() {
   });
   await check("fabin_researcher_curved_gallery_and_frame_link",async()=>{
    await page.goto(base+"researchers/fabin-gurung/index.html",{waitUntil:"networkidle"});
-   await page.locator('.lanes.arc-stage').waitFor();
+   await page.locator('.lanes.arc-stage').first().waitFor();
    assert.ok((await page.getByRole('link',{name:/Open interactive frame viewer/}).count())>=1);
    assert.ok((await page.locator('.record-details').count())>=1);
    assert.equal(await page.locator('a[href="../../assets/arc-gallery.css"]').count(),0);
@@ -214,7 +214,7 @@ async function main() {
   mp.on("pageerror",e=>javascriptErrors.push(String(e)));
   await check("mobile_390px_navigation_and_screenshot",async()=>{
    await mp.goto(base,{waitUntil:"networkidle"});
-   assert.equal(await mp.locator("#site-nav-links a").count(),3);
+   assert.equal(await mp.locator("#site-nav-links a").count(),4);
    await assertNoOverflow(mp,"mobile homepage");
    await mp.screenshot({path:path.join(out,"mobile-home.png"),fullPage:true,animations:"disabled"});
   });
