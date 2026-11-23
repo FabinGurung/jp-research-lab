@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install pinned offline Three.js modules
+        run: npm install --no-save --no-package-lock --ignore-scripts three@0.164.1
       - name: Validate repository before browser QA
         run: |
           python scripts/validate_repo.py
