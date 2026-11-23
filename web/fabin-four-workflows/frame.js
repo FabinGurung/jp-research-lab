@@ -54,8 +54,8 @@ function spatialView(model, active) {
   const basePlane = polygon(model.slab.corners.map(base), '#eff8fc', '#a5c3d6');
   const members = columns.map(c => stroke(base(c.id),top(c.id),ink.frame,5)).join('') +
     slab + beams.map(b => stroke(top(b.start_column),top(b.end_column),ink.frame,4)).join('');
-  const beamLabel = {B1:[13,-32],B2:[42,8],B3:[-38,7],B4:[-25,-30]};
-  const columnLabel = {C1:[-29,9],C2:[42,9],C3:[33,4],C4:[-42,9]};
+  const beamLabel = {B1:[46,-37],B2:[42,8],B3:[-38,7],B4:[-40,-37]};
+  const columnLabel = {C1:[-29,9],C2:[42,9],C3:[42,5],C4:[-42,9]};
   const identifiers = columns.map(c => label(offset(base(c.id), ...columnLabel[c.id]), c.id)).join('') +
     beams.map(b => label(offset(along(b.start_column,b.end_column,.5,d.height),...beamLabel[b.id]),b.id)).join('') +
     label(offset(point(d.span_x/2,d.span_y/2,d.height),0,5),'S1');
@@ -127,8 +127,8 @@ function spatialView(model, active) {
       }
     }
   }
-  const notes = active === 'torsion' ? label([475,465],'Torsion was not calculated',21) :
-    active === 'reactions' ? '' : label([475,469],'4.00 m × 4.00 m grid',16,'normal');
+  const notes = active === 'torsion' ? label([475,492],'Torsion was not calculated',21) :
+    active === 'reactions' ? '' : label([475,490],'4.00 m × 4.00 m grid',16,'normal');
   return `<title id="frame-title">${titles[active]}</title><defs><marker id="reaction-tip" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="${ink.positive}"/></marker></defs>` +
     basePlane + members + result + identifiers + notes;
 }
@@ -160,7 +160,7 @@ function resultsFor(mode, model) {
       [[beams,'Midspan vertical deflection (mm)',number(mid.deflection_mm)],
        [beams,'Ends relative to chord (mm)',number(near.deflection_mm)+' / '+number(far.deflection_mm)]]];
     case 'rebar': return ['Illustrative reinforcement takeoff.',
-      'Brown shows longitudinal beam and column bars. Green shows the slab mat. Beam links and column ties are tabulated below.',
+      'Brown shows longitudinal beam and column bars. Green shows the slab mat. Beam links and column ties are included in the takeoff.',
       [...model.rebar.groups.map(g=>[g.mark, g.pieces_per_member+' × Ø'+g.diameter_mm,number(g.length_per_piece_m)+' m']),
        ['Total','Theoretical steel mass',number(model.rebar.mass_kg,2)+' kg']]];
     case 'reactions': return ['Vertical reactions at fixed bases C1–C4.',
