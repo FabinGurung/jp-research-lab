@@ -25,7 +25,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: python -m unittest discover -s experiments/fabin-four-workflows -p test_engine.py -v
+      - run: python -m unittest discover -s experiments/fabin-four-workflows -p 'test_*.py' -v
       - name: Read back the actual Google Docs and Sheets backend
         run: python experiments/fabin-four-workflows/sync_google.py
       - name: Run the shared snapshot through all four adapters and native CPM
