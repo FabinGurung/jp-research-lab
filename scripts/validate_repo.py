@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, os, re, subprocess
+import argparse, hashlib, json, os, re, subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]
@@ -129,13 +129,29 @@ if not any(d.get("debt_id")=="DEBT-MANOJ-001" and d.get("status")=="HOLD" for d 
 if not any(d.get("debt_id")=="DEBT-OPS-PAGES-001" and d.get("status")=="CLOSED" for d in debt_rows):
     errors.append("resolved Pages deployment readback missing")
 if policy.get("repository_role")!="R_AND_D_CODE_POINTER_AND_CONTROL_PORTAL": errors.append("repository policy role mismatch")
-# Main/lane binary guard. Git history may contain binaries; current tree may not.
+# Main/lane binary guard. Private source and generated outputs stay in Drive.
 try:
     files=subprocess.check_output(["git","ls-files"],cwd=ROOT,text=True).splitlines()
 except Exception:
     files=[str(p.relative_to(ROOT)) for p in ROOT.rglob("*") if p.is_file()]
 forbidden={".pdf",".pptx",".docx",".xlsx",".xls",".png",".jpg",".jpeg",".gif",".webp",".zip",".7z",".rar",".glb",".obj",".ifc",".dwg",".dxf"}
-bad=[f for f in files if Path(f).suffix.lower() in forbidden]
+# The public one-bay case has seven reviewed browser captures used by Appendix E.
+# Pin both the exact bytes and their paths. Other binary outputs stay in Drive.
+frame_capture_folder=Path("researchers/fabin-gurung/latex/figures/appendix/frame")
+frame_capture_sha256={
+    "moment.png": "1ca5ea742d57bd1e07d3f6cf93f3a0335e9035e4daf39322012db24ec8a73361",
+    "shear.png": "57eaa43aabecc4196dd8a317993da04bf01bd246c6a3043db2a95b09611928fd",
+    "axial.png": "81de37e5131500f5710b8611b4fb7a1a0899026251a8c1986c0f95d518820021",
+    "torsion.png": "21c8472634381cb3981753900d6aa2dd3b69225e417af0133e9390e58244de06",
+    "movement.png": "2874fcdbdd9b1404a14c178c6bec9e61985e349e7c7e45f92819508f24f3688f",
+    "rebar.png": "6f659593b2c82beb6c82ae9a7792ed2481da2f52af87742137c8a6b0ec774d8b",
+    "reactions.png": "8d677a816f16f91095a149c0b7f235fd8f530c56855351a72f392f62d5d4e3b5",
+}
+public_frame_captures={str(frame_capture_folder/name):digest for name,digest in frame_capture_sha256.items()}
+for f in files:
+    if f in public_frame_captures and hashlib.sha256((ROOT/f).read_bytes()).hexdigest()!=public_frame_captures[f]:
+        errors.append(f"public frame capture differs from reviewed source: {f}")
+bad=[f for f in files if Path(f).suffix.lower() in forbidden and f not in public_frame_captures]
 if bad: errors.append("binary/artifact files forbidden in current tree: "+", ".join(bad[:20]))
 for f in files:
     if re.search(r"(^|/)(node_modules|dist|out|\.next)/",f): errors.append(f"generated directory committed: {f}")
