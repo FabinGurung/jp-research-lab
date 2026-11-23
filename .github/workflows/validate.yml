@@ -45,6 +45,11 @@ jobs:
         with:
           name: researcher-engine-source-qa
           path: researcher-engine-audit.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned offline Three.js modules
+        run: npm install --no-save --no-package-lock --ignore-scripts three@0.164.1
       - run: python scripts/validate_repo.py
       - run: python scripts/validate_document_families.py
       - run: python scripts/ai_runtime/validate_job.py --self-test
