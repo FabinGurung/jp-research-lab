@@ -80,6 +80,42 @@ async function main() {
    await page.screenshot({path:path.join(out,'fabin-four-workflows-desktop.png'),fullPage:true,animations:'disabled'});
    await page.goto(base,{waitUntil:'networkidle'});
   });
+  await check("fabin_spatial_frame_views",async()=>{
+   const route=base+"researchers/fabin-gurung/experiments/four-workflows/frame.html";
+   const frameDesktop=await browser.newContext({viewport:{width:980,height:850},deviceScaleFactor:2});
+   const frameMobile=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+   const fp=await frameDesktop.newPage(), fm=await frameMobile.newPage();
+   fp.on("pageerror",e=>javascriptErrors.push(String(e)));
+   fm.on("pageerror",e=>javascriptErrors.push(String(e)));
+   const expected={moment:"14.868",shear:"16.969",axial:"40.6875",torsion:"Outside the model",
+    movement:"−0.450",rebar:"335.83",reactions:"162.75"};
+   fs.mkdirSync(path.join(out,"fabin-frame"),{recursive:true});
+   try{
+    for(const [view,value] of Object.entries(expected)){
+     await fp.goto(route+"?view="+view);
+     await fp.locator('#frame-panel[data-active="'+view+'"]').waitFor();
+     assert.equal(await fp.locator('[role=tab][aria-selected=true]').count(),1);
+     const labels=await fp.locator('#frame-drawing text').allTextContents();
+     assert.ok(["C1","C2","C3","C4","B1","B2","B3","B4","S1"].every(id=>labels.includes(id)));
+     assert.equal(await fp.locator("#frame-values th").count(),3);
+     assert.ok((await fp.locator("#frame-values").innerText()).includes(value));
+     await assertNoOverflow(fp,"Desktop frame "+view);
+     await fp.evaluate(()=>document.fonts.ready);
+     await fp.locator("#frame-evidence").screenshot({path:path.join(out,"fabin-frame",view+".png"),animations:"disabled"});
+     await fm.goto(route+"?view="+view);
+     await fm.locator('#frame-panel[data-active="'+view+'"]').waitFor();
+     await assertNoOverflow(fm,"Mobile frame "+view);
+    }
+    await fp.locator("#view-reactions").focus();
+    await fp.keyboard.press("ArrowRight");
+    assert.equal(await fp.locator("#frame-panel").getAttribute("data-active"),"moment");
+    await fp.getByRole("tab",{name:"Reinforcement"}).click();
+    assert.match(fp.url(),/view=rebar$/);
+   }finally{
+    await frameDesktop.close();
+    await frameMobile.close();
+   }
+  });
   await check("desktop_pause_and_resume",async()=>{
    const btn=page.locator("[data-motion-toggle]");
    await btn.click();
