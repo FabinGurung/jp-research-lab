@@ -33,7 +33,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "MSc Structural AEC thesis v0.15 CURRENT WORKING. The 67-page November 2026 revision adds checked forces and reactions, reinforcement quantities based on stated assumptions, and formwork contact areas for both study cases. The permanent PDF and editable source passed Drive readback. Academic approval remains open.",
+      "public_note": "MSc Structural AEC thesis v0.16 CURRENT WORKING. The November 2026 revision adds seven spatial views of the one-bay frame and uses 12-point Times New Roman for thesis text and editable tables. The permanent PDF and editable source passed Drive readback. Academic approval remains open.",
       "governance": {
         "read_first": "researchers/fabin-gurung/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",

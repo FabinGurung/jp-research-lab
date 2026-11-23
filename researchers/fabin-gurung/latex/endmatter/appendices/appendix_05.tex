@@ -1,0 +1,22 @@
+\chapter{Spatial Results for the One-Bay Frame}
+\label{app:representative_sql_queries}
+\addappendixentry{Spatial Results for the One-Bay Frame}
+
+The images show separate views of the \(4.00\times4.00~\mathrm{m}\) gravity case. The labels identify the same four columns (C1--C4), perimeter beams (B1--B4) and slab (S1) in each view. The beam directions follow C1 to C2, C2 to C3, C3 to C4 and C4 to C1. The values and sign conventions are given in Section~\ref{sec:force_comparison}.
+
+\newcommand{\FrameCapture}[3]{%
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=.94\linewidth]{figures/appendix/frame/#1.png}
+    \caption{#2}
+    \label{#3}
+  \end{figure}%
+}
+
+\FrameCapture{moment}{Bending moments along the four perimeter beams}{fig:spatial_moment}
+\FrameCapture{shear}{Shear forces along the four perimeter beams}{fig:spatial_shear}
+\FrameCapture{axial}{Axial compression between the roof and bases of the four columns}{fig:spatial_axial}
+\FrameCapture{reactions}{Vertical support reactions at the four column bases}{fig:spatial_reactions}
+\FrameCapture{movement}{Elastic beam deflection relative to the end chord, magnified 1,400 times}{fig:spatial_movement}
+\FrameCapture{torsion}{One-bay geometry for the planar gravity analysis, with torsion outside the model}{fig:spatial_torsion}
+\FrameCapture{rebar}{Illustrative longitudinal reinforcement and slab mat used for the takeoff}{fig:spatial_rebar}
