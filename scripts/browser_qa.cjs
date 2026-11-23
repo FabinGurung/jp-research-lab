@@ -137,7 +137,7 @@ async function main() {
     const route=base+"researchers/fabin-gurung/experiments/four-workflows/";
     await page.goto(route+"frame.html?view=movement",{waitUntil:"networkidle"});
     assert.ok((await page.locator("#frame-values").innerText()).includes("−0.13039"));
-    assert.ok((await page.locator("#frame-drawing").innerText()).includes("Column"));
+    assert.ok((await page.locator("#frame-drawing").textContent()).includes("Column"));
     assert.ok(await page.locator('a[href="detail.html"]').count()>=1);
     const model=await page.evaluate(()=>fetch('frame-results.json').then(r=>r.json()));
     assert.ok(model.column_flexure);
