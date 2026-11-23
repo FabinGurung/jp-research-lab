@@ -56,7 +56,7 @@ function hoopBeam(x,w,h,cover,withHook) {
  }
 }
 function drawBeam(isSection) {
- const len=isSection?.12:3.70,w=model.dimensions.beam_width,h=model.dimensions.beam_depth;
+ const len=isSection ? 0.12 : 3.70,w=model.dimensions.beam_width,h=model.dimensions.beam_depth;
  const cover=.03;
  block(len,h,w);
  const y=h/2-cover-.012,z=w/2-cover-.012;
@@ -77,7 +77,7 @@ function hoopColumn(y,w,cover,withHook) {
  if(withHook){cylinder([v,y,v],[v-.045,y,v-.045],.008,linkSteel)}
 }
 function drawColumn(isSection){
- const h=isSection?.12:model.dimensions.height,w=model.dimensions.column;
+ const h=isSection ? 0.12 : model.dimensions.height,w=model.dimensions.column;
  const cover=.035, a=w/2-cover-.012;
  block(w,h,w);
  if(isSection){
@@ -134,6 +134,7 @@ function setCamera(){
  if(view==='plan'){activeCamera.up.set(0,0,-1);activeCamera.position.set(0,dist,0)}
  if(view==='section'){
    if(member==='column'){activeCamera.up.set(0,0,-1);activeCamera.position.set(0,dist,0)}
+   else if(member==='slab')activeCamera.position.set(0,0,dist);
    else activeCamera.position.set(dist,0,0);
  }
  activeCamera.lookAt(origin);controls.update();
