@@ -33,7 +33,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "MSc Structural AEC thesis v0.13 CURRENT WORKING: 62-page November 2026 build. The original two-span end moments were independently reproduced, and the corrected reactions and diagrams are in the manuscript. The separate one-bay experiment and its baseline links remain. The cover logo retains its native proportions. The permanent PDF and revised editable source passed Drive readback. Academic approval and original database repair remain open.",
+      "public_note": "MSc Structural AEC thesis v0.14 CURRENT WORKING: 61-page November 2026 build. The diagrams use solid colour or black and white with larger labels. The checked two-span SQL values feed the tables and diagrams, the separate one-bay results remain available, and Chapter 5 recommends future research. The permanent PDF and editable source passed Drive readback. Academic approval remains open.",
       "governance": {
         "read_first": "researchers/fabin-gurung/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
