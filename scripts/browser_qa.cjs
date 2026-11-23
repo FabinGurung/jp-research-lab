@@ -147,12 +147,14 @@ async function main() {
     await page.locator("#three-stage canvas").waitFor({timeout:30000});
     assert.ok((await page.locator("#render-state").innerText()).includes("Three.js active"));
     assert.ok((await page.locator("#member-metrics").innerText()).includes("−0.45047"));
+    fs.mkdirSync(path.join(out,"fabin-member"),{recursive:true});
     for(const name of ["beam","column","slab"]){
       await page.locator('[data-member="'+name+'"]').click();
       assert.equal(await page.locator('[data-member="'+name+'"]').getAttribute("aria-pressed"),"true");
       for(const view of ["3d","elevation","plan","section"]){
         await page.locator('[data-view="'+view+'"]').click();
         assert.equal(await page.locator('[data-view="'+view+'"]').getAttribute("aria-pressed"),"true");
+        await page.locator("#three-stage").screenshot({path:path.join(out,"fabin-member",name+"-"+view+".png"),animations:"disabled"});
       }
     }
     await page.locator('[data-member="column"]').click();
