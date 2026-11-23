@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Fabin Gurung one-bay member detail explorer: beam, column and slab in 3D, elevation, plan and section.">
+<title>Member detail explorer · Fabin Gurung</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="detail.css">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/controls/":"./vendor/"}}</script>
+<script type="module" src="detail.js"></script>
+</head>
+<body class="detail-page">
+<header><a class="brand" href="frame.html">JP RESEARCH LAB <span>/ Structural member details</span></a><nav><a href="frame.html">Frame force & displacement viewer</a> · <a href="index.html">Four-workflow experiment</a></nav></header>
+<main>
+<div class="eyebrow">ONE-BAY CASE / MEMBER-BY-MEMBER REVIEW</div>
+<h1>Explore each structural member.</h1>
+<p class="intro">Select a beam, column or slab and examine its 3D cage, elevation, plan and cross-section. Geometry and quantities are referenced to the 4.00 m square synthetic baseline; shown reinforcement is <strong>not</strong> a certified building design.</p>
+<div class="detail-controls">
+<fieldset id="member-types"><legend>Structure</legend><button type="button" data-member="beam" aria-pressed="true">Beam B1–B4</button><button type="button" data-member="column" aria-pressed="false">Column C1–C4</button><button type="button" data-member="slab" aria-pressed="false">Slab S1</button></fieldset>
+<fieldset id="member-views"><legend>View</legend><button type="button" data-view="3d" aria-pressed="true">3D</button><button type="button" data-view="elevation" aria-pressed="false">Elevation</button><button type="button" data-view="plan" aria-pressed="false">Top / plan</button><button type="button" data-view="section" aria-pressed="false">Section</button></fieldset>
+<fieldset id="steel-layout"><legend>Reinforcement display</legend><button type="button" data-layout="recorded" aria-pressed="true">Recorded illustrative takeoff</button><button type="button" data-layout="concept" aria-pressed="false">Ductile detailing concept</button></fieldset>
+</div>
+<div class="detail-layout">
+<section class="detail-visual" aria-label="Three-dimensional member rendering">
+<div class="detail-canvas-top"><strong id="member-title">Beam B1 — 3D</strong><span id="render-state" role="status">Loading interactive 3D geometry…</span></div>
+<div id="three-stage" tabindex="0" aria-label="Interactive structural model. Drag to rotate in 3D, scroll to zoom."></div>
+<p class="detail-help">3D: drag to orbit and scroll to zoom. Plan, elevation and section use a fixed orthographic camera. If the WebGL engine is unavailable, the numerical record remains accessible in the <a href="frame.html">frame results viewer</a>.</p>
+</section>
+<aside class="detail-notes" aria-label="Member quantities and drawing notes">
+<h2 id="quantity-title">Member results</h2><div id="member-metrics" class="detail-metrics" aria-live="polite"></div>
+<h3>Drawing interpretation</h3><p id="member-description"></p>
+<h3>Reinforcement source</h3><div id="member-steel"></div>
+</aside>
+</div>
+<section class="detail-method"><h2>Model validity and reinforcement approval</h2>
+<p><strong>Beam deflection:</strong> the published maximum bending displacement is −0.45047 mm relative to the beam-end chord. <strong>Column flexure:</strong> the supplementary elastic no-sway column curve reaches −0.13039 mm at 2.00 m from the fixed base, for each analysed planar frame. It is <em>not</em> roof lateral translation, axial shortening or a combined spatial displacement.</p>
+<p>Recorded longitudinal steel, 8 mm ties/links and the slab's orthogonal 10 mm mat are displayed in their correct member positions. The alternative ductile-detailing concept illustrates tighter joint/end-zone confinement and inward-facing hooks, but it does <strong>not</strong> reuse the 335.83 kg takeoff as its quantity, nor certify bar spacing, development length, lap positions, anchorage, strong-column/weak-beam capacity or seismic compliance.</p>
+<p>Confirm the applicable Nepal National Building Code edition, including <a href="https://www.dudbc.gov.np/pages/building-code/">the DUDBC building-code register</a>, and carry out full engineering design/detailing checks before procurement or construction.</p>
+<p><a href="frame.html?view=movement">Return to force and deflection curves</a> · <a href="frame-results.json">Inspect numerical baseline JSON</a></p>
+</section>
+</main>
+</body></html>

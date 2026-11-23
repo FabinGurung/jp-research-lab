@@ -5,7 +5,7 @@ const tabs = {
   shear: 'Shear force',
   axial: 'Axial force',
   torsion: 'Torsion',
-  movement: 'Beam deflection',
+  movement: 'Beam & column deflection',
   rebar: 'Reinforcement',
   reactions: 'Support reactions',
 };
@@ -20,7 +20,7 @@ const titles = {
   shear: 'Shear force along the perimeter beams',
   axial: 'Axial compression in the four corner columns',
   torsion: 'Geometry of the planar gravity idealisation',
-  movement: 'Elastic deflection of perimeter beams relative to their end chord',
+  movement: 'Elastic beam sag and column bending (each measured relative to its end chord)',
   rebar: 'Illustrative longitudinal bars and slab reinforcement',
   reactions: 'Vertical gravity reactions at the four fixed bases',
 };
@@ -91,6 +91,15 @@ function spatialView(model, active) {
         d.height + s.deflection_mm * magnification / 1000));
       result += line(points,ink.movement,3);
     }
+    // Independently integrated M/EI column bending in each planar frame.
+    // The geometry is magnified; zero roof translation is an assumption.
+    const cf = model.column_flexure;
+    if (cf) {
+      for (const c of columns) {
+        const points=cf.samples.map(s=>point(c.x + s.relative_flexure_mm*2500/1000,c.y,s.z_m));
+        result += line(points,'#bd6b19',3);
+      }
+    }
   }
   if (active === 'reactions') {
     for (const c of columns) {
@@ -137,7 +146,8 @@ function spatialView(model, active) {
     }
   }
   if (active === 'movement') {
-    result += label([475,460],'Midspan '+number(samples[20].deflection_mm,5)+' mm (relative to chord)',15);
+    result += label([475,450],'Beam '+number(samples[20].deflection_mm,5)+' mm (chord-relative)',15);
+    if (model.column_flexure) result += label([475,478],'Column '+number(model.column_flexure.peak_chord_relative_mm,5)+' mm at 2.00 m (per plane)',15);
   }
   const notes = active === 'torsion' ? label([475,492],'Torsion was not calculated',21) :
     active === 'reactions' ? '' : label([475,490],'4.00 m × 4.00 m grid',16,'normal');
@@ -167,10 +177,13 @@ function resultsFor(mode, model) {
     case 'torsion': return ['Torsion is outside the analysis.',
       'The experiment uses two planar gravity frames and distributes slab loads by tributary area. The model gives no member torque or slab twisting result.',
       [[beams,'Beam torsion','Outside the model'],[columns,'Column torsion','Outside the model'],['S1','Slab twisting moment','Outside the model']]];
-    case 'movement': return ['Bending deflection relative to each beam’s end chord.',
-      'The coloured line is magnified 1,400 times. Roof-joint translation, column shortening and slab displacement are outside this calculation.',
-      [[beams,'Midspan vertical deflection (mm)',number(mid.deflection_mm)],
-       [beams,'Ends relative to chord (mm)',number(near.deflection_mm)+' / '+number(far.deflection_mm)]]];
+    case 'movement': return ['Beam sag (purple) and column bending (orange), each relative to the member end chord.',
+      'Beam curve magnified 1,400 times; column curve magnified 2,500 times. The column curve is the supplementary elastic no-sway in-plane derivation. Roof drift, column axial shortening and slab displacement remain unsolved.',
+      [[beams,'Beam midspan chord-relative (mm)',number(mid.deflection_mm,5)],
+       [columns,'Column max in-plane chord-relative (mm)',model.column_flexure ? number(model.column_flexure.peak_chord_relative_mm,5) : 'Unavailable'],
+       [columns,'Column peak height (m from base)',model.column_flexure ? number(model.column_flexure.peak_z_m,2) : 'Unavailable'],
+       [columns,'Roof translation','Zero by no-sway model assumption; not calculated drift'],
+       [beams,'Beam ends relative to chord (mm)',number(near.deflection_mm)+' / '+number(far.deflection_mm)]]];
     case 'rebar': return ['Illustrative reinforcement takeoff.',
       'Brown shows longitudinal beam and column bars. Green shows the slab mat. Beam links and column ties are included in the takeoff.',
       [...model.rebar.groups.map(g=>[g.mark, g.pieces_per_member+' × Ø'+g.diameter_mm,number(g.length_per_piece_m)+' m']),
@@ -208,10 +221,10 @@ function highlightsFor(mode, model) {
       ['Horizontal shear, each plane',number(a.column_shear)+' kN'],
       ['Base couple, each plane',number(a.column_moment_base)+' kN·m']];
     case 'movement': return [
-      ['Beam midspan relative to chord',number(mid.deflection_mm,5)+' mm'],
-      ['Near and far relative deflection',number(near.deflection_mm)+' / '+number(far.deflection_mm)+' mm'],
-      ['Illustration scale','1,400×'],
-      ['Slab and global joint movements','Not calculated']];
+      ['Beam midspan chord-relative',number(mid.deflection_mm,5)+' mm'],
+      ['Column peak chord-relative',model.column_flexure ? number(model.column_flexure.peak_chord_relative_mm,5)+' mm' : 'Unavailable'],
+      ['Column peak above base',model.column_flexure ? number(model.column_flexure.peak_z_m,2)+' m' : 'Unavailable'],
+      ['Global roof drift / slab deflection','Not calculated']];
     case 'torsion': return [
       ['Beam torsion','Not calculated'],['Column torsion','Not calculated'],
       ['Slab twisting','Not calculated'],['Analysis scope','Two planar gravity frames']];

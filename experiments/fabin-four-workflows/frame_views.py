@@ -3,6 +3,7 @@ import argparse
 import json
 import math
 from pathlib import Path
+from column_flexure import profile as column_profile
 
 
 def frame_views(results, takeoff):
@@ -62,6 +63,7 @@ def frame_views(results, takeoff):
         actions=dict(axial_roof=top, axial_base=base, column_shear=roof["column_shear"],
                      column_moment_roof=roof["column_top"], column_moment_base=roof["column_base"],
                      total_reaction=a["total_load_kN"], roof_load=roof_load, beam_EI=beam_ei),
+        column_flexure=column_profile(dict(dimensions=dict(height=h,column=p['column_width']),actions=dict(column_moment_base=roof['column_base'],column_moment_roof=roof['column_top'],column_shear=roof['column_shear']),column_elastic_modulus_kN_m2=p['elastic_modulus'])),
         rebar=dict(groups=[{k: bar[k] for k in ("mark", "diameter_mm", "pieces_per_member", "length_per_piece_m")} for bar in groups],
                    mass_kg=steel_mass),
     )

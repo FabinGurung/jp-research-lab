@@ -42,7 +42,7 @@ async function main() {
    await page.locator("[data-winged-book]").waitFor();
    assert.equal(await page.locator("[data-motion-toggle]").count(),1);
    assert.ok((await page.locator("h1").first().innerText()).includes("One workspace."));
-   assert.equal(await page.locator("#site-nav-links a").count(),4);
+   assert.equal(await page.locator("#site-nav-links a").count(),3);
    assert.equal(await page.locator('a[href="academic-writing/index.html"]').count()>=1,true);
    assert.equal(await page.locator('a[href="enterprise-documents/index.html"]').count()>=1,true);
    await assertNoOverflow(page,"desktop");
@@ -63,10 +63,11 @@ async function main() {
    await assertNoOverflow(page,"enterprise template audit");
    await page.goto(base,{waitUntil:"networkidle"});
   });
-  await check("fabin_researcher_curved_gallery_and_frame_link",async()=>{
+  await check("fabin_researcher_curved_gallery_without_level_one_frame",async()=>{
    await page.goto(base+"researchers/fabin-gurung/index.html",{waitUntil:"networkidle"});
    await page.locator('.lanes.arc-stage').first().waitFor();
-   assert.ok((await page.getByRole('link',{name:/Open interactive frame viewer/}).count())>=1);
+   assert.equal(await page.getByRole('link',{name:/Open interactive frame viewer/}).count(),0);
+    assert.ok((await page.locator('a[href="experiments/four-workflows/index.html"]').count())>=1);
    assert.ok((await page.locator('.record-details').count())>=1);
    assert.equal(await page.locator('a[href="../../assets/arc-gallery.css"]').count(),0);
    const first=page.locator('.arc-toolbar').first();
@@ -131,6 +132,39 @@ async function main() {
     await frameDesktop.close();
     await frameMobile.close();
    }
+  });
+  await check("fabin_threejs_member_details_and_column_curve",async()=>{
+    try {
+    const route=base+"researchers/fabin-gurung/experiments/four-workflows/";
+    await page.goto(route+"frame.html?view=movement",{waitUntil:"networkidle"});
+    assert.ok((await page.locator("#frame-values").innerText()).includes("−0.13039"));
+    assert.ok((await page.locator("#frame-drawing").textContent()).includes("Column"));
+    assert.ok(await page.locator('a[href="detail.html"]').count()>=1);
+    const model=await page.evaluate(()=>fetch('frame-results.json').then(r=>r.json()));
+    assert.ok(model.column_flexure);
+    assert.ok(Math.abs(model.column_flexure.peak_z_m-2.0)<1e-8);
+    assert.ok(Math.abs(model.column_flexure.peak_chord_relative_mm+0.1303853917)<1e-8);
+    await page.goto(route+"detail.html",{waitUntil:"networkidle"});
+    await page.locator("#three-stage canvas").waitFor({timeout:30000});
+    assert.ok((await page.locator("#render-state").innerText()).includes("Three.js active"));
+    assert.ok((await page.locator("#member-metrics").innerText()).includes("−0.45047"));
+    fs.mkdirSync(path.join(out,"fabin-member"),{recursive:true});
+    for(const name of ["beam","column","slab"]){
+      await page.locator('[data-member="'+name+'"]').click();
+      assert.equal(await page.locator('[data-member="'+name+'"]').getAttribute("aria-pressed"),"true");
+      for(const view of ["3d","elevation","plan","section"]){
+        await page.locator('[data-view="'+view+'"]').click();
+        assert.equal(await page.locator('[data-view="'+view+'"]').getAttribute("aria-pressed"),"true");
+        await page.locator("#three-stage").screenshot({path:path.join(out,"fabin-member",name+"-"+view+".png"),animations:"disabled"});
+      }
+    }
+    await page.locator('[data-member="column"]').click();
+    assert.ok((await page.locator("#member-metrics").innerText()).includes("−0.13039"));
+    await page.locator('[data-layout="concept"]').click();
+    assert.ok((await page.locator("#member-steel").innerText()).includes("geometric concept only"));
+    await assertNoOverflow(page,"Fabin Three.js desktop details");
+    await page.screenshot({path:path.join(out,"fabin-threejs-member-details.png"),fullPage:true,animations:"disabled"});
+    } finally { await page.goto(base,{waitUntil:"networkidle"}); }
   });
   await check("desktop_pause_and_resume",async()=>{
    const btn=page.locator("[data-motion-toggle]");
@@ -214,7 +248,7 @@ async function main() {
   mp.on("pageerror",e=>javascriptErrors.push(String(e)));
   await check("mobile_390px_navigation_and_screenshot",async()=>{
    await mp.goto(base,{waitUntil:"networkidle"});
-   assert.equal(await mp.locator("#site-nav-links a").count(),4);
+   assert.equal(await mp.locator("#site-nav-links a").count(),3);
    await assertNoOverflow(mp,"mobile homepage");
    await mp.screenshot({path:path.join(out,"mobile-home.png"),fullPage:true,animations:"disabled"});
   });
