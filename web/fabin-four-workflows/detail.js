@@ -140,7 +140,9 @@ function setCamera(){
  controls.enablePan=view==='3d';
  controls.enableZoom=true;
  activeCamera.up.set(0,1,0);
- const dist=Math.max(4,span*1.9);
+ // Frame the member more closely in perspective. Orthographic measurements
+ // and all displacement/steel geometry remain untouched.
+ const dist=view==='3d' ? Math.max(3.1,span*1.15) : Math.max(4,span*1.9);
  if(view==='3d') activeCamera.position.set(dist*.75,dist*.65,dist*.9);
  if(view==='elevation')activeCamera.position.set(0,0,dist);
  if(view==='plan'){activeCamera.up.set(0,0,-1);activeCamera.position.set(0,dist,0)}
