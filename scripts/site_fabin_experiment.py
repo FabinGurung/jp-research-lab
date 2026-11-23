@@ -19,7 +19,7 @@ def build_fabin_experiment(root:Path,out:Path):
     landing=destination/'index.html'
     html=landing.read_text(encoding='utf-8')
     needle='<div class="source" id="source-state"'
-    callout='<section class="scope" aria-label="Interactive structural frame"><h2>Seven interactive structural frame views</h2><p>Explore bending moments, shear forces, axial compression, torsion boundaries, relative beam deflection, illustrative reinforcement and support reactions. Numeric results are displayed with member labels and units.</p><p><a href="frame.html"><strong>Open the 3D frame viewer and numerical results →</strong></a></p></section>'
+    callout='<section class="scope" aria-label="Interactive structural frame"><h2>Seven interactive structural frame views</h2><p>Explore bending moments, shear forces, axial compression, torsion boundaries, relative beam deflection, illustrative reinforcement and support reactions. Numeric results include the derived in-plane column flexure with its no-sway assumptions.</p><p><a href="frame.html"><strong>Open frame forces and deflection curves →</strong></a> · <a href="detail.html"><strong>Open beam, column, slab 3D and section explorer →</strong></a></p></section>'
     if needle not in html:
         raise ValueError('Experiment landing insertion point missing')
     landing.write_text(html.replace(needle,callout+needle,1),encoding='utf-8')
