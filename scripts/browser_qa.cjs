@@ -134,6 +134,7 @@ async function main() {
    }
   });
   await check("fabin_threejs_member_details_and_column_curve",async()=>{
+    try {
     const route=base+"researchers/fabin-gurung/experiments/four-workflows/";
     await page.goto(route+"frame.html?view=movement",{waitUntil:"networkidle"});
     assert.ok((await page.locator("#frame-values").innerText()).includes("−0.13039"));
@@ -163,6 +164,7 @@ async function main() {
     assert.ok((await page.locator("#member-steel").innerText()).includes("not"));
     await assertNoOverflow(page,"Fabin Three.js desktop details");
     await page.screenshot({path:path.join(out,"fabin-threejs-member-details.png"),fullPage:true,animations:"disabled"});
+    } finally { await page.goto(base,{waitUntil:"networkidle"}); }
   });
   await check("desktop_pause_and_resume",async()=>{
    const btn=page.locator("[data-motion-toggle]");
