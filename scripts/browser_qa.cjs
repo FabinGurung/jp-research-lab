@@ -42,7 +42,7 @@ async function main() {
    await page.locator("[data-winged-book]").waitFor();
    assert.equal(await page.locator("[data-motion-toggle]").count(),1);
    assert.ok((await page.locator("h1").first().innerText()).includes("One workspace."));
-   assert.equal(await page.locator("#site-nav-links a").count(),3);
+   assert.equal(await page.locator("#site-nav-links a").count(),4);
    assert.equal(await page.locator('a[href="academic-writing/index.html"]').count()>=1,true);
    assert.equal(await page.locator('a[href="enterprise-documents/index.html"]').count()>=1,true);
    await assertNoOverflow(page,"desktop");
@@ -62,6 +62,21 @@ async function main() {
    assert.equal(await page.locator("tbody").last().locator("tr").count(),5);
    await assertNoOverflow(page,"enterprise template audit");
    await page.goto(base,{waitUntil:"networkidle"});
+  });
+  await check("fabin_researcher_curved_gallery_and_frame_link",async()=>{
+   await page.goto(base+"researchers/fabin-gurung/index.html",{waitUntil:"networkidle"});
+   await page.locator('.lanes.arc-stage').waitFor();
+   assert.ok((await page.getByRole('link',{name:/Open interactive frame viewer/}).count())>=1);
+   assert.ok((await page.locator('.record-details').count())>=1);
+   assert.equal(await page.locator('a[href="../../assets/arc-gallery.css"]').count(),0);
+   const first=page.locator('.arc-toolbar').first();
+   const initial=await first.locator('.arc-count').innerText();
+   await first.locator('button[aria-label="Next card"]').click();
+   assert.notEqual(await first.locator('.arc-count').innerText(),initial);
+   await first.getByRole('button',{name:'View all cards'}).click();
+   assert.ok(await page.locator('.arc-stage.arc-expanded').count()>=1);
+   await assertNoOverflow(page,'Fabin researcher carousel');
+   await page.screenshot({path:path.join(out,'fabin-researcher-curved-gallery.png'),fullPage:true,animations:'disabled'});
   });
   await check("fabin_four_workflows_desktop",async()=>{
    await page.goto(base+"researchers/fabin-gurung/experiments/four-workflows/",{waitUntil:"networkidle"});
@@ -98,6 +113,7 @@ async function main() {
      const labels=await fp.locator('#frame-drawing text').allTextContents();
      assert.ok(["C1","C2","C3","C4","B1","B2","B3","B4","S1"].every(id=>labels.includes(id)));
      assert.equal(await fp.locator("#frame-values th").count(),3);
+     assert.equal(await fp.locator("#frame-highlights .frame-stat").count(),4);
      assert.ok((await fp.locator("#frame-values").innerText()).includes(value));
      await assertNoOverflow(fp,"Desktop frame "+view);
      await fp.evaluate(()=>document.fonts.ready);
