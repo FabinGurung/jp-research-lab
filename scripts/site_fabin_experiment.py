@@ -6,6 +6,12 @@ def build_fabin_experiment(root:Path,out:Path):
     destination=out/'researchers/fabin-gurung/experiments/four-workflows'
     shutil.copytree(root/'web/fabin-four-workflows',destination,dirs_exist_ok=True)
     subprocess.run([sys.executable,str(root/'experiments/fabin-four-workflows/build_public.py'),str(destination)],check=True)
+    import json
+    frame_path=destination/'frame-results.json'
+    frame=json.loads(frame_path.read_text(encoding='utf-8'))
+    snapshot=json.loads((root/'experiments/fabin-four-workflows/source-snapshot.json').read_text(encoding='utf-8'))
+    frame['column_elastic_modulus_kN_m2']=snapshot['parameters']['elastic_modulus']
+    frame_path.write_text(json.dumps(frame,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8')
     # Preserve the pinned source snapshot; publish the separately checked
     # column in-plane bending derivation only in the generated Pages JSON.
     subprocess.run([sys.executable,str(root/'experiments/fabin-four-workflows/column_flexure.py'),
