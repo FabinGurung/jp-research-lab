@@ -161,7 +161,7 @@ async function main() {
     await page.locator('[data-member="column"]').click();
     assert.ok((await page.locator("#member-metrics").innerText()).includes("−0.13039"));
     await page.locator('[data-layout="concept"]').click();
-    assert.ok((await page.locator("#member-steel").innerText()).includes("not"));
+    assert.ok((await page.locator("#member-steel").innerText()).includes("geometric concept only"));
     await assertNoOverflow(page,"Fabin Three.js desktop details");
     await page.screenshot({path:path.join(out,"fabin-threejs-member-details.png"),fullPage:true,animations:"disabled"});
     } finally { await page.goto(base,{waitUntil:"networkidle"}); }
