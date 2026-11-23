@@ -107,10 +107,10 @@ function drawSlab(isSection){
  const L=model.dimensions.span_x, W=model.dimensions.span_y, t=model.dimensions.slab;
  if(isSection){
    block(L,t,.10);
-   for(const x of positions(21,-L/2+.025,L/2-.025)){
-     sphere([x,-.018,.057],.006);
-     sphere([x,+.018,.057],.006,linkSteel);
-   }
+   // Section parallel to X: selected X bar is a longitudinal line;
+   // orthogonal Y bars intersect the cut as individual circular sections.
+   cylinder([-L/2+.02,.018,.055],[L/2-.02,.018,.055],.010,steel);
+   for(const x of positions(21,-L/2+.025,L/2-.025))sphere([x,-.018,.057],.006,linkSteel);
  }else{
    block(L,t,W);
    const nX=model.rebar.groups.find(x=>x.mark==='Slab X').pieces_per_member;
@@ -129,7 +129,7 @@ function drawShape(){
  setCamera();
 }
 function setCamera(){
- const span=member==='column'?3.0:member==='beam'?4.0:5.2;
+ const span=view==='section' && member!=='slab' ? .68 : member==='column' ? 3.4 : member==='beam' ? 4.2 : 5.2;
  const aspect=Math.max(.7,stage.clientWidth/Math.max(1,stage.clientHeight));
  ortho.left=-span*aspect/2;ortho.right=span*aspect/2;
  ortho.top=span/2;ortho.bottom=-span/2;ortho.updateProjectionMatrix();
