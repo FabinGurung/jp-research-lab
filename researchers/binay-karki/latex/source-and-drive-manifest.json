@@ -3,19 +3,21 @@
   "record_type": "PUBLIC_SAFE_RESEARCHER_CURRENT_SOURCE_AND_DRIVE_MANIFEST",
   "researcher_id": "RSH-006",
   "slug": "binay-karki",
-  "date": "2026-11-18",
+  "date": "2026-11-23",
   "live_release": {
-    "thesis_version": "R10.3",
-    "status": "TECHNICALLY_VERIFIED_WORKING_CURRENT_NOT_SCIENTIFICALLY_APPROVED",
-    "pdf_pages": 59,
-    "source_files_in_unzipped_folder": 58,
+    "thesis_version": "R10.4",
+    "status": "TECHNICALLY_VERIFIED_WORKING_CURRENT_SCIENTIFIC_REVIEW_OPEN",
+    "pdf_pages": 73,
+    "source_files_in_unzipped_folder": 73,
     "build_command": [
       "xelatex",
       "biber",
       "xelatex",
       "xelatex"
     ],
-    "verification": "CURRENT_PDF_AND_ZIP_SAME_ID_DRIVE_READBACK_SHA256_MATCHED"
+    "verification": "XELATEX_BIBER_XELATEX_XELATEX_PASS__EMBEDDED_TIMES_NEW_ROMAN__7_A4_LANDSCAPE_PLATES__SAME_ID_DRIVE_PDF_ZIP_SHA256_READBACK_MATCH",
+    "figure_pages_landscape": 7,
+    "technical_note": "Evidence-grounded revised Abstract, Methodology, Results/Discussion, Conclusions, Recommendations, and Appendix source interpretations; unchanged historical field measurements. No scientific approvals presumed."
   },
   "shared_style": {
     "path": "controls/latex/template/pumlsc-shared.sty",
@@ -27,23 +29,23 @@
     {
       "ordinal": 1,
       "role": "thesis_pdf",
-      "version": "R10.3",
+      "version": "R10.4",
       "drive_id": "15xjWCjTAv9L4f-huU9Kkck0kJjsCW-hG",
-      "sha256": "e4b585fc3dfcb5b23fc0162e420b079a11a40d36cce325bc348f733294a84950"
+      "sha256": "2e41652f9184247c80630b8321a628b34ebdfb26ce808338e9b5399e76832b46"
     },
     {
       "ordinal": 2,
       "role": "latex_source_complete_zip",
-      "version": "R10.3",
+      "version": "R10.4",
       "drive_id": "1n2dhxKAHZoUvgck1aikPFs9_EG6ScArI",
-      "sha256": "cb8f2cf69be56722d9fe6aaa28f7a3b41f748efcdabeb2a04b5c5b9854a55f06"
+      "sha256": "9859d9f0ba74665e8fdc3d7cf89df14ab74d10f4d831ae4bd3268b428c6b9311"
     },
     {
       "ordinal": 3,
       "role": "latex_source_unzipped_editable_folder",
-      "version": "R10.3",
+      "version": "R10.4",
       "drive_id": "1CIYWLLN-wlQ3gtiMveVytDXLrFNpaVzi",
-      "child_file_count": 58
+      "child_file_count": 73
     },
     {
       "ordinal": 4,
@@ -107,17 +109,22 @@
     }
   ],
   "version_history": {
-    "current": "R10.3",
-    "previous_working": "R10.1",
+    "current": "R10.4",
+    "previous_working": "R10.3",
     "pre": {
-      "pdf": "13bAWgHKpY3DiLcw6RwxN93tN27vJB_UB",
-      "source": "1etQ2lzsVvKMgJASmG2UaWDgk7GzyD3el"
+      "pdf": "1V0lySjyL1JBmPWz4--BYWShHnnwUHdAo",
+      "source": "1Q-MeiIdRsNnJe8eSQe3Lqgsj6sgw0JL-"
     },
     "post": {
-      "pdf": "1ZSATHIXfuGFSXFoQbrm9Gc6f24B6lFz0",
-      "source": "1_XBWCojQGd6fM8tCLJ5bWKL9eAAeSTpx"
+      "pdf": "1E76LOOx8qUs49ma-F3qfp1N23J5zQhpm",
+      "source": "1GvVdP7x78QJa_Tg4gSpdn9LilvLnV_oI"
     },
-    "historical_preview": "R10.2_FORMATTING_PREVIEW_ONLY"
+    "historical_preview": "R10.2_FORMATTING_PREVIEW_ONLY",
+    "historical_R10_3": {
+      "pdf_sha256": "e4b585fc3dfcb5b23fc0162e420b079a11a40d36cce325bc348f733294a84950",
+      "zip_sha256": "cb8f2cf69be56722d9fe6aaa28f7a3b41f748efcdabeb2a04b5c5b9854a55f06",
+      "previous_version_history": "R10.1 and R10.2 older snapshots preserved unchanged"
+    }
   },
   "science": {
     "field_period_locked": "2026-05-31 through 2026-07-31",
@@ -129,17 +136,48 @@
     "gee_tier_a_rows": 6,
     "gee_v10_decisions_pending": 22,
     "independent_full_period_validation": "OPEN",
-    "presentation_status": "PPT_CP10_FROZEN"
+    "presentation_status": "PPT_CP10_FROZEN",
+    "satellite_map003_period": "2026-05-31 through 2026-08-12",
+    "satellite_scenes": 11,
+    "ward16_valid_strict_LST_percent": 43.713,
+    "reference_comparison_type": "DESCRIPTIVE_SATELLITE_LST_DIFFERENCES_ONLY",
+    "researcher_approved_r104": false
   },
   "sequences": {
     "git_latex": "BASELINE_VERIFICATION_REQUIRED_NO_RESERVATION",
     "a9_scientific_local_main": "17/17_PREVIOUS_VERIFIED_SYNC",
-    "inventory_ordinal_role": "DISPLAY_ORDER_ONLY_NOT_A_SEQUENCE"
+    "inventory_ordinal_role": "DISPLAY_ORDER_ONLY_NOT_A_SEQUENCE",
+    "a7_global": "UNMODIFIED_READ_ONLY"
   },
   "privacy_note": "No private researcher email, registration data, licensed fonts, original field scans or nonpublic records in this public source manifest. Full editable source remains in governed Drive.",
   "governance": {
     "a7_registry": "READ_ONLY_CATALOGUE",
     "git_main": "PROTECTED_PR_ONLY",
     "source_of_truth": "OWNER_GOOGLE_DRIVE_VERIFIED_CURRENT"
+  },
+  "gis_evidence_R10_4": {
+    "figure_folder_drive_id": "1u0MGYA4iD5wPGKAHiH8GByceGbosN8vH",
+    "source_register_drive_id": "1i3HqxEfbtM_eD-6PSYYa05_KJpN2wAmv",
+    "reproducibility_folder_drive_id": "17uaNQ3dvB6wsmnLEEo4iaHP8fLe1PfIK",
+    "reference_raster_drive_id": "1OpMn-3fsSQtYQQXmWbN4sDLnkRQ_b4Js",
+    "field_ward_geojson_drive_id": "1xJtgZnG0mcdGEFSWfpqAa7y9YYec_36E",
+    "field_raw_sheet_drive_id": "1Sd_cXJWlDIngAvKcw_PJGbdGufr17ofrlOo0b7Ji02k",
+    "field_R8_google_sheet_id": "1rX3vylOzuW6VfGEk8OGeZ5ofPomIXWmZ62JGDeO63gU",
+    "field_R8_excel_id": "1-jHw-U7zObrfYFVuqWNgQyyWD9zGc2GT",
+    "historical_ward_geometries_git_blob": "4a8ca0c954aa8f492d3fddf00b17acee228eed3c",
+    "new_map_count": 7,
+    "map003_ward_landsat_mean_c": {
+      "6": 32.9865,
+      "8": 41.0926,
+      "16": 31.7289
+    },
+    "map003_ward_strict_quality_coverage_percent": {
+      "6": 100,
+      "8": 100,
+      "16": 43.713
+    },
+    "field_compared_period": "2026-05-31 to 2026-07-31",
+    "satellite_compared_period": "2026-05-31 to 2026-08-12",
+    "source_status": "HISTORICAL_BOUNDARY_NOT_OFFICIAL_2026__FIELD_SATELLITE_NOT_TIME_MATCHED__SCIENCE_REVIEW_OPEN"
   }
 }
