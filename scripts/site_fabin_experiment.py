@@ -14,6 +14,18 @@ def build_fabin_experiment(root:Path,out:Path):
     (out/'assets').mkdir(exist_ok=True)
     for filename in ('arc-gallery.css','arc-gallery.js'):
         shutil.copy2(root/'web'/filename, out/'assets'/filename)
+    # Bundle EXACT pinned official Three.js modules into Pages. No runtime CDN
+    # or external-host dependency for structural geometry.
+    vendor=destination/'vendor'
+    vendor.mkdir(exist_ok=True)
+    upstream=root/'node_modules'/'three'
+    for src,dst in (
+        (upstream/'build/three.module.js',vendor/'three.module.js'),
+        (upstream/'examples/jsm/controls/OrbitControls.js',vendor/'OrbitControls.js'),
+    ):
+        if not src.exists():
+            raise FileNotFoundError('Run npm install --no-save --no-package-lock --ignore-scripts three@0.164.1 before building Pages: '+str(src))
+        shutil.copy2(src,dst)
     # The published experiment previously hid its frame link in the Structure tab.
     # This visible link is additive; the original route and all five tabs remain.
     landing=destination/'index.html'
