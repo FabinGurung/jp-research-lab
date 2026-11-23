@@ -33,7 +33,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "MSc Structural AEC thesis v0.14 CURRENT WORKING: 61-page November 2026 build. The diagrams use solid colour or black and white with larger labels. The checked two-span SQL values feed the tables and diagrams, the separate one-bay results remain available, and Chapter 5 recommends future research. The permanent PDF and editable source passed Drive readback. Academic approval remains open.",
+      "public_note": "MSc Structural AEC thesis v0.15 CURRENT WORKING. The 67-page November 2026 revision adds checked forces and reactions, reinforcement quantities based on stated assumptions, and formwork contact areas for both study cases. The permanent PDF and editable source passed Drive readback. Academic approval remains open.",
       "governance": {
         "read_first": "researchers/fabin-gurung/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
@@ -90,7 +90,7 @@
       "slug": "nabin-bista",
       "display_name": "Nabin Bista",
       "qa_status": "TITLE_VERIFIED_OTHER_POINTERS_HOLD",
-      "topic_title": "Seismic Fragility and Soil\u2013Structure Interaction Based Performance Assessment of Mid-size General Hospital Buildings in Nepal",
+      "topic_title": "Seismic Fragility and Soil–Structure Interaction Based Performance Assessment of Mid-size General Hospital Buildings in Nepal",
       "topic_short_name": null,
       "drive": {
         "discussion_google_doc_id": "1eLsGVmUxMyHx0QKeQv25SiR325c8jy3grfdXmkkz9xk",
@@ -132,7 +132,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "Latest separately compiled Nabin thesis LATEX_SEQ055 (81 A4 pages). Abstract heading restored; full researcher-style writing revised in Chapters1\u20135. 14 new analytical figures directly chart modal, response-spectrum displacement/drift/base/storey shear, gravity-combination settlement, reaction and beam/column envelopes, alongside 32 earlier source charts. Scientific outlier/source-label provenance remains in the Google Docs audit rather than operational prose inside the thesis. No physical as-built safety certification; old stable CURRENT PDF and prior releases remain preserved.",
+      "public_note": "Latest separately compiled Nabin thesis LATEX_SEQ055 (81 A4 pages). Abstract heading restored; full researcher-style writing revised in Chapters1–5. 14 new analytical figures directly chart modal, response-spectrum displacement/drift/base/storey shear, gravity-combination settlement, reaction and beam/column envelopes, alongside 32 earlier source charts. Scientific outlier/source-label provenance remains in the Google Docs audit rather than operational prose inside the thesis. No physical as-built safety certification; old stable CURRENT PDF and prior releases remain preserved.",
       "git_source_manifest_path": "researchers/nabin-bista/latex/source-and-drive-manifest.json",
       "git_source_status": "LATEX_SEQ056_TABLE4_6_BLOCK1_BLOCK4_SOURCE_DOCX_CORRECTION_81P_OLD_CURRENT_PRESERVED",
       "next_handoff_prompt_path": "researchers/nabin-bista/latex/prompts/SEQ050_ALL_OCTOBER_SUBMISSIONS_SOURCE_TO_PDF_READ_FIRST.md",
@@ -235,7 +235,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "CURRENT 62-page November 2026 thesis and matching fully open modular LaTeX, version-history event 000004 on 18 Nov 2026. Same original PDF and main.tex Drive IDs retained, actual XeLaTeX+Biber build with embedded Times New Roman and full PDF provider SHA readback. New source-derived EFA classification figure, 2013\u20132019 calculated (not gauged) monthly downstream-flow figure, and separately qualified archived HEC-RAS exploratory Appendix 5. Original hydrological/EMC findings preserved. The archived hydraulic calculation sensitivity does not justify a calibrated minimum-flow release: original inflow scenario and field information require external evidence. Original live 35-item Google Doc: 31 done, 4 partial (C03, C04, C05, C06), 0 hold, with exact researcher reminders. No new ZIP created; old ZIP remained archived. Source uses global shared PU LaTeX style v2.6.4 unchanged. Working CURRENT is distinct from final university approval.",
+      "public_note": "CURRENT 62-page November 2026 thesis and matching fully open modular LaTeX, version-history event 000004 on 18 Nov 2026. Same original PDF and main.tex Drive IDs retained, actual XeLaTeX+Biber build with embedded Times New Roman and full PDF provider SHA readback. New source-derived EFA classification figure, 2013–2019 calculated (not gauged) monthly downstream-flow figure, and separately qualified archived HEC-RAS exploratory Appendix 5. Original hydrological/EMC findings preserved. The archived hydraulic calculation sensitivity does not justify a calibrated minimum-flow release: original inflow scenario and field information require external evidence. Original live 35-item Google Doc: 31 done, 4 partial (C03, C04, C05, C06), 0 hold, with exact researcher reminders. No new ZIP created; old ZIP remained archived. Source uses global shared PU LaTeX style v2.6.4 unchanged. Working CURRENT is distinct from final university approval.",
       "governance": {
         "read_first": "researchers/shisheer-kc/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",
