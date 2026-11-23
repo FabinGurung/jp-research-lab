@@ -4,6 +4,7 @@ from column_flexure import profile
 
 MODEL = {
  "dimensions":{"height":3.0,"column":0.30},
+ "column_elastic_modulus_kN_m2":25_000_000,
  "actions":{"column_moment_base":3.3003802281308583,
             "column_moment_roof":6.600760456261717,
             "column_shear":3.3003802281308583}
@@ -29,7 +30,7 @@ class ColumnBendingTests(unittest.TestCase):
    exact=next(x["relative_flexure_mm"] for x in p["samples"] if abs(x["z_m"]-z)<1e-10)
    self.assertAlmostEqual(displacement, exact, places=7)
  def test_rejects_inconsistent_shear(self):
-  altered={"dimensions":MODEL["dimensions"],"actions":dict(MODEL["actions"],column_shear=0)}
+  altered={**MODEL,"actions":dict(MODEL["actions"],column_shear=0)}
   with self.assertRaises(ValueError):profile(altered)
 
 if __name__=="__main__":unittest.main()
