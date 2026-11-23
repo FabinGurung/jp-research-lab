@@ -33,7 +33,7 @@ jobs:
       - name: Read the two linked synthetic Google sources
         run: python experiments/fabin-four-workflows/sync_google.py
       - name: Verify the synthetic four-workflow calculation
-        run: python -m unittest discover -s experiments/fabin-four-workflows -p test_engine.py -v
+        run: python -m unittest discover -s experiments/fabin-four-workflows -p 'test_*.py' -v
       - run: python scripts/validate_repo.py
       - run: python scripts/test_site_links.py
       - run: python scripts/build_site.py --out dist
