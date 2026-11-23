@@ -10,7 +10,7 @@ const metrics=document.getElementById('member-metrics');
 const source=document.getElementById('member-steel');
 const description=document.getElementById('member-description');
 const memberNames={beam:'Beam B1–B4',column:'Column C1–C4',slab:'Slab S1'};
-const views={3d:'3D',elevation:'Elevation',plan:'Top / plan',section:'Section'};
+const views={'3d':'3D',elevation:'Elevation',plan:'Top / plan',section:'Section'};
 let member='beam',view='3d',layout='recorded',model,renderer,scene,controls,perspective,ortho,activeCamera;
 const origin=new THREE.Vector3(),axis=new THREE.Vector3(0,1,0);
 const steel=new THREE.MeshStandardMaterial({color:0xc77926,roughness:.35,metalness:.25});
