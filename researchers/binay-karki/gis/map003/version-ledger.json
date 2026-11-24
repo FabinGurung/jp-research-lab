@@ -82,7 +82,7 @@
       "permanent_id_readback_sha256": "553bc091ab5c28bcace7b8d3f1a22dc47d67c11ce37253698b0d140bb14b34b4",
       "working_git_source_blob_sha": "50ba14f9caef56d5e8ba070fd067c5c9bb43d18d",
       "change": "V04 same-period diagnostic export with original strict QA, original 11 frozen product IDs, original 30 m affine grid, separate basic and moderate sensitivity layers; preserve Ward 6/8 original graded maps and original strict Ward 16 valid pixels. Fix Drive metadata pageSize. No interpolation or new scientific approval.",
-      "status": "SOURCE_VERIFIED_PENDING_PROTECTED_MAIN_MERGE__V04_EXPORT_UNEXECUTED",
+      "status": "CLOSED_SOURCE_V04__MERGED__EXECUTED_RASTER_READBACK_VERIFIED",
       "qa_checks": [
         "Executed V03 PRE byte readback matched",
         "Same-ID V04 and POST byte readback matched",
@@ -91,19 +91,26 @@
         "Original strict raster grid read with rasterio; export crsTransform set to match",
         "Original 11 product IDs extracted from executed V03 and pinned; scene drift fails closed",
         "New Git blob matches local source",
-        "V04 authenticated runtime and raster readback NOT executed"
+        "PR #288 repository and browser QA passed; merged",
+        "All eight Colab code cells executed; metadata upload succeeded",
+        "V04 first four bands pixel-identical to V01, same CRS/affine/dimensions",
+        "Ward 16 supplemental 5852 moderate-only and 9684 range-screened basic-only pixels; 6084 missing remain"
       ],
-      "git_source_merge_pr": null,
-      "git_source_merge_sha": null
+      "git_source_merge_pr": 288,
+      "git_source_merge_sha": "e6d77a0b035bb3e498f73f4df9598028d39ba0fb",
+      "executed_notebook_drive_id": "1JVK8_CDtlIMHJpBhvX7zrRvJpVPZBbhy",
+      "executed_notebook_sha256": "32b93a99bb2f52e5514c98a2931bc4dbeaa1fd9c45b093c5c5eb9cb18378356d",
+      "export_raster_drive_id": "1ReeP_Y9eVbr5mo9P9qcfV851t4ymN4LD",
+      "export_raster_sha256": "72737ea5592e69e5e1c56d70fdac4fd93bcd08f67a2aec72577ad8613c55d193"
     }
   ],
-  "scientific_limitations": "V03 original strict GeoTIFF completed and retained. V04 diagnostic export not yet executed. Ward 16 historical KLL polygon strict coverage 16790/38410 (43.71%), basic count coverage 33121/38410 (86.23%); actual basic and moderate temperatures require new export. Do not replace strict pixels or imply lower-QA pixels pass strict criteria.",
+  "scientific_limitations": "V04 execution and raster verified. Ward 16 strict coverage 43.7126%; sensitivity composite 84.1604% (32326/38410), strict pixels retained; lower-quality supplementary observations are not strict-quality evidence. Primary inter-ward contrasts stay strict. Researcher approval remains open.",
   "updating_files": [
     "researchers/binay-karki/gis/map003/BINAY_UHI_GEE_COLAB_MAP003_CITYWIDE_WET_2026_WORKING.ipynb",
     "researchers/binay-karki/gis/map003/README.md",
     "researchers/binay-karki/gis/map003/version-ledger.json"
   ],
   "method_citation": "https://developers.google.com/earth-engine/guides/auth",
-  "last_closed_ordinal": "000003",
-  "last_closed_source_version": "V03"
+  "last_closed_ordinal": "000004",
+  "last_closed_source_version": "V04"
 }
