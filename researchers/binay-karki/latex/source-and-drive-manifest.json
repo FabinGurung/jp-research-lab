@@ -3,21 +3,20 @@
   "record_type": "PUBLIC_SAFE_RESEARCHER_CURRENT_SOURCE_AND_DRIVE_MANIFEST",
   "researcher_id": "RSH-006",
   "slug": "binay-karki",
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "live_release": {
-    "thesis_version": "R10.4",
+    "thesis_version": "R10.5",
     "status": "TECHNICALLY_VERIFIED_WORKING_CURRENT_SCIENTIFIC_REVIEW_OPEN",
-    "pdf_pages": 73,
-    "source_files_in_unzipped_folder": 73,
+    "pdf_pages": 75,
     "build_command": [
       "xelatex",
       "biber",
       "xelatex",
       "xelatex"
     ],
-    "verification": "XELATEX_BIBER_XELATEX_XELATEX_PASS__EMBEDDED_TIMES_NEW_ROMAN__7_A4_LANDSCAPE_PLATES__SAME_ID_DRIVE_PDF_ZIP_SHA256_READBACK_MATCH",
+    "verification": "XELATEX_BIBER_XELATEX_XELATEX_PASS__7_LANDSCAPE_SPATIAL_PLATES__NOVEMBER_COVER__PDF_ZIP_SHA256_READBACK_MATCH",
     "figure_pages_landscape": 7,
-    "technical_note": "Evidence-grounded revised Abstract, Methodology, Results/Discussion, Conclusions, Recommendations, and Appendix source interpretations; unchanged historical field measurements. No scientific approvals presumed."
+    "technical_note": "V04 verified satellite coverage sensitivity; title-free spatial figures; SRTM slope figure omitted; November cover; legacy plot title margins removed without changing plotted data."
   },
   "shared_style": {
     "path": "controls/latex/template/pumlsc-shared.sty",
@@ -29,23 +28,22 @@
     {
       "ordinal": 1,
       "role": "thesis_pdf",
-      "version": "R10.4",
+      "version": "R10.5",
       "drive_id": "15xjWCjTAv9L4f-huU9Kkck0kJjsCW-hG",
-      "sha256": "2e41652f9184247c80630b8321a628b34ebdfb26ce808338e9b5399e76832b46"
+      "sha256": "8e4110db0de3b74cdfa5ce2bad76d1bacbffc10d0ae9d823ac0a6307a1223b5e"
     },
     {
       "ordinal": 2,
       "role": "latex_source_complete_zip",
-      "version": "R10.4",
+      "version": "R10.5",
       "drive_id": "1n2dhxKAHZoUvgck1aikPFs9_EG6ScArI",
-      "sha256": "9859d9f0ba74665e8fdc3d7cf89df14ab74d10f4d831ae4bd3268b428c6b9311"
+      "sha256": "959c3acdf1e732aca82316491cc34f7d0bafacad667678b35dc27e079e23ba98"
     },
     {
       "ordinal": 3,
       "role": "latex_source_unzipped_editable_folder",
-      "version": "R10.4",
-      "drive_id": "1CIYWLLN-wlQ3gtiMveVytDXLrFNpaVzi",
-      "child_file_count": 73
+      "version": "R10.5",
+      "drive_id": "1CIYWLLN-wlQ3gtiMveVytDXLrFNpaVzi"
     },
     {
       "ordinal": 4,
@@ -80,7 +78,7 @@
     {
       "ordinal": 9,
       "role": "colab_notebook",
-      "version": "V018",
+      "version": "MAP003_V04_EXECUTED",
       "drive_id": "1Jf2JZwiIodAHMXn7Xr2XYvOifqnJ8FXv"
     },
     {
@@ -109,21 +107,39 @@
     }
   ],
   "version_history": {
-    "current": "R10.4",
-    "previous_working": "R10.3",
+    "current": "R10.5",
+    "previous_working": "R10.4",
     "pre": {
-      "pdf": "1V0lySjyL1JBmPWz4--BYWShHnnwUHdAo",
-      "source": "1Q-MeiIdRsNnJe8eSQe3Lqgsj6sgw0JL-"
+      "pdf": "15_w3c-Vbz7lF8BtNv1fYHdugkegYcsPe",
+      "source": "1E7Q7-q_gaa155LrYYz79AGj8A0EVJ2jl"
     },
     "post": {
-      "pdf": "1E76LOOx8qUs49ma-F3qfp1N23J5zQhpm",
-      "source": "1GvVdP7x78QJa_Tg4gSpdn9LilvLnV_oI"
+      "pdf": "1r2rPhZUozsv3a9azUl9cw8HgCF38FPjx",
+      "source": "1IDh722vN0fgJLmIa3xgr06Mvz3jIBfvR"
     },
     "historical_preview": "R10.2_FORMATTING_PREVIEW_ONLY",
     "historical_R10_3": {
       "pdf_sha256": "e4b585fc3dfcb5b23fc0162e420b079a11a40d36cce325bc348f733294a84950",
       "zip_sha256": "cb8f2cf69be56722d9fe6aaa28f7a3b41f748efcdabeb2a04b5c5b9854a55f06",
       "previous_version_history": "R10.1 and R10.2 older snapshots preserved unchanged"
+    },
+    "historical_R10_4": {
+      "current": "R10.4",
+      "previous_working": "R10.3",
+      "pre": {
+        "pdf": "1V0lySjyL1JBmPWz4--BYWShHnnwUHdAo",
+        "source": "1Q-MeiIdRsNnJe8eSQe3Lqgsj6sgw0JL-"
+      },
+      "post": {
+        "pdf": "1E76LOOx8qUs49ma-F3qfp1N23J5zQhpm",
+        "source": "1GvVdP7x78QJa_Tg4gSpdn9LilvLnV_oI"
+      },
+      "historical_preview": "R10.2_FORMATTING_PREVIEW_ONLY",
+      "historical_R10_3": {
+        "pdf_sha256": "e4b585fc3dfcb5b23fc0162e420b079a11a40d36cce325bc348f733294a84950",
+        "zip_sha256": "cb8f2cf69be56722d9fe6aaa28f7a3b41f748efcdabeb2a04b5c5b9854a55f06",
+        "previous_version_history": "R10.1 and R10.2 older snapshots preserved unchanged"
+      }
     }
   },
   "science": {
@@ -141,7 +157,10 @@
     "satellite_scenes": 11,
     "ward16_valid_strict_LST_percent": 43.713,
     "reference_comparison_type": "DESCRIPTIVE_SATELLITE_LST_DIFFERENCES_ONLY",
-    "researcher_approved_r104": false
+    "researcher_approved_r104": false,
+    "ward16_supplemented_LST_percent": 84.1604,
+    "ward16_supplemented_mean_c": 29.2447,
+    "researcher_approved_r105": false
   },
   "sequences": {
     "git_latex": "BASELINE_VERIFICATION_REQUIRED_NO_RESERVATION",
@@ -179,5 +198,23 @@
     "field_compared_period": "2026-05-31 to 2026-07-31",
     "satellite_compared_period": "2026-05-31 to 2026-08-12",
     "source_status": "HISTORICAL_BOUNDARY_NOT_OFFICIAL_2026__FIELD_SATELLITE_NOT_TIME_MATCHED__SCIENCE_REVIEW_OPEN"
+  },
+  "gis_evidence_R10_5": {
+    "spatial_figures_drive_folder_id": "1rQxRUli6QvZI7Q04f03Fh9dHXhAWOTYZ",
+    "field_figures_drive_folder_id": "12KEDKQX2R5Ert5icP-Jnlr-N5aJVTm8c",
+    "source_register_drive_id": "1F_6uJ-RJryloshF1BsFfk79umZnz1yZ7",
+    "plot_script_drive_id": "1hPxwCNlcMTdK0nSoJrKQ-SOSsbmvjHYG",
+    "legacy_title_preparation_script_drive_id": "1vHC2QETrh1U7Eoy33wK4RJvEsW1UsLxH",
+    "coverage_statistics_drive_id": "1YkTbhWy0aLz6bxNyO14cq14iod1D6fI_",
+    "v04_raster_drive_id": "1ReeP_Y9eVbr5mo9P9qcfV851t4ymN4LD",
+    "ward16": {
+      "total": 38410,
+      "strict": 16790,
+      "additional_moderate": 5852,
+      "additional_basic": 9684,
+      "missing": 6084
+    },
+    "primary_comparison": "STRICT_ONLY_UNCHANGED",
+    "slope_map": "REMOVED_FROM_MANUSCRIPT_ARCHIVED"
   }
 }
