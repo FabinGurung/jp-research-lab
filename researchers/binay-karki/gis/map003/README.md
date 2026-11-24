@@ -1,3 +1,9 @@
+## MAP003 V04 — coverage recovery (24 November 2026)
+
+The same-ID working Colab is V04 (17 cells, eight Python cells), extraction-only. It freezes the 11 V03 scene product IDs and uses the actual original V01 GeoTIFF grid (EPSG:32644; affine [30,0,774510,0,-30,3139020]). The new prefix is `BINAY_MAP003_CITYWIDE_WET_LST_2026_V04_COVERAGE_QA`. Original strict data remain preserved; new basic and moderate sensitivity temperatures, per-pixel counts, uncertainty/cloud-distance medians and quality classes are separate. Moderate = ST_QA <=7.5 K and ST_CDIST >=0.5 km with original base and range masks; exploratory, not admitted strict data. Use original strict pixels for all three wards and consider supplementary temperatures only for missing Ward 16 cells after raster verification. No manual mean or interpolation fills satellite gaps. Ward 16 has 43.71% strict coverage and 86.23% basic observation coverage in the original export; new sensitivity coverage is not yet measured.
+
+[Executed V03 PRE](https://drive.google.com/file/d/15uAQVW6gtREzRh9lh7H1jvBjMkmL6bwI/view) and [V04 POST](https://drive.google.com/file/d/1d5UYsMcbI-ZzG7BvhXwkyMQvHT-lvNEO/view) are byte-verified. [Version ledger](version-ledger.json). V04 authenticated execution and raster verification remain pending.
+
 # Binay Karki — MAP003 full-municipality wet-season Landsat LST Colab
 
 **Current Google Colab permanent Drive ID:** [1Jf2JZwiIodAHMXn7Xr2XYvOifqnJ8FXv](https://colab.research.google.com/drive/1Jf2JZwiIodAHMXn7Xr2XYvOifqnJ8FXv).

@@ -69,9 +69,35 @@
       ],
       "git_source_merge_pr": 272,
       "git_source_merge_sha": "6358e3442f2b3632173ddc16b27847b6aa703063"
+    },
+    {
+      "ordinal": "000004",
+      "date": "2026-11-24",
+      "pre_drive_id": "15uAQVW6gtREzRh9lh7H1jvBjMkmL6bwI",
+      "pre_sha256": "e92d2c3a99c99000884df00063a773f32c192b2eee2683f6a15bd3a24ba28c65",
+      "pre_size_bytes": 41296,
+      "post_drive_id": "1d5UYsMcbI-ZzG7BvhXwkyMQvHT-lvNEO",
+      "post_sha256": "553bc091ab5c28bcace7b8d3f1a22dc47d67c11ce37253698b0d140bb14b34b4",
+      "post_size_bytes": 31417,
+      "permanent_id_readback_sha256": "553bc091ab5c28bcace7b8d3f1a22dc47d67c11ce37253698b0d140bb14b34b4",
+      "working_git_source_blob_sha": "50ba14f9caef56d5e8ba070fd067c5c9bb43d18d",
+      "change": "V04 same-period diagnostic export with original strict QA, original 11 frozen product IDs, original 30 m affine grid, separate basic and moderate sensitivity layers; preserve Ward 6/8 original graded maps and original strict Ward 16 valid pixels. Fix Drive metadata pageSize. No interpolation or new scientific approval.",
+      "status": "SOURCE_VERIFIED_PENDING_PROTECTED_MAIN_MERGE__V04_EXPORT_UNEXECUTED",
+      "qa_checks": [
+        "Executed V03 PRE byte readback matched",
+        "Same-ID V04 and POST byte readback matched",
+        "17 notebook cells; nbformat and all 8 code AST checks passed",
+        "Original authentication and boundary-check cells unchanged",
+        "Original strict raster grid read with rasterio; export crsTransform set to match",
+        "Original 11 product IDs extracted from executed V03 and pinned; scene drift fails closed",
+        "New Git blob matches local source",
+        "V04 authenticated runtime and raster readback NOT executed"
+      ],
+      "git_source_merge_pr": null,
+      "git_source_merge_sha": null
     }
   ],
-  "scientific_limitations": "No completed 2026 full-municipality GeoTIFF is verified as of V03 source promotion; original V02 saved pre-export estimates are not independently TIFF-verified; Colab V03 executes only acquisition and task receipt, Python produces future figures.",
+  "scientific_limitations": "V03 original strict GeoTIFF completed and retained. V04 diagnostic export not yet executed. Ward 16 historical KLL polygon strict coverage 16790/38410 (43.71%), basic count coverage 33121/38410 (86.23%); actual basic and moderate temperatures require new export. Do not replace strict pixels or imply lower-QA pixels pass strict criteria.",
   "updating_files": [
     "researchers/binay-karki/gis/map003/BINAY_UHI_GEE_COLAB_MAP003_CITYWIDE_WET_2026_WORKING.ipynb",
     "researchers/binay-karki/gis/map003/README.md",
