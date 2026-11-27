@@ -74,3 +74,7 @@ For other roles, keep using their applicable registered generic types rather
 than copying the Site Engineer clauses blindly. Read
 docs/ENTERPRISE_MODULAR_EMPLOYEE_TEMPLATES_READ_FIRST_20261118.md for the
 version, branded-assets, safety, pay review and source-custody workflow.
+
+
+## Mandatory chapter and section source modules (27 November 2026)
+For newly prepared theses and long reports, keep `main.tex` short and declarative, put each chapter in its own wrapper, and place every numbered primary section in its own `.tex` file. Short subsections stay within their parent section; split substantial subsections where helpful. Separate front matter, references, appendices and project configuration. Moving all prose into a single `body.tex` does not meet this rule. Deliver the uncompressed navigable Drive folder as primary working source; a ZIP is only supplementary. Run `scripts/latex/check_modular_project.py --require-section-modules <project-folder>` on each new long-form delivery; compare the compiled output with the prior release for architecture-only revisions. Preserve scientific text, earlier archives and the shared style authority. Short professional documents retain their appropriate section-based structure.
