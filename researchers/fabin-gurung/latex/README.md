@@ -1,32 +1,18 @@
 # Fabin Gurung thesis source
 
-[production-current.json](production-current.json) records the public-safe
-version, template pin and verified source/PDF digests. The complete modular
-source and private provenance remain in the existing owner Drive controls.
+The latest working thesis is **v0.18** (27 November 2026), 70 pages.
+[Current PDF](https://drive.google.com/file/d/1LBt3R4u35BxhKjOGoX8YflP7zFJutxBk/view) · [Complete editable LaTeX](https://drive.google.com/file/d/1qC8UkZskLr-Dvqi9QDp8MGfGpPynK836/view) · [Modular source folder](https://drive.google.com/drive/folders/1BBs5wHRSwM6wBSVRhFiNh4XuRCQ5Y43B).
 
-The source uses main.tex, front matter, chapter wrappers with individual section
-modules, and end matter with bibliography and appendices. Build main.tex using
-XeLaTeX, BibTeX, XeLaTeX, XeLaTeX; resolve the canonical shared style through
-TEXINPUTS and install licensed Times New Roman privately. No font binary is
-distributed. The unverified numbered Git LaTeX baseline remains unchanged.
+[production-current.json](production-current.json) records the public-safe version, template pin and verified PDF/source digests. The complete modular source and private version history remain in the existing owner Drive controls.
 
-The [Appendix E LaTeX source](endmatter/appendices/appendix_05.tex) calls seven
-[spatial-frame captures](figures/appendix/frame). They show the same pinned
-4 m square baseline as the [interactive frame](https://fabingurung.github.io/jp-research-lab/researchers/fabin-gurung/experiments/four-workflows/frame.html).
+Compile main.tex with the canonical PU shared template v2.6.4, licensed Times New Roman in a private runtime, XeLaTeX and BibTeX. Read the [shared build guide](https://docs.google.com/document/d/1WS5L8UjDxumtcsx2sSAb7cdQor8ryTK5_ukkvUfWp2k/edit) and [font-resource manifest](https://docs.google.com/document/d/1tX7hBF1DN-8llL2dBA-C08Ig5hs2npnRvS38X9qQSqY/edit) before each revision. Never distribute font binaries.
 
-## Next scoped review source (not yet CURRENT)
+## Version lineage
 
-The [proposed v0.17 Appendix E amendment](revisions/v0.17-engineering-review/appendix_05.tex)
-has the independent elastic in-plane column bending formula, retained
-beam chord-relative deflection, and member-level reinforcement interpretation.
-The [candidate release manifest](revisions/v0.17-engineering-review/REVISION.json)
-records the missing full-source XeLaTeX/Times New Roman compilation,
-figure-capture, scientific checking, existing Drive ID replacement, and PRE/POST
-version-history gates.
+- v0.16: earlier 69-page working manuscript, preserved.
+- [v0.17](revisions/v0.17-compiled.json): compiled editorial and column-flexure predecessor, preserved.
+- v0.18: current 70-page working manuscript; academic signoff is separate from working-version identity.
 
-This is a **review-only Git source revision**, not a new student-facing PDF
-or permission to advance a researcher LaTeX sequence. The
-[production-current.json](production-current.json) remains **v0.16** and its
-69-page verified PDF/source hashes stay unchanged until the complete release
-checks pass. The new interactive [member explorer](https://fabingurung.github.io/jp-research-lab/researchers/fabin-gurung/experiments/four-workflows/detail.html)
-is website evidence, not a new structural design certification.
+The [Appendix E source](endmatter/appendices/appendix_05.tex), [Appendix F source](endmatter/appendices/appendix_06.tex) and the [one-bay experiment](https://fabingurung.github.io/jp-research-lab/researchers/fabin-gurung/experiments/four-workflows/index.html) distinguish calculated member actions, elastic bending and illustrative reinforcement. The underlying historical captures remain preserved. No structural design certification is implied.
+
+The numbered Git LaTeX sequence and A7 event are not inferred from manuscript version numbers.
