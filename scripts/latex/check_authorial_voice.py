@@ -13,6 +13,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG = "controls/latex/authorial-voice-policy.json"
+sys.path.insert(0, str(ROOT / "scripts"))
+from check_document_publication import findings as publication_findings
 SELF_REFERENCE = re.compile(
     r"\bthe researcher\s+(?:report(?:s|ed)?|state(?:s|d)?|observ(?:e|ed|es)|"
     r"identif(?:y|ied|ies)|describ(?:e|ed|es)|supervis(?:e|ed|es)|"
@@ -53,6 +55,8 @@ def inspect_text(content: str, path: str = "<sample>") -> list[dict]:
     )
     for lineno, line in enumerate(content.splitlines(), 1):
         shown = visible_line(line)
+        for rule in publication_findings(shown):
+            out.append({"file": path, "line": lineno, "rule": rule, "sample": shown.strip(), "level": "REVIEW"})
         for rule, pattern in patterns:
             for hit in pattern.finditer(shown):
                 out.append({"file": path, "line": lineno, "rule": rule,
