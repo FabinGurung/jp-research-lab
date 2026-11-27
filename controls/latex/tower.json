@@ -251,5 +251,11 @@
       "Preserve scientific limitations, original evidence, legitimate research terminology and required institutional assistance disclosures. Do not fabricate findings, researcher experiences or approvals. Student review and institutional approval remain independent."
     ],
     "public_route": "academic-writing/thesis-build-guide/index.html"
+  },
+  "shared_document_publication": {
+    "policy": "controls/document-publication.policy.json",
+    "policy_id": "RD-DOC-PURPOSE-001",
+    "mandatory_before_each_version": true,
+    "release_gate": "CONTEXTUAL_SOURCE_AND_RENDERED_OUTPUT_REVIEW_REQUIRED"
   }
 }
