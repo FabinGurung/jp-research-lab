@@ -10,6 +10,10 @@ Then resolve this module's `A7_MODULE.json`, current `CURRENT.json` and only the
 ## Single LaTeX authority
 For ANY thesis LaTeX preparation read `controls/latex/tower.json` and load **only** `controls/latex/template/pumlsc-shared.sty` as shared template. `controls/latex.control.json` is a routing alias. All registered researcher entries inherit one shared control via `registry/latex-inheritance.json`; any researcher-origin visual/template fix must enter `controls/latex/change-register.json` as an ID >=101, then either update shared source after QA or register a researcher-only delta in `controls/latex/extension-registry.json`. A7 has no LaTeX control tower. Do not publish private data or fonts.
 
+## Mandatory production preflight and academic voice (27 November 2026)
+
+Before every thesis revision read the `mandatory_prebuild_20261127` section of `controls/latex/tower.json` and the [shared LaTeX build guide](https://docs.google.com/document/d/10G8m5NdUWwILXS5c6F1cgIUVYV5kNWXT-3sLpWPynbY/edit). Retrieve exact licensed fonts from the authorized private cache; do not request another researcher upload or distribute the binaries. The student-facing manuscript and figure assets must contain academic material, not production commentary. Preserve required disclosures and genuine scientific limitations.
+
 ## Binding approved 2026-10-09 rules (Q1B Q2A Q3A)
 Git `main` PRE/POST is the release history; do not create routine branches for snapshots. Use **annotated tags** only for accepted major releases via a supported tag-capable interface. Historical 106 refs are immutable until separately audited. `controls/latex/pu-format-parity-audit.json` maps 144/144 PU v1.13 source rules; source mapping is not a rendered production PDF certificate. Safal latest is v1.9 Local seq15 (Q1 B), pending provider byte verification before manuscript admission, not the old v1.2 or first uploaded v1.9 bytes. Public R&D Git may contain verified academic source `.tex` and `.bib`; do not insert artificial workflow/control text into research prose or invent evidence.
 

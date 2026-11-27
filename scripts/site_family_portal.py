@@ -62,6 +62,15 @@ def build_academic_portal(out):
         + "".join(groups) + '</main>'
     )
     write(out, "academic-writing/index.html", shell("Academic Writing", body, 1))
+    guide = load(Path("controls/latex/tower.json"))["mandatory_prebuild_20261127"]
+    items = "".join("<li>" + esc(rule) + "</li>" for rule in guide["rules"])
+    guide_body = ('<main class="wrap hero"><div class="eyebrow">Academic Writing</div>'
+                  '<h1>Thesis writing and production guide</h1>'
+                  '<p class="lead">Before every thesis build, for every researcher.</p>'
+                  '<section class="section"><h2>Required practice</h2><ol>' + items + '</ol>'
+                  '<p><a href="' + esc(guide["shared_drive_read_first"]) + '">Read the shared Google Drive guide</a></p></section>'
+                  '<p><a href="../index.html">Academic Writing</a></p></main>')
+    write(out, guide["public_route"], shell("Thesis writing and production guide", guide_body, 2))
     children = "".join(
         '<article class="card"><h3>' + esc(c["id"].replace("_", " ").title()) + '</h3>'
         '<p>' + esc(c["role"]) + '</p><p><a href="' + esc(REPO_URL + '/blob/main/' + c["canonical_control"]) +

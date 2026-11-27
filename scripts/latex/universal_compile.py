@@ -78,7 +78,7 @@ def main():
     for name in ("xelatex","biber","pdfinfo","pdffonts","pdftoppm","git"):
         if not shutil.which(name):ap.error("missing Linux build dependency "+name)
     if args.mode=="exact-font-review":
-        for name in ("fc-match","fc-cache"):
+        for name in ("fc-match","fc-cache","fc-scan"):
             if not shutil.which(name):ap.error("missing fontconfig dependency "+name)
     with tempfile.TemporaryDirectory(prefix="rnd-latex-governed-") as td:
         work=Path(td)
@@ -96,8 +96,18 @@ def main():
                 '<cachedir>'+escape(str(work/"font-cache"))+'</cachedir>\n</fontconfig>\n')
             env["FONTCONFIG_FILE"]=str(conf)
             run(["fc-cache","-f",str(fontdir.resolve())],manuscript_dir,env)
-            match=run(["fc-match","-f",r"%{family}\n","Times New Roman"],manuscript_dir,env)
-            if "Times New Roman" not in match:ap.error("fontconfig cannot resolve exact Times New Roman")
+            policy=json.loads((ROOT/"controls/latex/tower.json").read_text(encoding="utf-8"))["mandatory_prebuild_20261127"]
+            if ROOT == fontdir.resolve() or ROOT in fontdir.resolve().parents:
+                ap.error("licensed fonts must be provisioned outside the repository")
+            for face in policy["faces"]:
+                file=fontdir/face["file"]
+                if not file.is_file():ap.error("missing authorized Times New Roman face: "+face["style"])
+                scan=run(["fc-scan","-f",r"%{family}\n%{style}\n",str(file.resolve())],manuscript_dir,env).splitlines()
+                if len(scan)<2 or scan[0].split(",")[0]!="Times New Roman" or scan[1].split(",")[0]!=face["style"]:
+                    ap.error("font identity/style mismatch: "+face["style"])
+                match=run(["fc-match","-f",r"%{family}\n%{style}\n%{file}\n","Times New Roman:style="+face["style"]],manuscript_dir,env).splitlines()
+                if len(match)<3 or match[0].split(",")[0]!="Times New Roman" or match[1].split(",")[0]!=face["style"] or Path(match[2]).resolve()!=file.resolve():
+                    ap.error("fontconfig cannot resolve authorized Times New Roman "+face["style"])
         cmd=["xelatex","-interaction=nonstopmode","-halt-on-error","-jobname=rnd-manuscript"]
         if args.mode=="preview":
             cmd.append(r"\def\PUPreviewTinosFont{1}\input{main.tex}")
