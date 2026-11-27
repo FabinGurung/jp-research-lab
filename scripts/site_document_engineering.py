@@ -60,6 +60,7 @@ def build_document_pages(out):
       ' Supplier dates and quotations require direct confirmation.</p>'
       '<p><a href="wedding-damauli/">Open the wedding venue and catering proposal →</a></p>'
       '</section></main>')
+    enterprise=enterprise.replace("</main>", '<p><a href="../memory-wall/index.html">Document publication Memory Wall</a></p></main>')
     write(out,"enterprise-documents/index.html",shell("Enterprise Documents",enterprise,1))
     source_body=(
       '<main class="wrap hero"><div class="eyebrow">A9 · Enterprise Document Engineering</div>'
@@ -115,6 +116,7 @@ def build_document_pages(out):
       '<a href="'+esc(REPO_URL+'/actions/workflows/enterprise-document-v2.yml')+'">Source QA workflow →</a></p>'
       '<p><strong>Not certified:</strong> complete legal/technical parity, actual company documents, human signatures and every-page visual QA.</p>'
       '</section></main>')
+    body=body.replace("</main>", '<p><a href="../../memory-wall/index.html">Document publication Memory Wall</a></p></main>')
     write(out,"enterprise-documents/control-tower/index.html",shell("Enterprise Document Control Tower",body,2))
 
 
