@@ -390,6 +390,23 @@ if args.site:
         errors.append("shared thesis writing guide missing or incorrect Drive link")
     if not hub.is_file() or "thesis-build-guide/index.html" not in hub.read_text(encoding="utf-8"):
         errors.append("shared thesis writing guide not linked from academic hub")
+publication=load("controls/document-publication.policy.json")
+if publication.get("mandatory") is not True or not publication.get("read_before_each_version"):
+    errors.append("mandatory document publication control missing")
+for control in publication["canonical_targets"]:
+    if load(control).get("shared_document_publication",{}).get("policy")!="controls/document-publication.policy.json":
+        errors.append("document publication inheritance missing: "+control)
+publication_test=subprocess.run([sys.executable,str(ROOT/"scripts/check_document_publication.py"),"--self-test"],cwd=ROOT,text=True,capture_output=True)
+if publication_test.returncode:
+    errors.append("document publication semantic self-test failed")
+if args.site:
+    for route in ("index.html","academic-writing/index.html","academic-writing/control-tower/index.html","enterprise-documents/index.html","enterprise-documents/control-tower/index.html"):
+        page=ROOT/args.site/route
+        if not page.is_file() or "memory-wall/index.html" not in page.read_text(encoding="utf-8"):
+            errors.append("document publication Memory Wall link missing: "+route)
+    page=ROOT/args.site/publication["website_route"]
+    if not page.is_file() or publication["principle"] not in page.read_text(encoding="utf-8"):
+        errors.append("document publication Memory Wall content missing")
 if errors:
     print("JP R&D VALIDATION: FAIL")
     for e in errors: print("- "+e)

@@ -31,7 +31,7 @@ def build_family_home(researchers, folder_roles):
         '<main>' + hero +
         '<section class="wrap section" aria-labelledby="family-choice"><h2 id="family-choice">Choose your document family</h2>'
         '<div class="family-grid">' + cards + '</div></section>'
-        '<section class="wrap section"><h2>How this portal works</h2>'
+        '<section class="wrap section"><h2>Document publication Memory Wall</h2><p><a href="memory-wall/index.html">Required writing principles for both families</a></p></section><section class="wrap section"><h2>How this portal works</h2>'
         '<p>Humans state the objective and approve when required. Authorized AI workflows consult versioned controls, '
         'deterministic validators and the owning private source records. Missing evidence produces a HOLD, not an invented answer.</p>'
         '<p><a href="' + esc(REPO_URL + '/blob/main/docs/AI_FIRST_FAMILY_ROUTING_READ_FIRST.md') + '">Read the AI-first execution contract →</a></p>'
@@ -61,7 +61,12 @@ def build_academic_portal(out):
         '<p><a href="control-tower/index.html">Open the separate Academic Family Control Tower →</a></p>'
         + "".join(groups) + '</main>'
     )
+    body=body.replace("</main>", '<section class="section"><h2>Document authorship and publication</h2><p><a href="../memory-wall/index.html">Read the shared Memory Wall</a></p></section></main>')
     write(out, "academic-writing/index.html", shell("Academic Writing", body, 1))
+    publication=load(Path("controls/document-publication.policy.json"))
+    rule_items="".join("<li>"+esc(rule)+"</li>" for rule in publication["rules"])
+    memory=('<main class="wrap hero"><h1>Memory Wall — document authorship and publication</h1><p class="lead">'+esc(publication["principle"])+'</p><p>'+esc(publication["enterprise_equivalent"])+'</p><section class="section"><h2>Every new or revised document</h2><ol>'+rule_items+'</ol><p><a href="'+esc(publication["shared_drive_guide"])+'">Shared Google Drive guide</a> · <a href="'+esc(REPO_URL+"/blob/main/controls/document-publication.policy.json")+'">Machine-readable policy</a></p></section></main>')
+    write(out, publication["website_route"], shell("Document publication Memory Wall", memory, 1))
     guide = load(Path("controls/latex/tower.json"))["mandatory_prebuild_20261127"]
     items = "".join("<li>" + esc(rule) + "</li>" for rule in guide["rules"])
     guide_body = ('<main class="wrap hero"><div class="eyebrow">Academic Writing</div>'
@@ -90,6 +95,7 @@ def build_academic_portal(out):
         '<p><a href="' + esc(REPO_URL + '/blob/main/controls/academic-writing/tower.json') +
         '">Read machine-readable academic family control →</a></p></section></main>'
     )
+    tower_body=tower_body.replace("</main>", '<p><a href="../../memory-wall/index.html">Document publication Memory Wall</a></p></main>')
     write(out, "academic-writing/control-tower/index.html", shell("Academic Family Control", tower_body, 2))
     # Expose the public-safe routing map without adding a second source authority.
     write(out, "data/family-router.json",

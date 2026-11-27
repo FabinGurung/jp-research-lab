@@ -75,7 +75,7 @@ def main():
           "drive_upload":False,"a9_ack":False}
     if not args.execute:
         print(json.dumps(plan,indent=2));return
-    for name in ("xelatex","biber","pdfinfo","pdffonts","pdftoppm","git"):
+    for name in ("xelatex","biber","pdfinfo","pdffonts","pdftoppm","pdftotext","git"):
         if not shutil.which(name):ap.error("missing Linux build dependency "+name)
     if args.mode=="exact-font-review":
         for name in ("fc-match","fc-cache","fc-scan"):
@@ -124,6 +124,13 @@ def main():
         qa_mode="production" if args.mode=="exact-font-review" else "preview"
         qa_json=run([sys.executable,str(qa_script),"--pdf",str(built),"--mode",qa_mode,"--render","--json"],manuscript_dir,env)
         qa=json.loads(qa_json)
+        # Screen rendered text for production narration; contextual review remains required.
+        sys.path.insert(0, str(ROOT/"scripts"))
+        from check_document_publication import findings as publication_findings
+        rendered=run(["pdftotext",str(built),"-"],manuscript_dir,env)
+        voice_hits=publication_findings(rendered)
+        if voice_hits:
+            raise RuntimeError("Document publication review required: "+", ".join(voice_hits))
         log=(manuscript_dir/"rnd-manuscript.log").read_text(encoding="utf-8",errors="replace")
         if "undefined references" in log.lower() or "citation" in log.lower() and "undefined" in log.lower():
             raise RuntimeError("unresolved references or citations")

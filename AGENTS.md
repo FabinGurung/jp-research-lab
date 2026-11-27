@@ -1,5 +1,11 @@
 # JP R&D — agent entrypoint
 
+## Mandatory document-purpose and authorial-voice rule (27 November 2026)
+
+> The thesis is an academic research manuscript, not a description of how the manuscript was produced. Internal production commentary stays outside it, while scientific accuracy and required institutional disclosures remain intact.
+
+**RD-DOC-PURPOSE-001:** Read the [shared policy](https://github.com/FabinGurung/jp-research-lab/blob/main/controls/document-publication.policy.json) before creating or revising any document, including non-LaTeX formats. Both Academic Writing and Enterprise Documents inherit this rule. Review source and rendered surfaces, including graphics. Preserve evidence, legitimate methods, scientific limitations, required disclosures and applicable approval or legal markings. Keep internal history, QA and corrections in existing owning records. Do not silently alter historical releases. [Shared Memory Wall](https://fabingurung.github.io/jp-research-lab/memory-wall/).
+
 **MANDATORY R&D READ FIRST:** [Memory Wall](docs/MEMORY_WALL.md) and [LaTeX template inheritance/versioning](docs/LATEX_TEMPLATE_INHERITANCE_VERSIONING.md). Read latest `main` and current researcher Drive source/manifest. For new thesis source versions, prefer the dry-run-first [per-researcher sequence reservation](.github/workflows/latex-reserve-researcher-sequence.yml), pin the exact central template SHA, and keep scientist source paths isolated. Never confuse Git revision, scientific CP, global `RD-LTX-CHG` IDs, or stable Drive PDFs. This governs only this R&D repository; A7 remains a read-only catalogue.
 
 Read the authoritative, public-safe cross-provider bootstrap from **A7** before multi-repository work:

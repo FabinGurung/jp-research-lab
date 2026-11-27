@@ -10,16 +10,19 @@ import json
 import re
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
 POLICY=ROOT/"controls/document-engineering/client-facing-language.policy.json"
+sys.path.insert(0, str(ROOT / "scripts"))
+from check_document_publication import findings as publication_findings
 
 def violations(text):
     if not isinstance(text,str):
         raise ValueError("Visible content must be text")
     policy=json.loads(POLICY.read_text(encoding="utf-8"))
-    result=[]
+    result=publication_findings(text)
     for phrase in policy["forbidden_visible_phrases"]:
         pat=r"(?<![A-Za-z0-9])"+re.escape(phrase)+r"(?![A-Za-z0-9])"
         if re.search(pat,text,re.IGNORECASE):

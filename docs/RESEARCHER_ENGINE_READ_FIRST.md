@@ -1,5 +1,11 @@
 # Researcher engine — read first
 
+## Mandatory document-purpose and authorial-voice rule (27 November 2026)
+
+> The thesis is an academic research manuscript, not a description of how the manuscript was produced. Internal production commentary stays outside it, while scientific accuracy and required institutional disclosures remain intact.
+
+**RD-DOC-PURPOSE-001:** Read the [shared policy](https://github.com/FabinGurung/jp-research-lab/blob/main/controls/document-publication.policy.json) before creating or revising any document, including non-LaTeX formats. Both Academic Writing and Enterprise Documents inherit this rule. Review source and rendered surfaces, including graphics. Preserve evidence, legitimate methods, scientific limitations, required disclosures and applicable approval or legal markings. Keep internal history, QA and corrections in existing owning records. Do not silently alter historical releases. [Shared Memory Wall](https://fabingurung.github.io/jp-research-lab/memory-wall/).
+
 Applies to every identity enrolled in `registry/researchers.json`; shared authority
 remains `controls/latex/tower.json`. No second control tower is created here.
 
