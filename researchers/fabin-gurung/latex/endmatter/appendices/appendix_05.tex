@@ -2,7 +2,7 @@
 \label{app:representative_sql_queries}
 \addappendixentry{Spatial Results for the One-Bay Frame}
 
-The images show separate views of the \(4.00\times4.00~\mathrm{m}\) gravity case. The labels identify the same four columns (C1--C4), perimeter beams (B1--B4) and slab (S1) in each view. The beam directions follow C1 to C2, C2 to C3, C3 to C4 and C4 to C1. The values and sign conventions are given in Section~\ref{sec:force_comparison}.
+The spatial diagrams present the results of two orthogonal planar non-sway frame analyses for the \(4.00\times4.00~\mathrm{m}\) gravity case; they are not the output of a full three-dimensional structural analysis. The labels identify the same four columns (C1--C4), perimeter beams (B1--B4) and slab (S1) in each view. The beam directions follow C1 to C2, C2 to C3, C3 to C4 and C4 to C1. The values and sign conventions are given in Section~\ref{sec:force_comparison}.
 
 \newcommand{\FrameCapture}[3]{%
   \begin{figure}[H]
@@ -20,3 +20,35 @@ The images show separate views of the \(4.00\times4.00~\mathrm{m}\) gravity case
 \FrameCapture{movement}{Elastic beam deflection relative to the end chord, magnified 1,400 times}{fig:spatial_movement}
 \FrameCapture{torsion}{One-bay geometry for the planar gravity analysis, with torsion outside the model}{fig:spatial_torsion}
 \FrameCapture{rebar}{Illustrative longitudinal reinforcement and slab mat used for the takeoff}{fig:spatial_rebar}
+
+
+\section{Member Bending Displacements Under the Non-Sway Idealisation}
+\label{sec:onebay_member_deflections}
+
+The four perimeter beams exhibit identical bending responses under the symmetric \(4.00\times4.00~\mathrm{m}\) gravity case. The maximum downward elastic deflection occurs at midspan and is \(0.45047~\mathrm{mm}\), measured relative to the straight chord connecting the two roof joints. The ends have zero displacement relative to this chord; global joint translations are not included in the calculation.
+
+The supplementary column calculation considers in-plane bending of a corner column in each of the two separately analysed planar frames. For the column height \(h=3.00~\mathrm{m}\), square section width \(b_c=0.30~\mathrm{m}\), elastic modulus \(E_c=25\times10^6~\mathrm{kN/m^2}\), base-end moment magnitude \(M_b=3.300380~\mathrm{kN\,m}\) and roof-end moment magnitude \(M_t=6.600760~\mathrm{kN\,m}\), the gross-section flexural rigidity is
+\begin{equation}
+EI_c=E_c\frac{b_c^4}{12}=16\,875~\mathrm{kN\,m^2}.
+\end{equation}
+\PURegisterEquationEntry{Gross-section flexural rigidity of a corner column}
+With the local coordinate \(z\) measured upward from the fixed column base, the in-plane bending moment is
+\begin{equation}
+M_c(z)=-M_b+Vz,\qquad V=\frac{M_b+M_t}{h}=3.300380~\mathrm{kN}.
+\end{equation}
+\PURegisterEquationEntry{In-plane column bending moment and shear}
+Integrating \(EI_c u_c''(z)=M_c(z)\) with zero displacement and rotation at the fixed base gives
+\begin{equation}
+u_c(z)=\frac{1}{EI_c}\left(-\frac{M_bz^2}{2}+\frac{Vz^3}{6}\right).
+\end{equation}
+\PURegisterEquationEntry{In-plane column bending displacement}
+The displacement satisfies \(u_c(0)=u_c(3)=0\) under the non-sway idealisation. The interior extremum occurs at \(z=2M_b/V=2.00~\mathrm{m}\), where \(u_c=-0.130385~\mathrm{mm}\). The corresponding roof-joint rotation is approximately \(2.93367\times10^{-4}~\mathrm{rad}\), consistent with the fixed-base slope--deflection relation. This value represents column bending relative to the end chord in the analysed plane; it does not represent interstorey drift. Global joint translation, column axial shortening and slab displacement have not been determined.
+
+\section{Member Representations and Reinforcement Assumptions}
+\label{sec:onebay_member_details}
+
+Separate three-dimensional, elevation, plan and section representations of the beam, column and slab illustrate the assumed reinforcement arrangements. The beam has two longitudinal bars near the top face and two near the bottom face, enclosed by transverse links. The column has four longitudinal corner bars enclosed by transverse ties. The slab has one orthogonal reinforcement mat. Each representation uses the same member identifiers and dimensions as the one-bay quantity model.
+
+The illustrative takeoff assumes four longitudinal bars of 16 mm diameter and twenty links of 8 mm diameter per perimeter beam, four longitudinal bars of 16 mm diameter and sixteen ties of 8 mm diameter per column, and twenty-one bars of 10 mm diameter in each of two orthogonal slab directions. The combined theoretical steel mass is \(335.83~\mathrm{kg}\). A change in the reinforcement arrangement, such as closer transverse reinforcement spacing at member ends, would require a separate quantity calculation.
+
+These arrangements demonstrate the measurement of reinforcement quantities rather than a completed reinforced-concrete design. Structural capacity, cover, development length, anchorage, joint confinement and the applicable building-code provisions require separate design checks before a construction bar bending schedule can be established. The illustrative quantities do not establish structural adequacy or code compliance.
