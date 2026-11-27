@@ -24,7 +24,7 @@ def strip_comments(tex: str) -> str:
     return "\n".join(re.split(r"(?<!\\)%", line, maxsplit=1)[0] for line in tex.splitlines())
 
 
-def check_project(root: Path) -> dict:
+def check_project(root: Path, require_section_modules: bool = False) -> dict:
     root = root.resolve()
     problems: list[str] = []
     warnings: list[str] = []
@@ -91,6 +91,35 @@ def check_project(root: Path) -> dict:
         if main.stat().st_size > 12_000:
             warnings.append("main.tex is long; check that substantive content belongs in chapters/ or sections/")
 
+    if require_section_modules and main.is_file():
+        # This opt-in gate is for newly prepared long-form deliveries, not archived
+        # projects or the approved enterprise template assets.
+        chapter_re = re.compile(r"(?m)^\s*\\chapter(?!\*)\s*(?:\[[^\n]*\])?\s*\{")
+        section_re = re.compile(r"(?m)^\s*\\section(?!\*)\s*(?:\[[^\n]*\])?\s*\{")
+        chapter_count = section_count = 0
+        for f in sorted(visited):
+            rel = f.relative_to(root)
+            if f.suffix.lower() != ".tex":
+                continue
+            tex = strip_comments(f.read_text(encoding="utf-8", errors="replace"))
+            nc, ns = len(chapter_re.findall(tex)), len(section_re.findall(tex))
+            if f == main and (nc or ns or r"\begin{titlepage}" in tex):
+                problems.append("main.tex must orchestrate, not contain chapter, section or title-page content")
+            if rel.parts[0] in ("appendices", "frontmatter", "references"):
+                continue
+            if nc:
+                chapter_count += nc
+                if rel.parts[0] != "chapters" or nc != 1 or ns:
+                    problems.append(f"Chapter needs its own wrapper with separate section modules: {rel}")
+            if ns:
+                section_count += ns
+                if rel.parts[0] != "chapters" or ns != 1:
+                    problems.append(f"Each numbered primary section needs its own source file: {rel}")
+        if not chapter_count or not section_count:
+            problems.append("Long-form project must have actual chapter wrappers and numbered section modules")
+        if main.stat().st_size > 12_000:
+            problems.append("Long-form main.tex exceeds orchestration size gate; move content/configuration to modules")
+
     return {
         "ok": not problems,
         "project": str(root),
@@ -104,8 +133,9 @@ def check_project(root: Path) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("project", type=Path, help="Path to new unzipped LaTeX working folder")
+    parser.add_argument("--require-section-modules", action="store_true", help="Strict chapter and numbered-section modules for new long-form deliveries")
     args = parser.parse_args()
-    result = check_project(args.project)
+    result = check_project(args.project, args.require_section_modules)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if result["ok"] else 1
 

@@ -257,5 +257,14 @@
     "policy_id": "RD-DOC-PURPOSE-001",
     "mandatory_before_each_version": true,
     "release_gate": "CONTEXTUAL_SOURCE_AND_RENDERED_OUTPUT_REVIEW_REQUIRED"
+  },
+  "modular_source_preflight": {
+    "policy": "docs/LATEX_MODULAR_SOURCE_DELIVERY_POLICY_20261112.md",
+    "mandatory_for_new_long_form": true,
+    "chapter_wrapper_per_chapter": true,
+    "numbered_primary_section_file_per_section": true,
+    "subsections": "OPTIONAL_AS_NEEDED",
+    "primary_delivery": "UNCOMPRESSED_DRIVE_FOLDER",
+    "command": "python scripts/latex/check_modular_project.py --require-section-modules <project-folder>"
   }
 }

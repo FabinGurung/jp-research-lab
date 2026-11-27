@@ -10,7 +10,8 @@
     "Keep editorial instructions, AI/chat narration, source-control identifiers, version labels, build logs, correction registers and internal QA/status commentary out of recipient-facing content. Preserve legitimate technical terms, research methods, substantive provenance, necessary legal/draft markings and required assistance disclosures.",
     "Review source and rendered output, including figures, captions, tables, covers, appendices, slide content and recipient-facing speaker notes. Resolve contextual findings before release; do not erase real limitations or disclosures to pass a word filter.",
     "Before each new version read current shared policy and owning controls. Preserve stable live IDs, canonical source paths and applicable PRE/POST history. Keep internal review in the existing owner Google Doc. Regenerate from source, verify delivery, and preserve archived versions.",
-    "Applies to LaTeX, PDF, Google Docs, DOCX, PPTX, circulating spreadsheets and document-derived web pages. Internal governance pages and explicit review records are separate. Existing factual and human approval gates remain independent."
+    "Applies to LaTeX, PDF, Google Docs, DOCX, PPTX, circulating spreadsheets and document-derived web pages. Internal governance pages and explicit review records are separate. Existing factual and human approval gates remain independent.",
+    "New long-form LaTeX deliveries must have separate chapter wrappers, a file for each numbered primary section, separate front matter and end matter, and a short main.tex. Subsection files are optional when useful; the uncompressed Drive folder is primary. Read the existing modular source policy and run its strict structural checker before release."
   ],
   "scope": "ALL_NEW_AND_REVISED_RECIPIENT_FACING_DOCUMENTS_ACADEMIC_AND_ENTERPRISE",
   "read_before_each_version": true,

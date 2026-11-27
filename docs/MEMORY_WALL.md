@@ -199,3 +199,7 @@ Follow the [execution and versioning guide](RESEARCHER_DELIVERABLES_READ_FIRST.m
 and [researcher resume command](../prompts/RESUME_RESEARCHER_DELIVERABLES.md).
 This inherits A7's permanent live-ID, enumerated PRE/POST, append-only history and
 restore-in-place policy without editing A7 or certifying existing artifacts.
+
+
+## Mandatory chapter and section source modules (27 November 2026)
+For newly prepared theses and long reports, keep `main.tex` short and declarative, put each chapter in its own wrapper, and place every numbered primary section in its own `.tex` file. Short subsections stay within their parent section; split substantial subsections where helpful. Separate front matter, references, appendices and project configuration. Moving all prose into a single `body.tex` does not meet this rule. Deliver the uncompressed navigable Drive folder as primary working source; a ZIP is only supplementary. Run `scripts/latex/check_modular_project.py --require-section-modules <project-folder>` on each new long-form delivery; compare the compiled output with the prior release for architecture-only revisions. Preserve scientific text, earlier archives and the shared style authority. Short professional documents retain their appropriate section-based structure.
