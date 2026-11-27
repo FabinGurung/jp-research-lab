@@ -32,6 +32,11 @@
       "group": "Academic writing and controls",
       "items": [
         {
+          "title": "Thesis writing and production guide",
+          "route": "academic-writing/thesis-build-guide",
+          "description": "Academic authorial voice, exact Times New Roman and pre-submission checks for every researcher"
+        },
+        {
           "title": "Academic family control",
           "route": "academic-writing/control-tower",
           "description": "Academic authority boundary and child control towers"
