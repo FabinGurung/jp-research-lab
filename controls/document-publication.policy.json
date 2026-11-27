@@ -1,0 +1,45 @@
+{
+  "policy_id": "RD-DOC-PURPOSE-001",
+  "effective": "2026-11-27",
+  "mandatory": true,
+  "principle": "The thesis is an academic research manuscript, not a description of how the manuscript was produced. Internal production commentary stays outside it, while scientific accuracy and required institutional disclosures remain intact.",
+  "enterprise_equivalent": "A professional document communicates its intended business, technical or legal subject in the issuing party's appropriate voice, not the process used to produce it.",
+  "rules": [
+    "Write in the intended author's or issuing organization's appropriate professional voice. First person requires truthful attribution and institutional permission; third person is legitimate for outside authors and participants.",
+    "Present evidence, methods, findings, citations, business terms and conclusions appropriate to the document. Never invent research, results, signatures, credentials or approvals.",
+    "Keep editorial instructions, AI/chat narration, source-control identifiers, version labels, build logs, correction registers and internal QA/status commentary out of recipient-facing content. Preserve legitimate technical terms, research methods, substantive provenance, necessary legal/draft markings and required assistance disclosures.",
+    "Review source and rendered output, including figures, captions, tables, covers, appendices, slide content and recipient-facing speaker notes. Resolve contextual findings before release; do not erase real limitations or disclosures to pass a word filter.",
+    "Before each new version read current shared policy and owning controls. Preserve stable live IDs, canonical source paths and applicable PRE/POST history. Keep internal review in the existing owner Google Doc. Regenerate from source, verify delivery, and preserve archived versions.",
+    "Applies to LaTeX, PDF, Google Docs, DOCX, PPTX, circulating spreadsheets and document-derived web pages. Internal governance pages and explicit review records are separate. Existing factual and human approval gates remain independent."
+  ],
+  "scope": "ALL_NEW_AND_REVISED_RECIPIENT_FACING_DOCUMENTS_ACADEMIC_AND_ENTERPRISE",
+  "read_before_each_version": true,
+  "release_gate": "CONTEXTUAL_SOURCE_AND_RENDERED_OUTPUT_REVIEW_REQUIRED",
+  "canonical_targets": [
+    "controls/latex/tower.json",
+    "controls/latex/authorial-voice-policy.json",
+    "controls/academic-writing/tower.json",
+    "controls/academic-writing/research-deliverables.json",
+    "controls/document-engineering/tower.json",
+    "controls/document-engineering/semantic-handrails.v2.json",
+    "controls/document-engineering/client-facing-language.policy.json",
+    "controls/presentation/tower.json",
+    "controls/presentation.control.json",
+    "controls/discussion.control.json",
+    "controls/website.control.json",
+    "controls/repository.control.json",
+    "controls/family-router.v0.1.json"
+  ],
+  "website_route": "memory-wall/index.html",
+  "shared_drive_guide": "https://docs.google.com/document/d/10G8m5NdUWwILXS5c6F1cgIUVY5kNWXT-3sLpWPynbY/edit",
+  "patterns": [
+    {
+      "id": "PRODUCTION_ATTRIBUTION",
+      "regex": "\\b(?:generated|compiled|rewritten|polished) by (?:ChatGPT|an? AI assistant|OpenAI)\\b"
+    },
+    {
+      "id": "INTERNAL_RELEASE_NARRATION",
+      "regex": "\\b(?:internal QA checklist|prompt ledger|source-control commit SHA|PRE/POST audit snapshot|AI-generated draft for review)\\b"
+    }
+  ]
+}
