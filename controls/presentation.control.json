@@ -59,5 +59,11 @@
   ],
   "literature_table_source": "controls/presentation/generator/a9_literature_table.py",
   "version_control_policy": "controls/git-drive-authority.json",
-  "legacy_drive_local_main_policy": "NO_NEW_VERSION_ONLY_SEQ; PRESERVE_HISTORIC_LOCAL20_MAIN5"
+  "legacy_drive_local_main_policy": "NO_NEW_VERSION_ONLY_SEQ; PRESERVE_HISTORIC_LOCAL20_MAIN5",
+  "shared_document_publication": {
+    "policy": "controls/document-publication.policy.json",
+    "policy_id": "RD-DOC-PURPOSE-001",
+    "mandatory_before_each_version": true,
+    "release_gate": "CONTEXTUAL_SOURCE_AND_RENDERED_OUTPUT_REVIEW_REQUIRED"
+  }
 }
