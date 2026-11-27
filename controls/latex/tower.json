@@ -219,5 +219,37 @@
     "chapter_to_first_section_gap": "0.75em after each two-line CHAPTER + TITLE entry",
     "source_scope": "SHARED_STYLE_ONLY__NO_RESEARCHER_MANUSCRIPT_CHANGES",
     "qa": "SOURCE_REVIEW_PENDING_OWNER_PDF_RENDER"
+  },
+  "mandatory_prebuild_20261127": {
+    "effective": "2026-11-27",
+    "scope": "ALL_RESEARCHERS_EVERY_PRODUCTION_BUILD",
+    "shared_drive_read_first": "https://docs.google.com/document/d/10G8m5NdUWwILXS5c6F1cgIUVYV5kNWXT-3sLpWPynbY/edit",
+    "faces": [
+      {
+        "file": "times.ttf",
+        "style": "Regular"
+      },
+      {
+        "file": "timesbd.ttf",
+        "style": "Bold"
+      },
+      {
+        "file": "timesi.ttf",
+        "style": "Italic"
+      },
+      {
+        "file": "timesbi.ttf",
+        "style": "Bold Italic"
+      }
+    ],
+    "graphviz_fontname": "Times New Roman, Regular",
+    "rules": [
+      "Before every production thesis build, retrieve the four original Times New Roman faces from the authorized private build-resource cache; do not request another researcher upload. Verify Regular, Bold, Italic and Bold Italic with fc-scan and fc-match; install only in a restricted runtime and refresh fontconfig.",
+      "Compile with XeLaTeX without PUPreviewTinosFont; use exact Times New Roman, Regular for Graphviz labels where applicable. Recompile the bibliography with the selected project backend and settle references.",
+      "Check compilation diagnostics, render every page, inspect embedded fonts and verify the uploaded PDF by SHA-256 readback. A fallback build is not production. Do not distribute licensed font binaries in source, attachments, repositories or Pages.",
+      "Use the researcher's academic voice: performed methods, observations, cited literature, results and defensible interpretation. Remove internal AI/workflow commentary, editorial instructions, release labels, audit and QA prose from the manuscript and figure assets; keep operational records separately.",
+      "Preserve scientific limitations, original evidence, legitimate research terminology and required institutional assistance disclosures. Do not fabricate findings, researcher experiences or approvals. Student review and institutional approval remain independent."
+    ],
+    "public_route": "academic-writing/thesis-build-guide/index.html"
   }
 }
