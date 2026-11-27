@@ -131,9 +131,15 @@ def main():
                 if wd.get("submitted_form_e_pdf_id"):
                     extra+=f'<p><a href="{drive_url(wd["submitted_form_e_pdf_id"])}">Open submitted Form E →</a></p>'
                 if w.get("public_site_path"):
-                    live="https://fabingurung.github.io/JP_Research-and-Development"+w["public_site_path"]
+                    live=SITE_URL.rstrip("/")+w["public_site_path"]
                     extra+='<p><a href="'+esc(live)+'">Open published website →</a></p>'
                 module_cards+='<article class="lane"><h3>'+esc(w["label"])+'</h3><div class="code">Researcher module · '+esc(w["state"])+'</div>'+extra+'<a href="'+branch_url(w["branch"])+'">Legacy branch (full repo snapshot) →</a></article>'
+            if r["slug"] == "fabin-gurung":
+                module_cards+=('<article class="lane"><h3>Four-workflow experiment</h3>'
+                               '<p>A shared parameter model connects architectural drawings, structural calculations, scheduling and quantities.</p>'
+                               '<p><a href="experiments/four-workflows/index.html">Open published website →</a></p>'
+                               '<p><a href="https://docs.google.com/spreadsheets/d/159bayOLahr7Ueg9_5HIf1rZy-0QYB91joQ_sVZXcdq0/edit">Master inputs →</a> · '
+                               '<a href="https://docs.google.com/document/d/14F2yGpl_Sd5oIo7cfANM7JoZJEeL44chaJSK4RiyVtY/edit">Academic narrative →</a></p></article>')
             website_section='<section class="section"><h2>Existing website modules</h2><div class="lanes">'+module_cards+'</div></section>'
         researcher_debts=[d for d in debts if d.get("researcher_id")==r["researcher_id"] and d.get("status") in ("OPEN","HOLD")]
         debt_section=""
@@ -209,9 +215,7 @@ def main():
                 return '<a href="https://drive.google.com/drive/folders/' + esc(file_id) + '">Browse source folder</a>'
             return '<a href="' + esc(drive_url(file_id)) + '">Open Drive file</a>'
         links="".join(f'<div>{esc(label)}</div><div>{_researcher_drive_link(label, fid)}</div>' for label, fid in rows)
-        body=f'''<main class="wrap hero"><div class="eyebrow">{esc(r["researcher_id"])}</div><h1>{esc(r["display_name"])}</h1><p><span class="badge">{esc(status_label)}</span></p><div class="notice">{esc(notice_text)}</div><section class="section"><h2>Topic</h2><div class="kvs"><div>Title</div><div>{esc(title_value)}</div><div>Short name</div><div>{esc(r.get("topic_short_name") or "ON HOLD")}</div></div></section><section class="section"><h2>Version control and source</h2><p>Git branches are full-repository commits; these researcher-named refs are compatibility/work lanes. Public-safe website and tool code is versioned in the common <a href="https://github.com/FabinGurung/JP_Research-and-Development/tree/main">GitHub main repository</a>. Original thesis source packages and compiled outputs remain in Google Drive until an explicit source-code admission/migration is approved.</p></section><section class="section"><h2>Research lanes</h2><div class="lanes">{lane_html}</div></section>{website_section}{debt_section}<section class="section"><h2>Google Drive outputs</h2><div class="kvs">{links}</div></section></main>'''
-        if r["slug"] == "fabin-gurung":
-            body=body.replace('</main>','<section class="section"><h2>Four-workflow experiment</h2><p>One Google Sheets parameter section connects a small schematic, gravity calculations, a construction sequence and concrete quantities. The academic narrative is maintained in Google Docs. This is a separate synthetic experiment.</p><p><a href="experiments/four-workflows/index.html">Open the new experiment</a></p></section></main>')
+        body=f'''<main class="wrap hero"><div class="eyebrow">{esc(r["researcher_id"])}</div><h1>{esc(r["display_name"])}</h1><p><span class="badge">{esc(status_label)}</span></p><div class="notice">{esc(notice_text)}</div><section class="section"><h2>Topic</h2><div class="kvs"><div>Title</div><div>{esc(title_value)}</div><div>Short name</div><div>{esc(r.get("topic_short_name") or "ON HOLD")}</div></div></section><section class="section"><h2>Version control and source</h2><p>Git branches are full-repository commits; these researcher-named refs are compatibility/work lanes. Public-safe website and tool code is versioned in the common <a href="https://github.com/FabinGurung/jp-research-lab/tree/main">GitHub main repository</a>. Original thesis source packages and compiled outputs remain in Google Drive until an explicit source-code admission/migration is approved.</p></section><section class="section"><h2>Research lanes</h2><div class="lanes">{lane_html}</div></section>{website_section}{debt_section}<section class="section"><h2>Google Drive outputs</h2><div class="kvs">{links}</div></section></main>'''
         # Shisheer CURRENT remains a permanent open modular Drive source, no new ZIP.
         if r["slug"] == "shisheer-kc" and drive.get("latex_working_folder_drive_id"):
             current_pdf = drive_url(drive["working_pdf_drive_id"])
@@ -276,7 +280,10 @@ def main():
                 '<p>One canonical PU template, academic authorial-integrity policy and '
                 'source/PDF QA system for all researchers; no cross-researcher science.</p>'
                 '<p><a href="../../controls/latex/index.html">Open single LaTeX control tower →</a> · '
-                '<a href="../../controls/latex/semantics/index.html">Semantic rules and checker →</a></p></section>')
+                '<a href="../../controls/latex/semantics/index.html">Semantic rules and checker →</a></p>'
+                '<p><a href="https://docs.google.com/document/d/1WS5L8UjDxumtcsx2sSAb7cdQor8ryTK5_ukkvUfWp2k/edit">Shared LaTeX build guide →</a> · '
+                '<a href="https://docs.google.com/document/d/1tX7hBF1DN-8llL2dBA-C08Ig5hs2npnRvS38X9qQSqY/edit">Font resource manifest (authorized access) →</a> · '
+                '<a href="../../memory-wall/index.html">Academic writing guardrail →</a></p></section>')
         body=body.replace("</main>",shared+"</main>")
         if r["slug"]=="safal-dawadi":
             body=body.replace("</main>",'<section class="section"><h2>LaTeX preparation control</h2><div class="notice">Researcher source, PDF and A9 states are independently versioned. Read live project controls and recent releases before claiming scientific, university-format or A9 Main approval.</div><p><a href="../../controls/latex/safal-dawadi/index.html">Open Safal project LaTeX status →</a></p></section></main>')
@@ -341,22 +348,23 @@ def main():
     thesis_body+='<p><a href="'+esc(REPO_URL+"/blob/main/registry/latex-build-profiles.json")+'">Build profiles →</a> · <a href="'+esc(REPO_URL+"/blob/main/controls/latex/pu-rule-enforcement-matrix.json")+'">144-rule enforcement roadmap →</a> · <a href="' + esc(REPO_URL+"/blob/main/docs/UNIVERSAL_THESIS_BUILD_READ_FIRST_20261009.md") + '">Linux build procedure →</a> · <a href="../controls/latex/index.html">Single LaTeX tower →</a></p></section></main>'
     write(out,"thesis-infrastructure/index.html",shell("Thesis Infrastructure",thesis_body,1))
     # Unified R&D main codebase: Fabin research subpages are deployed together.
-    sitebase="https://fabingurung.github.io/JP_Research-and-Development"
+    sitebase=SITE_URL.rstrip("/")
     fabin=next(r for r in researchers if r["slug"]=="fabin-gurung")
     fdrive=fabin["drive"]
     aec_research=[
         ("Current MSc Structural thesis working PDF",drive_url(fdrive.get("working_pdf_drive_id"))),
-        ("LaTeX source ZIP (Git source transition pending)",drive_url(fdrive.get("latex_source_package_drive_id"))),
+        ("Current editable LaTeX source ZIP",drive_url(fdrive.get("latex_source_package_drive_id"))),
         ("Midterm presentation PPTX",drive_url(fdrive.get("presentation_pptx_drive_id"))),
         ("Midterm presentation QA PDF",drive_url(fdrive.get("presentation_pdf_drive_id"))),
         ("Canonical Drive project cabinet","https://drive.google.com/drive/folders/"+fdrive["project_root_drive_id"]),
         ("Static AEC methodology demo",sitebase+"/methodology-demo/"),
-        ("JP Structural Analysis engine","https://fabingurung.github.io/JP_Structural_Analysis/"),
-        ("Current GitHub source repository","https://github.com/FabinGurung/JP_Research-and-Development/tree/main")
+        ("Four-workflow experiment",sitebase+"/researchers/fabin-gurung/experiments/four-workflows/"),
+        ("JP Structural Analysis engine","https://fabingurung.github.io/jp-structural-analysis/"),
+        ("Current GitHub source repository","https://github.com/FabinGurung/jp-research-lab/tree/main")
     ]
     def cards_for(links):
         return "".join('<article class="card"><h3>'+esc(label)+'</h3><a href="'+esc(url)+'">Open →</a></article>' for label,url in links if url)
-    aec_body='<main class="wrap hero"><div class="eyebrow">Fabin Gurung / Paper 01 · MSc Structural Engineering</div><h1>'+esc(fabin["topic_title"])+'</h1><p class="lead">The AEC research website and original interactive methodology demo are now accessible within the unified JP R&D Pages build. v0.9 thesis is a QA-passed WORKING document, not a certified final submission.</p><div class="grid">'+cards_for(aec_research)+'</div><section class="section"><h2>Code and provenance</h2><p>Live portal code is on repository <strong>main</strong>. Restored standalone demos are under <code>web/legacy-site/methodology-demo</code>, retaining the archived public-source blob identities. Git branches are whole-repository snapshots, not one-researcher file stores. Original research documents remain in Drive.</p><p><a href="../../index.html">← Fabin researcher workspace</a></p></section></main>'
+    aec_body='<main class="wrap hero"><div class="eyebrow">Fabin Gurung / Paper 01 · MSc Structural Engineering</div><h1>'+esc(fabin["topic_title"])+'</h1><p class="lead">The AEC research website and original interactive methodology demo are now accessible within the unified JP R&D Pages build. The current MSc Structural Engineering manuscript is v0.18, a 70-page working thesis. Academic approval and final submission remain separate.</p><div class="grid">'+cards_for(aec_research)+'</div><section class="section"><h2>Code and provenance</h2><p>Live portal code is on repository <strong>main</strong>. Restored standalone demos are under <code>web/legacy-site/methodology-demo</code>, retaining the archived public-source blob identities. Git branches are whole-repository snapshots, not one-researcher file stores. Original research documents remain in Drive.</p><p><a href="../../index.html">← Fabin researcher workspace</a></p></section></main>'
     write(out,"researchers/fabin-gurung/websites/aec/index.html",shell("Fabin AEC Research",aec_body,4))
     hydro=next(w for w in websites if w.get("module_slug")=="hydropower-phd")
     hd=hydro.get("drive",{})
@@ -372,7 +380,7 @@ def main():
         ("Relational model · schema view",sitebase+"/hydropower-data-schema/"),
         ("Relational model · table designer",sitebase+"/hydropower-data-tables/"),
         ("Relational model · interactive graph",sitebase+"/hydropower-data-graph/"),
-        ("GitHub research site source","https://github.com/FabinGurung/JP_Research-and-Development/tree/main")
+        ("GitHub research site source","https://github.com/FabinGurung/jp-research-lab/tree/main")
     ]
     hydro_body='<main class="wrap hero"><div class="eyebrow">Fabin Gurung / Paper 02 · Hydropower PhD research</div><h1>'+esc(hydro["research_title"])+'</h1><p class="lead">Post-defense research framework: BIM/GIS, hydropower assets and normalized relationships for traceable infrastructure planning. Current manuscript v0.2 is QA-pass review, NOT a final PhD submission. Historical static visualizations are restored as research demos; they are not new verified site-suitability evidence.</p><div class="grid">'+cards_for(hydro_links)+'</div><section class="section"><h2>Scientific boundaries</h2><p>M1–M3 are not a final all-module scientific freeze, M4 remains unselected and M5 acceptance cutoffs remain open. Prototype GIS research and hydropower research-model demos do not replace formal feasibility, surveys or licensed engineering analysis.</p><p><a href="../../index.html">← Fabin researcher workspace</a></p></section></main>'
     write(out,"researchers/fabin-gurung/websites/hydropower-phd/index.html",shell("Fabin Hydropower PhD",hydro_body,4))
