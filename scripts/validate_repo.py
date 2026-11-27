@@ -379,6 +379,17 @@ if args.site:
     single_page=ROOT/args.site/"controls/latex/index.html"
     if single_page.exists() and "One template for every researcher" not in single_page.read_text(encoding="utf-8"):
         errors.append("canonical shared LaTeX website section missing")
+# Shared 27 November thesis production guide: checked by both validate and Pages Actions.
+prebuild=load("controls/latex/tower.json").get("mandatory_prebuild_20261127",{})
+if prebuild.get("scope")!="ALL_RESEARCHERS_EVERY_PRODUCTION_BUILD" or {x.get("style") for x in prebuild.get("faces",[])}!={"Regular","Bold","Italic","Bold Italic"} or not prebuild.get("rules"):
+    errors.append("mandatory all-researcher exact-font and academic-voice prebuild rule missing")
+if args.site:
+    guide=ROOT/args.site/"academic-writing/thesis-build-guide/index.html"
+    hub=ROOT/args.site/"academic-writing/index.html"
+    if not guide.is_file() or prebuild.get("shared_drive_read_first","MISSING") not in guide.read_text(encoding="utf-8"):
+        errors.append("shared thesis writing guide missing or incorrect Drive link")
+    if not hub.is_file() or "thesis-build-guide/index.html" not in hub.read_text(encoding="utf-8"):
+        errors.append("shared thesis writing guide not linked from academic hub")
 if errors:
     print("JP R&D VALIDATION: FAIL")
     for e in errors: print("- "+e)
