@@ -1,0 +1,31 @@
+\chapter{Supplementary Calculations for the One-Bay Frame}
+\label{app:supabase_screenshots}
+\addappendixentry{Supplementary Calculations for the One-Bay Frame}
+
+\section{Vertical Equilibrium}
+
+The four edge beams receive a total roof load of \(135.750~\mathrm{kN}\). Symmetry gives \(33.9375~\mathrm{kN}\) of roof load at each column. With a concrete unit weight of \(25.00~\mathrm{kN/m^3}\), each column contributes \(25(0.30)^2(3.00)=6.750~\mathrm{kN}\). The corresponding vertical reaction at each base is \(40.6875~\mathrm{kN}\), and the four reactions sum to \(162.750~\mathrm{kN}\).
+
+\section{Beam Deflection Relative to the End Chord}
+
+For the left half of a perimeter beam, the distributed load is \(w+qx\), where \(w=1.734375~\mathrm{kN/m}\) is the beam self-weight and \(q=6.75~\mathrm{kN/m^2}\) is the gradient of the triangular slab load transferred to the beam. With \(L=4.00~\mathrm{m}\), the near reaction \(R=16.96875~\mathrm{kN}\) and the near section moment \(M_0=-6.601~\mathrm{kN\,m}\), the sagging-positive moment is
+\[
+  M(x)=M_0+Rx-\frac{wx^2}{2}-\frac{qx^3}{6},
+  \qquad 0\leq x\leq L/2.
+\]
+The midspan deflection was obtained by integrating \(EI v''=M(x)\) with \(v(0)=0\) and \(v'(L/2)=0\); the right half follows by symmetry. Using the unrounded end moment and gross-section rigidity \(EI=47{,}460.94~\mathrm{kN\,m^2}\), the result is \(0.450~\mathrm{mm}\) downward at midspan. This calculation gives elastic bending relative to the end chord; joint translation, column shortening and slab displacement are outside its scope.
+
+An independent virtual-work calculation uses a unit downward force at midspan on the simply supported reference chord. Its virtual bending moment on the left half is \(m(x)=x/2\). Symmetry gives the downward chord-relative displacement as
+\[
+ \delta_{\mathrm{mid}}=\frac{2}{EI}\int_0^{L/2}M(x)m(x)\,\mathrm{d}x
+ =\frac{1}{EI}\left[\frac{M_0x^2}{2}+\frac{Rx^3}{3}-\frac{wx^4}{8}-\frac{qx^5}{30}\right]_0^{L/2}.
+\]
+Substitution of the same unrounded moment and load parameters gives \(0.45047~\mathrm{mm}\) downward, in agreement with the curvature integration. The two methods therefore verify the member bending displacement under the stated elastic idealisation, not the total displacement of the frame roof.
+
+\section{Reinforcement Mass}
+
+The reinforcement arrangement in \myfig{fig:spatial_rebar} represents the assumptions of the quantity example. For a single direction of the slab mat, 21 bars of \(10~\mathrm{mm}\) diameter and \(3.960~\mathrm{m}\) length give
+\[
+  21(3.960)(7{,}850)\frac{\pi(0.010)^2}{4}=51.27~\mathrm{kg}.
+\]
+The two directions contribute \(102.54~\mathrm{kg}\) to the total illustrative frame takeoff of \(335.83~\mathrm{kg}\). The full bar list and measurement allowances are given in Section~\ref{sec:material_takeoff}.

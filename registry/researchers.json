@@ -15,7 +15,7 @@
         "working_pdf_drive_id": "1LBt3R4u35BxhKjOGoX8YflP7zFJutxBk",
         "presentation_pdf_drive_id": "15yodei46iwtW44v7-cw6UDVkDnu3evwi",
         "presentation_pptx_drive_id": "1uZ9YW77E0na0_-zwNyD2FXQKx-qU9Q9E",
-        "latex_source_package_drive_id": "1PlgWYREUuB3ph49rmHHudINz3kTrcxhZ",
+        "latex_source_package_drive_id": "1qC8UkZskLr-Dvqi9QDp8MGfGpPynK836",
         "discussion_read_first_drive_id": "1mvxvBNmGqWo6CEyfh9HLf6byTuo1z7dVPgPaFpXFFOY",
         "project_root_drive_id": "1m_J-w1rSgQcmyHL-cbkPwKKejyJ0TbJP"
       },
@@ -33,7 +33,7 @@
           "content_policy": "TYPESCRIPT_YAML_JSON_HTML_CSS_SVG_SOURCE_ONLY"
         }
       },
-      "public_note": "MSc Structural AEC thesis v0.16 CURRENT WORKING. The November 2026 revision adds seven spatial views of the one-bay frame and uses 12-point Times New Roman for thesis text and editable tables. The permanent PDF and editable source passed Drive readback. Academic approval remains open.",
+      "public_note": "MSc Structural Engineering thesis v0.18 · current working manuscript, 70 pages. The revised academic text and supplementary calculations present the two-span database case and the separate one-bay experiment. The matching PDF and modular editable source are available in Google Drive. Academic approval and final submission remain separate.",
       "governance": {
         "read_first": "researchers/fabin-gurung/AGENTS.md",
         "engine_protocol": "docs/RESEARCHER_ENGINE_READ_FIRST.md",

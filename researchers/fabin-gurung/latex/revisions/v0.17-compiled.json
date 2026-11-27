@@ -1,0 +1,19 @@
+{
+  "researcher_id": "RSH-001",
+  "manuscript_version": "v0.17",
+  "parent": "v0.16",
+  "status": "COMPILED_ARCHIVED_PREDECESSOR_OF_V0.18",
+  "date": "2026-11-27",
+  "pages": 70,
+  "shared_style_version": "2.6.4",
+  "shared_style_blob": "6deb30ec415fd386de104c0b7248eb9ea8b98ece",
+  "pdf_sha256": "6cd746500f1508a674e260a1d8ebf624935582550e183a12d6c4be8746d3bb42",
+  "pdf_size": 1432732,
+  "source_zip_sha256": "ca6f16730a057474af1b81bf3a164b69f4bfba9412bc7454b8ead9415ab94d05",
+  "source_zip_size": 5559402,
+  "source_tree_sha256": "3be37c7dab52a47b755db5ac46367e7c23915b16a184362d311fb56eab798623",
+  "source_file_count": 117,
+  "scientific_approval": "NOT_INFERRED",
+  "final_submission": "NOT_CERTIFIED",
+  "internal_links_verified": 311
+}
