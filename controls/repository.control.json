@@ -43,5 +43,11 @@
     "website": "Optional verified website source/config and route pointers live in Git. Do not create a website lane for a researcher without a real verified module or an explicit new website request."
   },
   "version_authority": "GITHUB_FOR_RND_GIT_MANAGED_CODE_AND_RESEARCHER_SOURCE",
-  "version_authority_policy": "controls/git-drive-authority.json"
+  "version_authority_policy": "controls/git-drive-authority.json",
+  "shared_document_publication": {
+    "policy": "controls/document-publication.policy.json",
+    "policy_id": "RD-DOC-PURPOSE-001",
+    "mandatory_before_each_version": true,
+    "release_gate": "CONTEXTUAL_SOURCE_AND_RENDERED_OUTPUT_REVIEW_REQUIRED"
+  }
 }
